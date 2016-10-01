@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<plugin id="com.googlemaps.ios" version="2.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+  <name>Google Maps SDK for iOS</name>
+  <description>Install the Google Maps SDK for iOS without CocoaPods</description>
+  <keywords>cordova, ios, googlemaps</keywords>
+  <license>MIT</license>
+  <engines>
+    <engine name="cordova-ios" version=">=3.0.0" />
+  </engines>
+
+  <platform name="ios">
+    <!-- system frameworks -->
+    <framework src="Accelerate.framework" />
+    <framework src="CoreData.framework" />
+    <framework src="CoreGraphics.framework" />
+    <framework src="CoreLocation.framework" />
+    <framework src="CoreText.framework" />
+    <framework src="GLKit.framework" />
+    <framework src="ImageIO.framework" />
+    <framework src="libc++.tbd" />
+    <framework src="libz.tbd" />
+    <framework src="OpenGLES.framework" />
+    <framework src="QuartzCore.framework" />
+    <framework src="SystemConfiguration.framework" />
+    <framework src="UIKit.framework" />
+    <framework src="Subspecs/Base/Frameworks/GoogleMapsBase.framework" custom="true"/>
+    <framework src="Subspecs/Maps/Frameworks/GoogleMaps.framework" custom="true"/>
+    <framework src="Subspecs/Maps/Frameworks/GoogleMapsCore.framework" custom="true"/>
+    <resource-file src="Subspecs/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"/>
+    <!--<hook type="before_plugin_install" src="hooks/before_install.js"/>-->
+  </platform>
+</plugin>

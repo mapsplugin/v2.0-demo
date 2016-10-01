@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/loader.js"></script>
+    <script src="../code-prettify/run_prettify.js" async="async"></script>
+    <script src="../js/menu.js" async="async"></script>
+</head>
+
+<body>
+    <div id="menuView"><ul id="menu"></ul></div>
+    <div id="header">
+        <div id="menuButton"></div><h3>environment.getLicenseInfo()</h3>
+    </div>
+
+    <div id="contentView">
+        <div id="contentsFrame">
+            <section class="demo">
+                <button>Click here!</button>
+                <p>Get the open source software license information for Google Maps Android API v2 and Google Maps SDK for iOS.<br>
+                    <br> If you use this plugin in your application, you MUST include the license attribution text as part of a "Legal Notices" section in your application.<br> Including legal notices as an independent menu item, or as part of an "About"
+                    menu item, is recommended.<br> This is requirement by Google Maps Android API v2 and Google Maps SDK for iOS</p>
+                <pre class="prettyprint">var button = document.getElementsByTagName('button')[0];
+button.addEventListener('click', function() {
+  plugin.google.maps.environment.getLicenseInfo(showTheLicense);
+});
+function showTheLicense(text) {
+
+  // Show the licence text
+  var bgDiv = document.createElement("div");
+  bgDiv.style.position = "fixed";
+  bgDiv.style.zIndex = 3;
+  bgDiv.style.left = 0;
+  bgDiv.style.top = 0;
+  bgDiv.style.bottom = 0;
+  bgDiv.style.right = 0;
+  bgDiv.style.backgroundColor = "rgba(0,0,0,0.5)";
+
+  var textDiv = document.createElement("div");
+  textDiv.style.width = "85%";
+  textDiv.style.height = "85%";
+  textDiv.style.top = "5%";
+  textDiv.style.left = "5%";
+  textDiv.style.right = "5%";
+  textDiv.style.bottom = "5%";
+  textDiv.style.overflowY = "scroll";
+  textDiv.style.WebkitOverflowScrolling = "touch";
+  textDiv.style.position = "fixed";
+  textDiv.style.backgroundColor = "white";
+  textDiv.style.padding = "2.5%";
+  textDiv.innerText = text;
+  bgDiv.appendChild(textDiv);
+
+  bgDiv.addEventListener("click", function() {
+    document.body.removeChild(bgDiv);
+    bgDiv = null;
+    textDiv = null;
+    bgDiv.removeEventListener("click", arguments.callee);
+  });
+
+  document.body.appendChild(bgDiv);
+
+}
+</pre>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

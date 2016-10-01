@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <script src="../code-prettify/run_prettify.js" async="async"></script>
+    <script src="../js/menu.js" async="async"></script>
+</head>
+
+<body>
+
+    <div id="menuView"><ul id="menu"></ul></div>
+    <div id="header">
+        <div id="menuButton"></div><h2>Base class</h2>
+    </div>
+    <div id="contentView">
+        <div id="contentsFrame">
+            <p>The Base class is designed for MVC(Model-View-Controller). MVC helps you to write your code Model, View and Controller separatorlly.
+                <br> The <a href="../Map/index.html">Map</a>,<a href="../Marker/index.html">Marker</a>,
+                <a href="../Polyline/index.html">Polyline</a>,<a href="../Polygon/index.html">Polygon</a>,
+                <a href="../Circle/index.html">Circle</a>,<a href="../TileOverlay/index.html">TileOverlay</a>, and <a href="../GroundOverlay/index.html">GroundOverlay</a> classes extends this Base class.
+                <br> The belows are exmaple how to use this class.
+            </p>
+
+            <section class="demo">
+                <h3>Create your class that inherited BaseClass</h3>
+                <pre class="prettyprint">
+// First, create MyClass inherited BaseClass.
+var MyClass = function() {
+  plugin.google.maps.BaseClass.apply(this);
+};
+MyClass.prototype = new plugin.google.maps.BaseClass();
+
+// Second, create an instance of MyClass; "myObject". The myObject watches "BUTTON_CLICK" event.</p>
+var myObject = new MyClass();
+myObject.addEventListener("BUTTON_CLICK", function() {
+  alert("Button is clicked!");
+});
+
+var button = document.getElementById("button");
+button.addEventListener("click", function() {
+  myObject.trigger("BUTTON_CLICK");
+});
+</pre>
+            </section>
+
+            <section class="demo">
+                <h3>addEventListener() and removeEventListener()</h3>
+                <p>n order to watch an event, you need to add an event listener.</p>
+
+                <pre class="prettyprint">myObject.addEventListener("BUTTON_CLICK", onButtonClick);
+
+function onButtonClick() {
+  alert("Button is clicked!");
+}
+</pre>
+                <p>Removing the event listener, you need to specify the listener function with the event name.</p>
+                <pre class="prettyprint">myObject.removeEventListener("BUTTON_CLICK", onButtonClick);</pre>
+                <p>If you want to remove all event listeners for the event, you can omit the listener.</p>
+                <pre class="prettyprint">myObject.removeEventListener("BUTTON_CLICK");</pre>
+                <p>Or, if you want to remove all event listeners, you can omit the parameters.</p>
+                <pre class="prettyprint">myObject.removeEventListener();</pre>
+                <p><span class="highlight">on()</span> and <span class="highlight">off()</span> methods are the same as <span class="highlight">addEventListener()</span> and <span class="highlight">removeEventListener()</span>.</p>
+            </section>
+
+            <section class="demo">
+                <h3>trigger()</h3>
+                <p>You can dispatch your event with your data. This is useful to write down your code separately.</p>
+                <pre class="prettyprint">
+function onMyEvent(data1, data2) {
+var myObject = this;
+alert(data1 + " " + data2);
+}
+
+myObject.on("my event", onMyEvent);
+
+myObject.trigger("my event", "Hello", "World");
+</pre>
+            </section>
+            <section class="demo">
+                <h3>set() and get()</h3>
+                <p>You can set your value for own purpose using set() method.</p>
+                <pre class="prettyprint">
+myObject.set("message", "Hello");
+
+alert(myObject.get("message"));
+</pre>
+            </section>
+            <section class="demo">
+                <h3>(property name)_changed event</h3>
+                <p>(property name)_changed event occurs when the value is changed for the property name.</p>
+                <pre class="prettyprint">
+myObject.set("message", "Hello");
+
+myObject.on("message_changed", function() {
+  alert("new message: " + this.get("message");
+});
+
+myObject.set("message", "world");
+</pre>
+            </section>
+            <h3>Constructor</h3>
+            <table class="reference">
+                <tr>
+                    <th>BaseClass()</th>
+                    <td>Creates an MVCObject.</td>
+                </tr>
+            </table>
+
+            <h3>Methods</h3>
+            <table class="reference">
+                <tr>
+                    <th>addListener(eventName:string, handler:Function)</th>
+                    <td>Adds the given listener function to the given event name.</td>
+                </tr>
+                <tr>
+                    <th>addListenerOnce(eventName:string, handler:Function)</th>
+                    <td>Adds the given listener function to the given event name. This event listener works only at once.</td>
+                </tr>
+                <tr>
+                    <th>get(key:string)</th>
+                    <td>Gets a value.</td>
+                </tr>
+                <tr>
+                    <th>set(key:string, value:*)</th>
+                    <td>Sets a value.</td>
+                </tr>
+                <tr>
+                    <th>removeEventListener(eventName?:string, callback?:function)</th>
+                    <td>Remove the event listener. If you omit both parameters, all event listeners that added to the object are removed.</td>
+                </tr>
+                <tr>
+                    <th>on(eventName:string, handler:Function)</th>
+                    <td>The same as addListener.</td>
+                </tr>
+                <tr>
+                    <th>one(eventName:string, handler:Function)</th>
+                    <td>The same as addListenerOnce.</td>
+                </tr>
+                <tr>
+                    <th>off(eventName?:string, callback?:function)</th>
+                    <td>The same as removeEventListener.</td>
+                </tr>
+                <tr>
+                    <th>empty()</th>
+                    <td>Clear all stored values</td>
+                </tr>
+                <tr>
+                    <th>trigger(eventName:string, parameters...)</th>
+                    <td>Dispatch an event with given name and parameters.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

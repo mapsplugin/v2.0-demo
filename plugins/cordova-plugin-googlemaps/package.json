@@ -1,0 +1,38 @@
+{
+  "name": "cordova-plugin-googlemaps",
+  "version": "1.3.9",
+  "description": "Google Maps native SDK for Android and iOS",
+  "cordova": {
+    "id": "cordova-plugin-googlemaps",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mapsplugin/cordova-plugin-googlemaps.git"
+  },
+  "keywords": [
+    "google",
+    "maps",
+    "geo",
+    "google maps",
+    "nightstomp",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.5.0"
+    }
+  ],
+  "author": "Masashi Katsumata, Hirbod Mirjavadi",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/mapsplugin/cordova-plugin-googlemaps/issues"
+  },
+  "homepage": "https://github.com/mapsplugin/cordova-plugin-googlemaps#readme"
+}

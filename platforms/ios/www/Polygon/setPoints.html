@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/loader.js"></script>
+    <script src="../code-prettify/run_prettify.js" async="async"></script>
+    <script src="../js/menu.js" async="async"></script>
+</head>
+
+<body>
+
+    <div id="menuView"><ul id="menu"></ul></div>
+    <div id="header">
+        <div id="menuButton"></div><h3>polygon.setPoints()</h3>
+    </div>
+    <div id="contentView">
+        <div id="contentsFrame">
+            <section class="demo">
+
+                <p>
+                    The polygon.setPoints() updates the polygon points.<br> If you already get an instance of the <a href="../BaseArrayClass">BaseArrayClass</a> using <a href="./getPoitns.html">polygon.getPoints()</a>, still you can modify it.
+                </p>
+                <div class="map" id="map_canvas"></div>
+                <pre class="prettyprint">//------------------------------------
+// Ref: http://www.geocodezip.com/v3_polygon_example_donuta.html
+//------------------------------------
+function drawCircle(point, radius, dir) {
+  var d2r = Math.PI / 180;   // degrees to radians
+  var r2d = 180 / Math.PI;   // radians to degrees
+  var earthsradius = 3963; // 3963 is the radius of the earth in miles
+
+  var points = 32;
+
+  // find the raidus in lat/lon
+  var rlat = (radius / earthsradius) * r2d;
+  var rlng = rlat / Math.cos(point.lat * d2r);
+
+  var extp = new Array();
+  var start, end;
+  if (dir === 1) {
+    // one extra here makes sure we connect the
+    start = 0;
+    end = points + 1;
+  } else {
+    start = points + 1;
+    end = 0;
+  }
+  for (var i=start; (dir === 1 ? i < end : i > end); i = i + dir) {
+    var theta = Math.PI * (i / (points/2));
+    ey = point.lng + (rlng * Math.cos(theta)); // center a + radius x * cos(theta)
+    ex = point.lat + (rlat * Math.sin(theta)); // center b + radius y * sin(theta)
+    extp.push({lat: ex, lng: ey});
+  }
+  return extp;
+}
+
+
+
+var mapDiv = document.getElementById("map_canvas");
+
+// Create a map with specified camera bounds
+var map = plugin.google.maps.Map.getMap(mapDiv);
+map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+
+  showVirtualDialog(mapDiv, "Click on the polygon!");
+
+  // Add a polygon
+  map.addPolygon({
+    'points': drawCircle({lat: -33.0, lng: 151.2}, 100, 1),
+    'width': 10,
+    'geodesic': true,
+    'strokeColor': "#0000FF",
+    'strokeOpacity': 0.8,
+    'strokeWeight': 2,
+    'fillColor': "#FF0000",
+    'fillOpacity': 0.35,
+    'clickable': true  //default = false
+  }, function(polygon) {
+
+    map.moveCamera({
+      target: polygon.getPoints().getArray()
+    });
+
+    // Catch the POLYGON_CLICK event
+    polygon.on(plugin.google.maps.event.POLYGON_CLICK, function() {
+
+      // Set new points
+      polygon.setPoints([
+        {lat: -32.366418, lng: 151.146957},
+        {lat: -32.744884, lng: 150.740298},
+        {lat: -32.743724, lng: 150.208911},
+        {lat: -33.112183, lng: 150.788921},
+        {lat: -33.639087, lng: 150.766192},
+        {lat: -33.285082, lng: 151.261255},
+        {lat: -33.595936, lng: 151.896088},
+        {lat: -33.052976, lng: 151.624838},
+        {lat: -32.669338, lng: 152.213894},
+        {lat: -32.650729, lng: 151.508452}
+      ]);
+    });
+  });
+
+});
+
+</pre>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

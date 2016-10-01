@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+tr {
+  margin: 0.5em;
+}
+td:nth-child(odd) {
+  background: #eeeeff;
+}
+table.reference td {
+  word-break: break-word;
+  padding-bottom: 25px;
+}
+td {
+  padding: 6px;
+  background-color: #fff;
+  border: 1px solid #b9b9b9;
+  border-right: 1px dotted #aaa;
+}
+th {
+  width: 25%;
+  padding: 6px;
+  text-align: left;
+  vertical-align: top;
+  color: #333;
+  background-color: #eee;
+  border: 1px solid #b9b9b9;
+}

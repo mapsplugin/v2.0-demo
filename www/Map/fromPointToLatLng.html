@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/loader.js"></script>
+    <script src="../code-prettify/run_prettify.js" async="async"></script>
+    <script src="../js/menu.js" async="async"></script>
+</head>
+
+<body>
+    <div id="menuView"><ul id="menu"></ul></div>
+    <div id="header">
+        <div id="menuButton"></div><h3>map.fromLatLngToPoint()</h3>
+    </div>
+    <div id="contentView">
+        <div id="contentsFrame">
+            <section class="demo">
+                <p>
+                    Get the click position on the map, then convert to LatLng.
+                </p>
+                <div class="map" id="map_canvas"></div>
+                <pre class="prettyprint">var div = document.getElementById("map_canvas");
+var map = plugin.google.maps.Map.getMap(div);
+map.one(plugin.google.maps.event.MAP_READY, function() {
+
+  map.setClickable(false);
+
+  div.addEventListener("click", function(e) {
+
+    // Get the tapped position by pixels
+    var clickX = e.pageX - this.offsetLeft;
+    var clickY = e.pageY - this.offsetTop;
+
+    // Convert point to LatLng.
+    map.fromPointToLatLng([clickX, clickY], function(latLng) {
+
+      // Add a marker
+      map.addMarker({
+        position: latLng,
+        title: "Point: " + clickX + ", " + clickY
+      }, function(marker) {
+        marker.showInfoWindow();
+      });
+    });
+  });
+
+});
+  </pre>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

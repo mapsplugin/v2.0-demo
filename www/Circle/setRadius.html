@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/loader.js"></script>
+    <script src="../code-prettify/run_prettify.js" async="async"></script>
+    <script src="../js/menu.js" async="async"></script>
+</head>
+
+<body>
+
+    <div id="menuView"><ul id="menu"></ul></div>
+    <div id="header">
+        <div id="menuButton"></div><h3>circle.setRadius()</h3>
+    </div>
+    <div id="contentView">
+        <div id="contentsFrame">
+            <section class="demo">
+                <p>
+                    Change the circle radius.
+                </p>
+                <div class="map" id="map_canvas"></div>
+                <pre class="prettyprint">var center = {"lat": 32, "lng": -97};
+
+// radius (meter)
+var radius = 300;
+
+// Calcurate the positions
+var deg0 = plugin.google.maps.geometry.spherical.computeOffset(center, radius, 0);
+var deg90 = plugin.google.maps.geometry.spherical.computeOffset(center, radius, 90);
+var deg180 = plugin.google.maps.geometry.spherical.computeOffset(center, radius, 180);
+var deg270 = plugin.google.maps.geometry.spherical.computeOffset(center, radius, 270);
+
+var mapDiv = document.getElementById("map_canvas");
+var map = plugin.google.maps.Map.getMap(mapDiv, {
+  camera: {
+    target: [
+      center,
+      deg0,
+      deg90,
+      deg180,
+      deg270
+    ],
+    padding: 100
+  }
+});
+
+map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+
+  map.addMarker({
+      'position': deg0,
+      'draggable': true,
+      'title': 'Drag me!'
+  }, function(marker) {
+
+    marker.showInfoWindow();
+
+    // Add circle
+    map.addCircle({
+        'center': center,
+        'radius': radius,
+        'strokeColor' : '#AA00FF',
+        'strokeWidth': 5,
+        'fillColor' : '#00880055'
+    }, function(circle) {
+
+        marker.on("position_changed", function(oldValue, newValue) {
+            // Calcurate distance between center and the marker position
+            var radius = plugin.google.maps.geometry.spherical.computeDistanceBetween(center, newValue);
+
+            // Update the redius
+            circle.setRadius(radius);
+        });
+
+    });
+
+  });
+
+});
+</pre>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

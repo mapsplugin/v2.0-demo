@@ -1,0 +1,30 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "cordova.google.maps"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "cordova.google.maps"
+        },
+        "cordova-plugin-wkwebview-engine": {
+            "PACKAGE_NAME": "cordova.google.maps"
+        },
+        "cordova-plugin-googlemaps": {
+            "API_KEY_FOR_IOS": "AIzaSyDWRhmu9F4FmH3HUWYjRMFPcL0RfXns4lA",
+            "NSLOCATIONALWAYSUSAGEDESCRIPTION": "Trace your location on the map",
+            "PACKAGE_NAME": "cordova.google.maps"
+        }
+    },
+    "dependent_plugins": {
+        "com.googlemaps.ios": {
+            "PACKAGE_NAME": "cordova.google.maps"
+        }
+    }
+}

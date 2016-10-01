@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C7805ABA5748737FEFCF4EFDB05E6645E6248022",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E1791A7D972EE8B207A5BDA874EA7C7ECEADDDB1" : 9223372036854775807,
+    "C7805ABA5748737FEFCF4EFDB05E6645E6248022" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FE628B00-58F0-405A-9E86-225BAA02D144",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E1791A7D972EE8B207A5BDA874EA7C7ECEADDDB1" : "..\/cordova-plugin-googlemaps",
+    "C7805ABA5748737FEFCF4EFDB05E6645E6248022" : "multiple-map-example\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MultipleMaps",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "platforms\/ios\/MultipleMaps.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:wf9a5m75\/multi-maps-example.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C7805ABA5748737FEFCF4EFDB05E6645E6248022"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mapsplugin\/cordova-plugin-googlemaps.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E1791A7D972EE8B207A5BDA874EA7C7ECEADDDB1"
+    }
+  ]
+}
