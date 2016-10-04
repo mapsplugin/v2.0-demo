@@ -32,8 +32,8 @@
     <engine name="android" spec="latest" />
     <engine name="ios" spec="latest" />
     <plugin name="cordova-plugin-googlemaps" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps#multiple_maps">
-        <variable name="API_KEY_FOR_ANDROID" value="(REPLACE_WITH_YOUR_KEY)" />
-        <variable name="API_KEY_FOR_IOS" value="(REPLACE_WITH_YOUR_KEY)" />
+        <variable name="API_KEY_FOR_ANDROID" value="(REPLACE_WITH_YOUR_KEY_FOR_ANDROID)" />
+        <variable name="API_KEY_FOR_IOS" value="(REPLACE_WITH_YOUR_KEY_FOR_IOS)" />
         <variable name="NSLOCATIONWHENINUSEUSAGEDESCRIPTION" value="Show your location on the map" />
         <variable name="NSLOCATIONALWAYSUSAGEDESCRIPTION" value="Trace your location on the map" />
     </plugin>
