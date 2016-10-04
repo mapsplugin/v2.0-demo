@@ -41,3 +41,7 @@ cordova-plugin-wkwebview-engine 1.1.0 "Cordova WKWebView Engine"
 The documents are below.
 
 https://github.com/mapsplugin/cordova-plugin-googlemaps/wiki/v2-beta
+
+## issues
+
+If you face any issues about v2.0-beta, please post to the [issue tracker of the demo app](https://github.com/mapsplugin/v2.0-demo/issues)
