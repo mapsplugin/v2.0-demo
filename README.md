@@ -2,6 +2,15 @@
 
 This is an example of the multiple_maps branch.
 
+# Demo apk
+
+You can try the demo apk that is built of this repository.
+[Download](https://dl.dropboxusercontent.com/u/1456061/cordova-google-maps/v2/cordova-googlemaps-v2-demo_01.apk)
+
+https://www.youtube.com/watch?v=oZBkTIpjTqg
+
+<a href="https://www.youtube.com/watch?v=oZBkTIpjTqg"><img src="https://cloud.githubusercontent.com/assets/167831/19011215/3f29e648-8744-11e6-9bf3-51d046885916.png"></a>
+
 ----
 
 ## Build the demo app
