@@ -2,6 +2,8 @@
 
 This is an example of the multiple_maps branch.
 
+----
+
 ## Build the demo app
 
 In order to use this demo, please follow the below commands:
@@ -34,7 +36,23 @@ cordova-plugin-googlemaps 2.0.0-beta "cordova-plugin-googlemaps"
 cordova-plugin-whitelist 1.2.2 "Whitelist"
 cordova-plugin-wkwebview-engine 1.1.0 "Cordova WKWebView Engine"
 ```
+----
 
+## Update the plugin code
+
+Since the plugin code is updated without announcement for small code,
+I recommend you use the latest code of the plugin.
+
+To update the plugin, just reinstall the plugin.
+
+```
+$> cordova rm cordova-plugin-googlemaps  # remove the plugin
+
+$> cordova prepare  # reinstall the latest plugin automatically.
+
+```
+
+----
 
 ## Documentations
 
@@ -42,6 +60,7 @@ The documents are below.
 
 https://github.com/mapsplugin/cordova-plugin-googlemaps/wiki/v2-beta
 
+----
 ## issues
 
 If you face any issues about v2.0-beta, please post to the [issue tracker of the demo app](https://github.com/mapsplugin/v2.0-demo/issues)
