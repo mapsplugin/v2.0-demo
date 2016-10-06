@@ -66,6 +66,8 @@ div#menuButton {
   height: 100%;
   left: 0;
   top: 0;
+  -webkit-transform: translate3d(0, 0px, 0px);
+  -webkit-transition-duration:0.5s;
   transform: translate3d(0, 0px, 0px);
   transition-duration:0.5s;
   padding: 0;
@@ -73,6 +75,8 @@ div#menuButton {
   overflow: scroll;
 }
 #contentView.menuOpen {
+  -webkit-transform: translate3d(150px, 0px, 0px);
+  -webkit-transition-duration:0.5s;
   transform: translate3d(150px, 0px, 0px);
   transition-duration:0.5s;
 }
@@ -97,6 +101,8 @@ div#menuView {
   margin: 0;
   padding: 0;
   bottom: 0;
+  -webkit-transform: translate3d(-150, 0px, 0px);
+  -webkit-transition-duration:0.5s;
   transform: translate3d(-150, 0px, 0px);
   transition-duration:0.5s;
   background-color: #f1f1f1;
@@ -105,6 +111,8 @@ div#menuView {
 
 div#menuView.menuOpen {
   left: 0px !important;
+  -webkit-transform: translate3d(150, 0px, 0px);
+  -webkit-transition-duration:0.5s;
   transform: translate3d(150, 0px, 0px);
   transition-duration:0.5s;
 }
