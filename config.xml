@@ -31,14 +31,12 @@
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     <engine name="android" spec="latest" />
     <engine name="ios" spec="latest" />
-    <!--
-    <plugin name="cordova-plugin-googlemaps" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps#multiple_maps">
-        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBzTWTKaMEeABaeBSa3_E6ZMxseK4xXl4k" />
-        <variable name="API_KEY_FOR_IOS" value="AIzaSyDWRhmu9F4FmH3HUWYjRMFPcL0RfXns4lA" />
+    <plugin name="cordova-plugin-wkwebview-engine" spec="~1.1.0" />
+    <plugin name="cordova-plugin-console" spec="~1.0.4" />
+    <plugin name="cordova-plugin-googlemaps" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps.git#multiple_maps">
+        <variable name="API_KEY_FOR_ANDROID" value="YOUR_APIKEY_GOES_HERE" />
+        <variable name="API_KEY_FOR_IOS" value="YOUR_APIKEY_GOES_HERE" />
         <variable name="NSLOCATIONWHENINUSEUSAGEDESCRIPTION" value="Show your location on the map" />
         <variable name="NSLOCATIONALWAYSUSAGEDESCRIPTION" value="Trace your location on the map" />
     </plugin>
-  -->
-    <plugin name="cordova-plugin-wkwebview-engine" spec="~1.1.0" />
-    <plugin name="cordova-plugin-console" spec="~1.0.4" />
 </widget>

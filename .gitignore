@@ -1,2 +1,5 @@
 .gradle/
 .idea/
+plugins/
+platforms/
+.DS_Store
