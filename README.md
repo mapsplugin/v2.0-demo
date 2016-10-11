@@ -62,7 +62,7 @@ I recommend you use the latest code of the plugin.
 To update the plugin, just reinstall the plugin.
 
 ```
-$> cordova rm cordova-plugin-googlemaps  # remove the plugin
+$> cordova plugin rm cordova-plugin-googlemaps  # remove the plugin
 
 $> cordova prepare  # reinstall the latest plugin automatically.
 
