@@ -12,7 +12,7 @@ This is an example of the multiple_maps branch.
 
 You can try the demo apk that is built of this repository.
 
-[Click to download the demo apk (Android)](https://github.com/mapsplugin/v2.0-demo/blob/master/cordova-googlemaps-v2-demo_02.apk)
+[Click to download the demo apk (Android)](https://github.com/mapsplugin/v2.0-demo/blob/master/cordova-googlemaps-v2-demo_02.apk?raw=true)
 
 https://www.youtube.com/watch?v=oZBkTIpjTqg
 
