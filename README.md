@@ -14,6 +14,12 @@ You can try the demo apk that is built of this repository.
 
 [Click to download the demo apk (Android)](https://github.com/mapsplugin/v2.0-demo/blob/master/cordova-googlemaps-v2-demo_02.apk?raw=true)
 
+After download the apk file from the above link, install it to your android.
+
+```bash
+$> adb install -r cordova-googlemaps-v2-demo_02.apk
+```
+
 https://www.youtube.com/watch?v=oZBkTIpjTqg
 
 <a href="https://www.youtube.com/watch?v=oZBkTIpjTqg"><img src="https://cloud.githubusercontent.com/assets/167831/19011215/3f29e648-8744-11e6-9bf3-51d046885916.png"></a>
