@@ -26,31 +26,31 @@
                     <li>The <span class="highlight">CAMERA_MOVE_START</span> event is fired when the camera will move.</li>
                     <li>The <span class="highlight">CAMERA_MOVE</span> event is fired during the camera is moving.</li>
                     <li>The <span class="highlight">CAMERA_MOVE_END</span> event is fired during the camera is stopped.</li>
-                    </p>
-                    <div class="map" id="map_canvas">
-                        <table  class="smallPanel">
-                            <tr>
-                                <th rowspan="2">target</th>
-                                <td id="lat"></td>
-                            </tr>
-                            <tr>
-                                <td id="lng"></td>
-                            </tr>
-                            <tr>
-                                <th>zoom</th>
-                                <td id="zoom"></td>
-                            </tr>
-                            <tr>
-                                <th>tilt</th>
-                                <td id="tilt"></td>
-                            </tr>
-                            <tr>
-                                <th>bearing</th>
-                                <td id="bearing"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <pre class="prettyprint">var fields = {
+                </ul>
+                <div class="map" id="map_canvas">
+                    <table  class="smallPanel">
+                        <tr>
+                            <th rowspan="2">target</th>
+                            <td id="lat"></td>
+                        </tr>
+                        <tr>
+                            <td id="lng"></td>
+                        </tr>
+                        <tr>
+                            <th>zoom</th>
+                            <td id="zoom"></td>
+                        </tr>
+                        <tr>
+                            <th>tilt</th>
+                            <td id="tilt"></td>
+                        </tr>
+                        <tr>
+                            <th>bearing</th>
+                            <td id="bearing"></td>
+                        </tr>
+                    </table>
+                </div>
+                <pre class="prettyprint">var fields = {
   "lat": document.getElementById("lat"),
   "lng": document.getElementById("lng"),
   "zoom": document.getElementById("zoom"),
