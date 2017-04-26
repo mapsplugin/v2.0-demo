@@ -24,7 +24,7 @@
 
                 <p>Set true if you want to show the traffic layer.</p>
                 <div class="map" id="map_canvas">
-                    <span class="smallPanel"><button>current: map.traffcLayer = false</button></span>
+                    <span class="smallPanel"><button>current: map.trafficLayer = false</button></span>
                 </div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div, {
@@ -43,7 +43,7 @@ map.one(plugin.google.maps.event.MAP_READY, function() {
   button.addEventListener('click', function() {
     isEnabled = !isEnabled;
     map.setTrafficEnabled(isEnabled);
-    button.innerHTML = "current: map.traffcLayer = " + isEnabled;
+    button.innerHTML = "current: map.trafficLayer = " + isEnabled;
   });
 
 });
