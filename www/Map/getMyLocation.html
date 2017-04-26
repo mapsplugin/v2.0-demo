@@ -42,7 +42,6 @@ map.one(plugin.google.maps.event.MAP_READY, function() {
       'position': location.latLng,
       'title': msg
     }, function(marker) {
-      marker.showInfoWindow();
       map.animateCamera({
         target: location.latLng,
         zoom: 16
