@@ -14,9 +14,10 @@ var pageTree = [
   {"href": "../Environment/index.html", "title": "Environment"},
   {"href": "../Geocoder/index.html", "title": "Geocoder"},
   {"href": "../BaseClass/index.html", "title": "BaseClass"},
-  {"href": "../BaseArrayClass/index.html", "title": "BaseArrayClass"},
+  {"href": "../BaseArrayClass/index.html", "title": "BaseArrayClass"}/*,
   {"title": "-------------"},
   {"href": "../Demo/index.html", "title": "Demo"}
+*/
 ];
 window.addEventListener('load', function() {
   var contentView = document.getElementById("contentView");
