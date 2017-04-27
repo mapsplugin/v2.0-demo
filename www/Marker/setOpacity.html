@@ -50,7 +50,7 @@ map.one(plugin.google.maps.event.MAP_READY, function() {
     range.addEventListener("change", function() {
 
       // Set the current value as opacity.
-      marker.setOpacity(this.value);
+      marker.setOpacity(parseFloat(this.value));
     });
 
     // Set the current value as opacity.
