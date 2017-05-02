@@ -4,7 +4,7 @@ var pageTree = [
   {"title": "Classes"},
   {"href": "../Map/index.html", "title": "Map"},
   {"href": "../Marker/index.html", "title": "Marker"},
-  {"href": "../InfoWindow/index.html", "title": "InfoWindow"},
+  {"href": "../HtmlInfoWindow/index.html", "title": "HtmlInfoWindow"},
   {"href": "../Polyline/index.html", "title": "Polyline"},
   {"href": "../Polygon/index.html", "title": "Polygon"},
   {"href": "../Circle/index.html", "title": "Circle"},
