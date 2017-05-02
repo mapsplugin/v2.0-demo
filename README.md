@@ -37,7 +37,7 @@ $> cd v2.0-demo
 
 ```
 
-Open the config.xml file, then replace [(REPLACE_WITH_YOUR_KEY)](https://github.com/mapsplugin/v2.0-demo/blob/master/config.xml#L35-L36) with your API keys.
+Open the config.xml file, then replace [(REPLACE_WITH_YOUR_KEY)](https://github.com/mapsplugin/v2.0-demo/blob/master/config.xml#L37-L38) with your API keys.
 
 After that, you can restore the project files.
 
