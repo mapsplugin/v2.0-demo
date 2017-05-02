@@ -80,7 +80,7 @@ $> cordova prepare  # reinstall the latest plugin automatically.
 
 The documents are below.
 
-https://github.com/mapsplugin/cordova-plugin-googlemaps/wiki/v2-beta
+https://github.com/mapsplugin/cordova-plugin-googlemaps-doc/blob/master/v2.0.0/README.md
 
 ----
 ## issues
