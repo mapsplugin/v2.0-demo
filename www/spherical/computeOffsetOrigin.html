@@ -31,7 +31,7 @@
 // distance (meter)
 var distance = 300;
 
-// Calcurate the positions
+// Calculate the positions
 var offsets = [];
 for (var degree = 0; degree < 360; degree += 45) {
     offsets.push(plugin.google.maps.geometry.spherical.computeOffsetOrigin(position, distance, degree));

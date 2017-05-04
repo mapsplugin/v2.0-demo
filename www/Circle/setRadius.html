@@ -71,10 +71,10 @@ map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
     }, function(circle) {
 
         marker.on("position_changed", function(oldValue, newValue) {
-            // Calcurate distance between center and the marker position
+            // Calculate distance between center and the marker position
             var radius = plugin.google.maps.geometry.spherical.computeDistanceBetween(center, newValue);
 
-            // Update the redius
+            // Update the radius
             circle.setRadius(radius);
         });
 
