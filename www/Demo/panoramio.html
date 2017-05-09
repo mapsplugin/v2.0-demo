@@ -46,50 +46,49 @@ map.one(plugin.google.maps.event.MAP_READY, function() {
 function onCameraMoved() {
   var map = this;
 
-  map.getVisibleRegion(function(latLngBounds) {
+  var latLngBounds = map.getVisibleRegion();
 
-    var holder = map.get('holder');
-    // Remove old markers that are outside of the visible reagion
-    // during panoramio searching.
-    setTimeout(function() {
-      holder.forEach(function(marker) {
-        if (!latLngBounds.contains(marker.getPosition())) {
-          marker.remove();
-        }
-      });
-    }, 0);
-
-
-    //-----------------------------------------------
-    // Search images on Panoramio.
-    // http://www.panoramio.com/api/data/api.html
-    //-----------------------------------------------
-    $.ajax({
-      dataType: "jsonp",
-      url: "http://www.panoramio.com/map/get_panoramas.php",
-      data: {
-        set: "full",
-        from: 0,
-        to: 20,
-        size: "medium",
-        mapfilter: true,
-        miny: latLngBounds.southwest.lat,
-        minx: latLngBounds.southwest.lng,
-        maxy: latLngBounds.northeast.lat,
-        maxx: latLngBounds.northeast.lng
+  var holder = map.get('holder');
+  // Remove old markers that are outside of the visible reagion
+  // during panoramio searching.
+  setTimeout(function() {
+    holder.forEach(function(marker) {
+      if (!latLngBounds.contains(marker.getPosition())) {
+        marker.remove();
       }
-    })
-    .done(function(data) {
-
-      if (!data || data.count === 0) {
-        return;
-      }
-      addMarkers(map, data.photos, function(markers) {
-        holder.push.apply(holder, markers);
-      });
     });
+  }, 0);
 
+
+  //-----------------------------------------------
+  // Search images on Panoramio.
+  // http://www.panoramio.com/api/data/api.html
+  //-----------------------------------------------
+  $.ajax({
+    dataType: "jsonp",
+    url: "http://www.panoramio.com/map/get_panoramas.php",
+    data: {
+      set: "full",
+      from: 0,
+      to: 20,
+      size: "medium",
+      mapfilter: true,
+      miny: latLngBounds.southwest.lat,
+      minx: latLngBounds.southwest.lng,
+      maxy: latLngBounds.northeast.lat,
+      maxx: latLngBounds.northeast.lng
+    }
+  })
+  .done(function(data) {
+
+    if (!data || data.count === 0) {
+      return;
+    }
+    addMarkers(map, data.photos, function(markers) {
+      holder.push.apply(holder, markers);
+    });
   });
+  
 }
 function addMarkers(map, data, callback) {
   var markers = [];
