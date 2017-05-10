@@ -12,12 +12,14 @@ This is an example of the multiple_maps branch.
 
 You can try the demo apk that is built of this repository.
 
-[Click to download the demo apk (Android)](https://github.com/mapsplugin/v2.0-demo/blob/master/cordova-googlemaps-v2-demo_08.apk?raw=true)
+[Click to download the demo apk (Android)](https://github.com/mapsplugin/v2.0-demo/blob/master/cordova-googlemaps-v2-demo_09.apk?raw=true)
 
 After download the apk file from the above link, install it to your android.
 
 ```bash
-$> adb install -r cordova-googlemaps-v2-demo_08.apk
+$> adb uninstall cordova.google.maps  // if you installed this app before.
+
+$> adb install cordova-googlemaps-v2-demo_08.apk
 ```
 
 https://www.youtube.com/watch?v=oZBkTIpjTqg
