@@ -33,7 +33,41 @@ var map = plugin.google.maps.Map.getMap(div, {
     'myLocationButton': true,
     'indoorPicker': true,
     'zoom': true // Only for Android
-  }
+  },
+  'styles': [
+    {
+      "featureType": "administrative.land_parcel",
+      "stylers": [
+        {
+          "color": "#23ff00"
+        }
+      ]
+    },
+    {
+      "featureType": "landscape.natural.landcover",
+      "stylers": [
+        {
+          "color": "#23ff00"
+        }
+      ]
+    },
+    {
+      "featureType": "landscape.natural.terrain",
+      "stylers": [
+        {
+          "color": "#23ff00"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "stylers": [
+        {
+          "color": "#0400ff"
+        }
+      ]
+    }
+  ]
 });
 map.one(plugin.google.maps.event.MAP_READY, function() {
 
