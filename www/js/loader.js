@@ -1,7 +1,7 @@
 document.addEventListener("deviceready", function() {
   var pTags = document.getElementsByClassName("demo");
   for (var i = 0; i < pTags.length; i++) {
-    executeCode(pTags[i], 500 * i);
+    executeCode(pTags[i], 100 * i);
   }
 }, false);
 
