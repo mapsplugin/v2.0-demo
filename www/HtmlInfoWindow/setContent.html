@@ -43,11 +43,13 @@ map.one(plugin.google.maps.event.MAP_READY, function() {
   htmlInfoWindow.setContent(button);
 
   map.addMarker({
-    position: {lat: 0, lng: 0},
-    infoWindow: htmlInfoWindow
+    position: {lat: 0, lng: 0}
   }, function(marker) {
 
-    htmlInfoWindow.open(marker);
+    marker.on(plugin.google.maps.event.MARKER_CLICK, function() {
+      htmlInfoWindow.open(marker);
+    });
+    marker.trigger(plugin.google.maps.event.MARKER_CLICK);
 
   });
 });

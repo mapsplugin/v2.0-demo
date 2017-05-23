@@ -17,14 +17,14 @@
 
     <div id="menuView"><ul id="menu"></ul></div>
     <div id="header">
-        <div id="menuButton"></div><h3>htmlInfoWindow.setBackgroundColor()</h3>
+        <div id="menuButton"></div><h3>htmlInfoWindow.open()</h3>
     </div>
     <div id="contentView">
         <div id="contentsFrame">
             <section class="demo">
 
                 <p>
-                    You can change the backgroundColor of the html info window.
+                    Open the htmlInfoWIndow.
                 </p>
                 <div class="map" id="map_canvas"></div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
@@ -38,12 +38,14 @@ map.one(plugin.google.maps.event.MAP_READY, function() {
   htmlInfoWindow.setContent(html);
 
   map.addMarker({
-    position: {lat: 0, lng: 0},
-    infoWindow: htmlInfoWindow
+    position: {lat: 0, lng: 0}
   }, function(marker) {
 
-    htmlInfoWindow.open(marker);
-    
+    marker.on(plugin.google.maps.event.MARKER_CLICK, function() {
+      htmlInfoWindow.open(marker);
+    });
+    marker.trigger(plugin.google.maps.event.MARKER_CLICK);
+
   });
 });
 </pre>
