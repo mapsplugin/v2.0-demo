@@ -12,7 +12,7 @@ This is an example of the multiple_maps branch.
 
 You can try all features of this plugin.
 
-[Click to download the demo apk (Android)](https://github.com/mapsplugin/v2.0-demo/blob/master/cordova-googlemaps-v2-demo_16.apk?raw=true)
+[Click to download the demo apk (Android)](https://github.com/mapsplugin/v2.0-demo/blob/master/cordova-googlemaps-v2-demo_17.apk?raw=true)
 
 ## How to install the apk file.
 
@@ -21,7 +21,7 @@ After download the apk file from the above link, install it to your android.
 ```bash
 $> adb uninstall cordova.google.maps  // if you installed this app before.
 
-$> adb install cordova-googlemaps-v2-demo_16.apk
+$> adb install cordova-googlemaps-v2-demo_17.apk
 ```
 
 ![](image.gif)
@@ -56,10 +56,36 @@ Installed platforms:
 $> cordova plugin list
 com.googlemaps.ios 2.0.1 "Google Maps SDK for iOS"
 cordova-plugin-console 1.0.4 "Console"
-cordova-plugin-googlemaps 2.0.0-beta "cordova-plugin-googlemaps"
+cordova-plugin-googlemaps 2.0.0-beta2-20170621-1354 "cordova-plugin-googlemaps"
 cordova-plugin-whitelist 1.2.2 "Whitelist"
 cordova-plugin-wkwebview-engine 1.1.0 "Cordova WKWebView Engine"
 ```
+
+----
+
+## Versioning
+
+The plugin v2 is still in the beta version, not stable.
+The current main problem is that the compatibility with ionic3 might be problem.
+Because of this, the code is updated high frequency.
+
+The plugin version has miner versions.
+
+The format is like this:
+
+```
+2.0.0-beta2-20170621-1354
+            YYYY
+                MM
+                  DD
+                     HH
+                       SS
+```
+
+You can find the latest version number in the [plugin.xml](https://github.com/mapsplugin/cordova-plugin-googlemaps/blob/multiple_maps/plugin.xml#L2)
+
+![](versioning.png)
+
 ----
 
 ## Update the plugin code
