@@ -12,7 +12,7 @@ This is an example of the multiple_maps branch.
 
 You can try all features of this plugin.
 
-[Click to download the demo apk (Android)](https://github.com/mapsplugin/v2.0-demo/blob/master/cordova-googlemaps-v2-demo_17.apk?raw=true)
+[Click to download the demo apk (Android)](https://github.com/mapsplugin/v2.0-demo/blob/master/cordova-googlemaps-v2-demo_18.apk?raw=true)
 
 ## How to install the apk file.
 
@@ -21,7 +21,7 @@ After download the apk file from the above link, install it to your android.
 ```bash
 $> adb uninstall cordova.google.maps  // if you installed this app before.
 
-$> adb install cordova-googlemaps-v2-demo_17.apk
+$> adb install cordova-googlemaps-v2-demo_18.apk
 ```
 
 ![](image.gif)
@@ -56,7 +56,7 @@ Installed platforms:
 $> cordova plugin list
 com.googlemaps.ios 2.0.1 "Google Maps SDK for iOS"
 cordova-plugin-console 1.0.4 "Console"
-cordova-plugin-googlemaps 2.0.0-beta2-20170621-1354 "cordova-plugin-googlemaps"
+cordova-plugin-googlemaps 2.0.0-beta2-20170623-1207 "cordova-plugin-googlemaps"
 cordova-plugin-whitelist 1.2.2 "Whitelist"
 cordova-plugin-wkwebview-engine 1.1.0 "Cordova WKWebView Engine"
 ```
@@ -74,7 +74,7 @@ The plugin version has miner versions.
 The format is like this:
 
 ```
-2.0.0-beta2-20170621-1354
+2.0.0-beta2-20170623-1207
             YYYY
                 MM
                   DD
