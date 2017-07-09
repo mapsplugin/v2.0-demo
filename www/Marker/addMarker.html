@@ -114,9 +114,20 @@ map.one(plugin.google.maps.event.MAP_READY, function() {
     // The variable "options" contains each element of the data.
     //
     // The variable "cb" is a callback function of interation.
+    options.mytitle = options.title;
+    delete options.title;
     map.addMarker(options, cb);
 
   }, function(markers) {
+
+    var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
+
+    markers.forEach(function(marker) {
+      marker.on(plugin.google.maps.event.MARKER_CLICK, function() {
+        htmlInfoWindow.setContent(marker.get("mytitle"));
+        htmlInfoWindow.open(marker);
+      });
+    });
 
     // Set camera position that include all markers.
     var bounds = [];

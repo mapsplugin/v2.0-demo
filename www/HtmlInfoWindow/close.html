@@ -32,6 +32,13 @@ var map = plugin.google.maps.Map.getMap(div);
 map.one(plugin.google.maps.event.MAP_READY, function() {
   var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
 
+  htmlInfoWindow.on(plugin.google.maps.event.INFO_CLOSE, function() {
+    alert("---> INFO_CLOSE");
+  });
+  htmlInfoWindow.on(plugin.google.maps.event.INFO_OPEN, function() {
+    alert("---> INFO_OPEN");
+  });
+
   var infoDiv = document.createElement("div");
   infoDiv.innerHTML = "Click the below button.&lt;br&gt;";
 
