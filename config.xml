@@ -32,9 +32,8 @@
     <preference name="BackgroundColor" value="0" />
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="^4.4.0" />
-    <plugin name="com.googlemaps.ios" spec="../cordova-plugin-googlemaps-sdk" />
     <plugin name="cordova-plugin-console" spec="~1.0.4" />
-    <plugin name="cordova-plugin-googlemaps" spec="/Users/masashi/Documents/workspace/cordova-plugin-googlemaps">
+    <plugin name="cordova-plugin-googlemaps" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps#multiple_maps">
         <variable name="API_KEY_FOR_ANDROID" value=" (REPLACE_WITH_YOUR_KEY)" />
         <variable name="API_KEY_FOR_IOS" value=" (REPLACE_WITH_YOUR_KEY)" />
         <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Show your location on the map" />
