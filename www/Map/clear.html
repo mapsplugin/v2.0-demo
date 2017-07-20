@@ -34,7 +34,9 @@ map.one(plugin.google.maps.event.MAP_READY, function() {
   var button = div.getElementsByTagName('button')[0];
   button.addEventListener('click', function() {
     // Removes the markers completely.
-    map.clear();
+    map.clear(function() {
+      alert("completed");
+    });
   });
 
   // Puts random markers on the map.
