@@ -6,3 +6,4 @@ platforms/
 node_modules/
 package.json
 package-lock.json
+config.xml

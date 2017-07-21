@@ -28,7 +28,7 @@
                 <div class="map" id="map_canvas"></div>
                 <pre class="prettyprint">var mapDiv = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(mapDiv, {
-  'mapType' : plugin.google.maps.MapTypeId.NONE,
+  //'mapType' : plugin.google.maps.MapTypeId.NONE,
   'preferences': {
     'zoom': {
       'minZoom': 0,
@@ -40,6 +40,10 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
 map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
   map.addTileOverlay({
+    debug: true,  // draw debug infomation on tiles
+
+    opacity: 0.75,  // from 0.0 to 1.0
+
     // Load image files from the local file path
     getTile: function(x, y, zoom) {
       //return "http://tile.openstreetmap.org/" + zoom + "/" + x + "/" + y + ".png";
