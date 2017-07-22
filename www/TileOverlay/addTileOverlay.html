@@ -32,7 +32,7 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   'preferences': {
     'zoom': {
       'minZoom': 0,
-      'maxZoom': 4
+      'maxZoom': /Android/i.test(window.navigator.userAgent) ? 4 : 3
     }
   }
 });
