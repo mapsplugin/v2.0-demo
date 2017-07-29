@@ -32,9 +32,11 @@
         </select>
                 </div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
-var map = plugin.google.maps.Map.getMap(div);
+var map = plugin.google.maps.Map.getMap(div, {
+  mapType: plugin.google.maps.MapTypeId.NONE
+});
 map.one(plugin.google.maps.event.MAP_READY, function() {
-
+alert("MAP_READY");
   var select = div.getElementsByTagName('select')[0];
   select.addEventListener('change', function() {
     map.setMapTypeId(plugin.google.maps.MapTypeId[this.value]);
