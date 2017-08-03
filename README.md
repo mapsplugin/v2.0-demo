@@ -16,7 +16,7 @@ The donated amount is used for buying testing machine (such as iPhone, Android) 
 
 You can try all features of this plugin.
 
-[Click to download the demo apk (Android)](https://github.com/mapsplugin/v2.0-demo/blob/master/cordova-googlemaps-v2-demo_26.apk?raw=true)
+[Click to download the demo apk (Android)](https://github.com/mapsplugin/v2.0-demo/blob/master/cordova-googlemaps-v2-demo_27.apk?raw=true)
 
 ## How to install the apk file.
 
@@ -25,7 +25,7 @@ After download the apk file from the above link, install it to your android.
 ```bash
 $> adb uninstall cordova.google.maps  // if you installed this app before.
 
-$> adb install cordova-googlemaps-v2-demo_26.apk
+$> adb install cordova-googlemaps-v2-demo_27.apk
 ```
 
 ![](image.gif)
@@ -78,7 +78,7 @@ The plugin version has miner versions.
 The format is like this:
 
 ```
-2.0.0-beta2-20170729-1650
+2.0.0-beta3-20170802-1930
             YYYY
                 MM
                   DD
