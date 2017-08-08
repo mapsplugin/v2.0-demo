@@ -79,7 +79,7 @@ function addEditablePolyline(map, points, callback) {
       }, cb);
     }, function(markers) {
 
-      // If a marker is dragged, set the position of it to the points of the Polygon.
+      // If a marker is dragged, set the position of it to the points of the polyline.
       markers.forEach(function(marker, idx) {
         marker.on(plugin.google.maps.event.MARKER_DRAG, function(position) {
           mvcArray.setAt(idx, position);
