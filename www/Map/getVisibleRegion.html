@@ -58,7 +58,6 @@ map.one(plugin.google.maps.event.MAP_READY, function() {
 
     // Get the visible region
     var visibleRegion = map.getVisibleRegion();
-    var latLngBounds = visibleRegion.latLngBounds;
 
     // Draw a red polygon that represents viewport
     map.addPolygon({
@@ -80,10 +79,10 @@ map.one(plugin.google.maps.event.MAP_READY, function() {
     // Draw a blue box that represents latLngBounds
     map.addPolygon({
       'points': [
-        latLngBounds.northeast,
-        {lat: latLngBounds.northeast.lat, lng: latLngBounds.southwest.lng},
-        latLngBounds.southwest,
-        {lat: latLngBounds.southwest.lat, lng: latLngBounds.northeast.lng}
+        visibleRegion.northeast,
+        {lat: visibleRegion.northeast.lat, lng: visibleRegion.southwest.lng},
+        visibleRegion.southwest,
+        {lat: visibleRegion.southwest.lat, lng: visibleRegion.northeast.lng}
       ],
       'strokeColor' : 'blue',
       'strokeWidth': 2,
