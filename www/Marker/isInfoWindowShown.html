@@ -89,7 +89,13 @@ function addMarkers(map, data, callback) {
 
     marker.set("label", "marker" + markers.length);
     marker.on(plugin.google.maps.event.INFO_OPEN, onInfoWindowEvents);
-    marker.on(plugin.google.maps.event.INFO_CLOSE, onInfoWindowEvents);
+    marker.on(plugin.google.maps.event.INFO_CLOSE, function(position) {
+      // Since Marker executes the hideInfoWindow() after the INFO_CLOSE,
+      // the isInfoWindowShown() method returns true when the INFO_CLOSE is occurred.
+      setTimeout(function() {
+        onInfoWindowEvents.call(marker, position);
+      }, 100)
+    });
 
     if (markers.length === data.length) {
       callback(markers);
