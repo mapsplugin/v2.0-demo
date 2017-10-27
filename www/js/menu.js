@@ -18,6 +18,7 @@ var pageTree = [
   {"title": "-------------"},
   {"title": "Utilities"},
   {"href": "../spherical/index.html", "title": "spherical"},
+  {"href": "../poly/index.html", "title": "poly"},
   {"href": "../encoding/index.html", "title": "encoding"}/*
   {"href": "../Demo/index.html", "title": "Demo"}
 */

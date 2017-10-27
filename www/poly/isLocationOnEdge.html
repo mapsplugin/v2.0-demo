@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/loader.js"></script>
+    <script src="../code-prettify/run_prettify.js" async="async"></script>
+    <script src="../js/menu.js" async="async"></script>
+</head>
+
+<body>
+
+    <div id="menuView"><ul id="menu"></ul></div>
+    <div id="header">
+        <div id="menuButton"></div><h3>isLocationOnEdge()</h3>
+    </div>
+    <div id="contentView">
+        <div id="contentsFrame">
+          <section class="demo">
+
+              <p>
+                  Returns true if the position is on edge.
+              </p>
+              <div class="map" id="map_canvas"></div>
+              <pre class="prettyprint">var PATH = [
+  {lat: 1, lng: 1},
+  {lat: -1, lng: -1},
+  {lat: 0.3, lng: -0.5},
+  {lat: 1.5, lng: 1.2}
+];
+var mapDiv = document.getElementById("map_canvas");
+var map = plugin.google.maps.Map.getMap(mapDiv, {
+  'gestures': {
+    'scroll': false,
+    'tilt': false,
+    'rotate': false,
+    'zoom': false
+  },
+  camera: {
+    target: PATH
+  }
+});
+
+map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+
+  // Add polyline
+  map.addPolyline({
+    'points': PATH,
+    'color' : '#AA00FF',
+    'width': 5
+  }, function(polyline) {
+
+    map.addMarker({
+      'position': (new plugin.google.maps.LatLngBounds(PATH)).getCenter(),
+      'draggable': true,
+      'title': 'drag me!'
+    }, function(marker) {
+
+      // Open the infoWindow
+      marker.showInfoWindow();
+
+      // If the marker position is changed,
+      // calculates the position is on the edge.
+      // If on the edge, change the marker color to "blue", otherwise, "red".
+      marker.on("position_changed", function() {
+        var position = marker.getPosition();
+        var contain = plugin.google.maps.geometry.poly.isLocationOnEdge(position, PATH);
+        marker.setIcon(contain ? "blue" : "red");
+      });
+
+      // Fire the position_changed event for the first calculation
+      marker.trigger("position_changed", 0, marker.getPosition());
+    });
+
+  });
+
+});
+</pre>
+          </section>
+        </div>
+    </div>
+</body>
+
+</html>
