@@ -17,35 +17,50 @@
 
     <div id="menuView"><ul id="menu"></ul></div>
     <div id="header">
-        <div id="menuButton"></div><h3>map.addKmlOverlay()</h3>
+        <div id="menuButton"></div><h3>Geolocation.getMyLocation()</h3>
     </div>
     <div id="contentView">
         <div id="contentsFrame">
             <section class="demo">
                 <p>
-                    The map.addKmlOverlay() method imports a kml file from URL or file path, then generate a layer.
+                    The plugin.google.maps.Geolocation.getMyLocation() method returns the current device location.
+                    You can use this method without creating a map.
                 </p>
                 <div class="map" id="map_canvas"></div>
-                <pre class="prettyprint">var mapDiv = document.getElementById("map_canvas");
-var map = plugin.google.maps.Map.getMap(mapDiv);
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+                <pre class="prettyprint">plugin.google.maps.Geolocation.getMyLocation(function(result) {
 
-  map.addKmlOverlay({
-    'url': './polygon.kml',
-    'clickable': true,
-    'suppressInfoWindows': false
+  var map = plugin.google.maps.Map.getMap(mapDiv, {
+    'mapType': plugin.google.maps.MapTypeId.HYBRID,
+    'camera': {
+      target: result.latLng,
+      zoom: 16
+    }
+  });
 
-  }, function(kmlOverlay) {
+  var mapDiv = document.getElementById("map_canvas");
+  var map = plugin.google.maps.Map.getMap(mapDiv, {
+    'mapType': plugin.google.maps.MapTypeId.HYBRID,
+    'camera': {
+      target: result.latLng,
+      zoom: 16
+    }
+  });
 
-    console.log(kmlOverlay);
+  map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-    // You need to change the camera by yourself if you need.
-    map.moveCamera(kmlOverlay.camera);
-
-    kmlOverlay.addEventListener(plugin.google.maps.event.KML_CLICK, function(overlay, latLng) {
-      console.log(overlay);
-      alert(overlay.type);
+    var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
+    htmlInfoWindow.setContent(JSON.stringify(result, null, 2), {
+      "max-width": "90%"
     });
+
+    map.addMarker({
+      position: result.latLng
+    }, function(marker) {
+      marker.on(plugin.google.maps.event.MARKER_CLICK, function() {
+        htmlInfoWindow.open(marker);
+      });
+    });
+
   });
 });
 </pre>
