@@ -16,24 +16,31 @@
 <body>
     <div id="menuView"><ul id="menu"></ul></div>
     <div id="header">
-        <div id="menuButton"></div><h3>event: MAP_LOADED</h3>
+        <div id="menuButton"></div><h3>event: POI_CLICK</h3>
     </div>
     <div id="contentView">
         <div id="contentsFrame">
             <section class="demo">
 
                 <p>
-                    This event is fired after all tiles required to render the map have been fetched, and all labeling is complete.<br>
-                    <b>Note that this event is fired only at once.</b>
+                    This event is fired when you tap on POIs(such as building icon).
                 </p>
                 <div class="map" id="map_canvas" style="position:relative;"></div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
-var map = plugin.google.maps.Map.getMap(div);
+var map = plugin.google.maps.Map.getMap(div, {
+  controls: {
+    myLocationButton: true
+  }
+});
 
 map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  map.on(plugin.google.maps.event.MAP_LOADED, function() {
-    alert("Map tiles are loaded");
+  map.on(plugin.google.maps.event.POI_CLICK, function(placeId, name, latLng) {
+    alert([
+      "placeId = " + placeId,
+      "name = " + name,
+      "position = " + latLng.toUrlValue()
+    ].join("\n"));
   });
 
 });
