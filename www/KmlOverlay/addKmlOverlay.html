@@ -25,27 +25,68 @@
                 <p>
                     The map.addKmlOverlay() method imports a kml file from URL or file path, then generate a layer.
                 </p>
-                <div class="map" id="map_canvas"></div>
+                <div class="map" id="map_canvas">
+  <select>
+    <option>Select one kml file</option>
+    <optgroup label="Basic KMLs">
+      <option value="./marker.kml">marker.kml</option>
+      <option value="./shizuoka.kml">shizuoka.kml</option>
+    </optgroup>
+    <optgroup label="MultiGeometry">
+      <option value="./polygon.kml">polygon.kml</option>
+      <option value="https://raw.githubusercontent.com/elbalu/vmap/de8e7881d7e699addaeb8ea891b4f5f6808b9ecd/data/australia.kml">australia.kml</option>
+    </optgroup>
+    <optgroup label="Schema">
+      <option value="https://raw.githubusercontent.com/googlemaps/kml-samples/gh-pages/kml/Schema/schemadata-trailhead.kml">schemadata-trailhead.kml</option>
+      <option value="https://raw.githubusercontent.com/jalbertbowden/open-virginia-gis/a5308244bbd84fd106c46be3c61ddad46b8c4ee4/city/falls-church/curbholes/kml/Curbholes.kml">Curbholes.kml</option>
+    </optgroup>
+    <optgroup label="GroundOverlay">
+      <option value="https://raw.githubusercontent.com/MelikeSila/FinalProject/f32af4d2292876c015cf30ac6bb4cea54ae876a3/library/build/intermediates/res/merged/androidTest/debug/raw/amu_draw_order_ground_overlay.kml">amu_draw_order_ground_overlay.kml</option>
+      <option value="https://raw.githubusercontent.com/MattSchroyer/roomfinder3d/bfd3ba25056f7146a30b62dd329a57d32ade7976/MB1c.kml">MB1c.kml</option>
+    </optgroup>
+  </select>
+</div>
                 <pre class="prettyprint">var mapDiv = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(mapDiv);
 map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  map.addKmlOverlay({
-    'url': './polygon.kml',
-    'clickable': true,
-    'suppressInfoWindows': false
+  var select = mapDiv.getElementsByTagName('select')[0];
+  select.addEventListener('change', function() {
+    var kmlUrl = this.value;
+    if (!kmlUrl || kmlUrl === "Select one kml file") {
+      return;
+    }
 
-  }, function(kmlOverlay) {
+    map.clear();
 
-    console.log(kmlOverlay);
+    // Show a dialog
+    var dialogDiv = showVirtualDialog(mapDiv, "Just a moment, please ...");
 
-    // You need to change the camera by yourself if you need.
-    map.moveCamera(kmlOverlay.camera);
+    map.addKmlOverlay({
+      'url': kmlUrl,
+      'clickable': true,
+      'suppressInfoWindows': false
+    }, function(kmlOverlay) {
 
-    kmlOverlay.addEventListener(plugin.google.maps.event.KML_CLICK, function(overlay, latLng) {
-      console.log(overlay);
+      // debug
+      //console.log(kmlOverlay);
+
+      // You can get additional information
+      //kmlOverlay.on(plugin.google.maps.event.KML_CLICK, function(overlay, latLng) {
+      //  console.log(overlay);
+      //});
+
+      // You need to change the camera by yourself.
+      map.moveCamera(kmlOverlay.camera, function() {
+
+        //close the dialog
+        mapDiv.removeChild(dialogDiv);
+
+      });
+
     });
   });
+
 });
 </pre>
             </section>
