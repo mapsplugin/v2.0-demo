@@ -31,10 +31,11 @@
     <optgroup label="Basic KMLs">
       <option value="./marker.kml">marker.kml</option>
       <option value="./shizuoka.kml">shizuoka.kml</option>
-    </optgroup>
-    <optgroup label="MultiGeometry">
       <option value="./polygon.kml">polygon.kml</option>
-      <option value="https://raw.githubusercontent.com/elbalu/vmap/de8e7881d7e699addaeb8ea891b4f5f6808b9ecd/data/australia.kml">australia.kml</option>
+    </optgroup>
+    <optgroup label="Examples: Data.gov">
+    <option value="https://data.cityofnewyork.us/api/geospatial/3qz8-muuu?method=export&format=KML">MTA New York city Subway</option>
+    <option value="https://data.austintexas.gov/api/geospatial/23x8-agw7?method=export&format=KML">City of Austin: zip codes</option>
     </optgroup>
     <optgroup label="Schema">
       <option value="https://raw.githubusercontent.com/googlemaps/kml-samples/gh-pages/kml/Schema/schemadata-trailhead.kml">schemadata-trailhead.kml</option>
@@ -47,7 +48,9 @@
   </select>
 </div>
                 <pre class="prettyprint">var mapDiv = document.getElementById("map_canvas");
-var map = plugin.google.maps.Map.getMap(mapDiv);
+var map = plugin.google.maps.Map.getMap(mapDiv, {
+  'mapTypeId': plugin.google.maps.MapTypeId.SATELLITE
+});
 map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
   var select = mapDiv.getElementsByTagName('select')[0];

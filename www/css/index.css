@@ -27,3 +27,75 @@ th {
   background-color: #eee;
   border: 1px solid #b9b9b9;
 }
+
+ul.icon {
+  list-style-type: none;
+  padding: 0;
+}
+ul.icon > li {
+  max-width: 150px;
+  width: 45%;
+  height: 150px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  float: left;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 15px;
+  background-position: bottom left;
+  background-size: 100%;
+  position: relative;
+}
+ul.icon > li > a {
+  font-style: italic;
+  text-decoration: none;
+  font-family:monospace;
+  font-weight: bolder;
+  color: blue;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+li#Map {
+  background-image: url(./top/map.png);
+}
+li#Marker {
+  background-image: url(./top/marker.png);
+}
+li#MarkerCluster {
+  background-image: url(./top/markercluster.png);
+}
+li#HtmlInfoWindow {
+  background-image: url(./top/htmlInfoWindow.png);
+}
+li#Polyline {
+  background-image: url(./top/polyline.png);
+}
+li#Polygon {
+  background-image: url(./top/polygon.png);
+}
+li#Circle {
+  background-image: url(./top/circle.png);
+}
+li#GroundOverlay {
+  background-image: url(./top/groundoverlay.png);
+}
+li#TileOverlay {
+  background-image: url(./top/tileoverlay.png);
+}
+li#KmlOverlay {
+  background-image: url(./top/kmloverlay.png);
+}
+li#Geocoder {
+  background-image: url(./top/geocoder.png);
+}
+li#Geolocation {
+  background-image: url(./top/geolocation.png);
+}
+li#Environment {
+  background-image: url(./top/environment.png);
+}

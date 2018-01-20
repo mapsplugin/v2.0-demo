@@ -49,7 +49,11 @@
   map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
     var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
-    htmlInfoWindow.setContent(JSON.stringify(result, null, 2), {
+    htmlInfoWindow.setContent([
+      "Current your location:",
+      "",
+      JSON.stringify(result, null, 2)
+    ].join("\n") , {
       "max-width": "90%"
     });
 
