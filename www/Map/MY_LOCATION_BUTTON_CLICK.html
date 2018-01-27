@@ -26,16 +26,25 @@
                     Tap on the location button on the map, then you will see the alert.
                 </p>
                 <div class="map" id="map_canvas" style="position:relative;"></div>
-                <pre class="prettyprint">var div = document.getElementById("map_canvas");
-var map = plugin.google.maps.Map.getMap(div, {
-  controls: {
-    myLocationButton: true
-  }
-});
-map.one(plugin.google.maps.event.MAP_READY, function() {
+                <pre class="prettyprint">plugin.google.maps.LocationService.getMyLocation(function(result) {
 
-  map.on(plugin.google.maps.event.MY_LOCATION_BUTTON_CLICK, function() {
-    alert("The my location button is clicked.");
+  // Display the current location map
+  var mapDiv = document.getElementById('map_canvas');
+  var map = plugin.google.maps.Map.getMap(mapDiv, {
+    'camera': {
+      'target': result.latLng,
+      'zoom': 16
+    },
+    'controls': {
+      'myLocationButton': true,
+      'myLocation': true  // try `myLocation = false`
+    }
+  });
+  map.one(plugin.google.maps.event.MAP_READY, function() {
+
+    map.on(plugin.google.maps.event.MY_LOCATION_BUTTON_CLICK, function() {
+      alert("The my location button is clicked.");
+    });
   });
 });
 </pre>

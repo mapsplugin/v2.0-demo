@@ -16,7 +16,7 @@
 <body>
     <div id="menuView"><ul id="menu"></ul></div>
     <div id="header">
-        <div id="menuButton"></div><h3>event: MAP_LOCATION_CLICK</h3>
+        <div id="menuButton"></div><h3>event: MY_LOCATION_CLICK</h3>
     </div>
     <div id="contentView">
         <div id="contentsFrame">
@@ -26,19 +26,30 @@
                     This event is fired when you tap on the mylocation(blue dot).
                 </p>
                 <div class="map" id="map_canvas" style="position:relative;"></div>
-                <pre class="prettyprint">var div = document.getElementById("map_canvas");
-var map = plugin.google.maps.Map.getMap(div, {
-  controls: {
-    myLocationButton: true
-  }
-});
+                <pre class="prettyprint">
 
-map.one(plugin.google.maps.event.MAP_READY, function() {
+plugin.google.maps.LocationService.getMyLocation(function(result) {
 
-  map.on(plugin.google.maps.event.MY_LOCATION_CLICK, function(location) {
-    alert(JSON.stringify(location, null, 2));
+  // Display the current location map
+  var mapDiv = document.getElementById('map_canvas');
+  var map = plugin.google.maps.Map.getMap(mapDiv, {
+    'camera': {
+      'target': result.latLng,
+      'zoom': 16
+    },
+    'controls': {
+      'myLocationButton': false,
+      'myLocation': true
+    }
   });
 
+  map.one(plugin.google.maps.event.MAP_READY, function() {
+
+    map.on(plugin.google.maps.event.MY_LOCATION_CLICK, function(location) {
+      alert("OK");
+    });
+
+  });
 });
 </pre>
             </section>

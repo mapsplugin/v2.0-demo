@@ -38,12 +38,18 @@ var map = plugin.google.maps.Map.getMap(div);
 map.one(plugin.google.maps.event.MAP_READY, function() {
   var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
 
-  var html = [
+  var container = document.createElement("div");
+  container.innerHTML = [
     'This is &lt;b&gt;Html&lt;/b&gt; InfoWindow',
     '&lt;br&gt;',
-    '&lt;button onclick="javascript:alert(\'clicked!\');"&gt;click here&lt;/button&gt;',
+    '&lt;button&gt;click here&lt;/button&gt;',
   ].join("");
-  htmlInfoWindow.setContent(html);
+  var button = container.getElementsByTagName("button")[0];
+  button.addEventListener("click", function() {
+    alert("clicked!");
+  });
+
+  htmlInfoWindow.setContent(container);
 
   map.addMarker({
     position: {lat: 0, lng: 0},

@@ -17,27 +17,20 @@
 
     <div id="menuView"><ul id="menu"></ul></div>
     <div id="header">
-        <div id="menuButton"></div><h3>Geolocation.getMyLocation()</h3>
+        <div id="menuButton"></div><h3>LocationService.getMyLocation()</h3>
     </div>
     <div id="contentView">
         <div id="contentsFrame">
             <section class="demo">
                 <p>
-                    The plugin.google.maps.Geolocation.getMyLocation() method returns the current device location.
+                    The plugin.google.maps.LocationService.getMyLocation() method returns the current device location.
                     You can use this method without creating a map.
                 </p>
                 <div class="map" id="map_canvas" style="height: 400px;"></div>
-                <pre class="prettyprint">plugin.google.maps.Geolocation.getMyLocation(function(result) {
+                <pre class="prettyprint">plugin.google.maps.LocationService.getMyLocation(function(result) {
 
-  var map = plugin.google.maps.Map.getMap(mapDiv, {
-    'mapType': plugin.google.maps.MapTypeId.HYBRID,
-    'camera': {
-      target: result.latLng,
-      zoom: 16
-    }
-  });
+  var mapDiv = document.getElementById('map_canvas');
 
-  var mapDiv = document.getElementById("map_canvas");
   var map = plugin.google.maps.Map.getMap(mapDiv, {
     'mapType': plugin.google.maps.MapTypeId.HYBRID,
     'camera': {
