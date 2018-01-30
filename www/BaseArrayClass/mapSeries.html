@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/loader.js"></script>
+    <script src="../code-prettify/run_prettify.js" async="async"></script>
+    <script src="../js/menu.js" async="async"></script>
+</head>
+
+<body>
+
+    <div id="menuView"><ul id="menu"></ul></div>
+    <div id="header">
+        <div id="menuButton"></div><h3>baseArray overview</h3>
+    </div>
+    <div id="contentView">
+        <div id="contentsFrame">
+            <section class="demo">
+              <p>The Base Array class is designed for MVC(Model-View-Controller). <br>
+                Although the class name contains <span class="highlight">"Array"</span>, but this is <span class="highlight">not Javascript Array</span> class.
+                If you need to modify an element, use <span class="highlight">insertAt()</span>, <span class="highlight">setAt()</span> and <span class="highlight">removeAt()</span> methods.<br>
+                <br>
+                The benefit of this class is you are able to catch the events that occurs when you change the value.<br>
+
+                  <br> The belows are exmaple how to use this class.
+              </p>
+                <pre class="prettyprint">var mvcArray = new plugin.google.maps.BaseArrayClass();
+
+// Catch the insert_at event when you insert new value to the mvcArray each time.
+mvcArray.on("insert_at", function(index) {
+  console.log("---> [insert_at] position : " + index + ", value : " + this.getAt(index));
+});
+
+// Catch the set_at event when you change an element with new value.
+mvcArray.on("set_at", function(index, oldValue) {
+  console.log("---> [set_at] position : " + index + ", value : " + this.getAt(index));
+});
+
+// Catch the remove_at event when you delete an element from the mvcArray each time.
+mvcArray.on("remove_at", function(index, oldValue) {
+  console.log("---> [remove_at] position : " + index + ", value : " + oldValue);
+});
+
+mvcArray.push("A");       // ---> [insert_at] position : 0, value : "A"
+mvcArray.push("B");       // ---> [insert_at] position : 1, value : "B"
+mvcArray.push("C");       // ---> [insert_at] position : 2, value : "C"
+
+mvcArray.pop()            // ---> [remove_at] position : 2, value : "C"
+
+mvcArray.setAt(2, "D");   // ---> [set_at] position : 1, value : "B"
+
+console.log(mvcArray.getArray());  // "A", "D"
+</pre>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

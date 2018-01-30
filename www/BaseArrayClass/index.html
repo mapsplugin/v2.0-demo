@@ -31,7 +31,7 @@
 
             <section class="demo">
                 <h3>Basic example</h3>
-                <pre class="prettyprint">var mvcArray = new plugin.google.maps.BaseArrayClass();
+                <pre class="prettyprint" style="overflow: scroll">var mvcArray = new plugin.google.maps.BaseArrayClass();
 
 // Catch the insert_at event when you insert new value to the mvcArray each time.
 mvcArray.on("insert_at", function(index) {
@@ -64,6 +64,8 @@ console.log(mvcArray.getArray());  // "A", "D"
             <table class="reference">
                 <tr>
                     <th>BaseArrayClass(array?:Array)</th>
+                </tr>
+                <tr>
                     <td>A mutable MVC Array.</td>
                 </tr>
             </table>
@@ -72,38 +74,56 @@ console.log(mvcArray.getArray());  // "A", "D"
             <table class="reference">
                 <tr>
                     <th>empty()</th>
+                </tr>
+                <tr>
                     <td>Removes all elements from the array.</td>
                 </tr>
                 <tr>
                     <th>callback:function(*, number)</th>
+                </tr>
+                <tr>
                     <td>Iterate over each element, calling the provided callback. The callback is called for each element like: callback(element, index).</td>
                 </tr>
                 <tr>
                     <th>getArray()</th>
+                </tr>
+                <tr>
                     <td>Returns a reference to the underlying Array. Warning: if the Array is mutated, no events will be fired by this object.</td>
                 </tr>
                 <tr>
                     <th>getAt(i:number)</th>
+                </tr>
+                <tr>
                     <td>Returns the element at the specified index.</td>
                 </tr>
                 <tr>
                     <th>insertAt(i:number, elem:*)</th>
+                </tr>
+                <tr>
                     <td>Inserts an element at the specified index.</td>
                 </tr>
                 <tr>
                     <th>pop()</th>
+                </tr>
+                <tr>
                     <td>Removes the last element of the array and returns that element.</td>
                 </tr>
                 <tr>
                     <th>push(elem:*)</th>
+                </tr>
+                <tr>
                     <td>Adds one element to the end of the array and returns the new length of the array.</td>
                 </tr>
                 <tr>
                     <th>removeAt(i:number)</th>
+                </tr>
+                <tr>
                     <td>Removes an element from the specified index.</td>
                 </tr>
                 <tr>
                     <th>setAt(i:number, elem:*)</th>
+                </tr>
+                <tr>
                     <td>Sets an element at the specified index.</td>
                 </tr>
             </table>
@@ -112,16 +132,22 @@ console.log(mvcArray.getArray());  // "A", "D"
             <table class="reference">
                 <tr>
                     <th>insert_at</th>
+                </tr>
+                <tr>
                     <td><div class="arguments">Arguments:  number</div>
 This event is fired when <span class="highlight">insertAt()</span> is called. The event passes the index that was passed to <span class="highlight">insertAt()</span>.</td>
                 </tr>
                 <tr>
                     <th>remove_at</th>
+                </tr>
+                <tr>
                     <td><div class="arguments">Arguments:  number, *</div>
 This event is fired when <span class="highlight">removeAt()</span> is called. The event passes the index that was passed to <span class="highlight">removeAt()</span> and the element that was removed from the array.</td>
                 </tr>
                 <tr>
                     <th>set_at</th>
+                </tr>
+                <tr>
                     <td><div class="arguments">Arguments:  number, *</div>
 This event is fired when <span class="highlight">setAt()</span> is called. The event passes the index that was passed to <span class="highlight">setAt()</span> and the element that was previously in the array at that index.</td>
                 </tr>
