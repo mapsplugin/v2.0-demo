@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/loader.js"></script>
+    <script src="../code-prettify/run_prettify.js" async="async"></script>
+    <script src="../js/menu.js" async="async"></script>
+</head>
+
+<body>
+
+    <div id="menuView"><ul id="menu"></ul></div>
+    <div id="header">
+        <div id="menuButton"></div><h3>baseArray.mapSeries()</h3>
+    </div>
+    <div id="contentView">
+        <div id="contentsFrame">
+            <section class="demo">
+                <p>
+                  The same as map but runs only a single async operation at a time.
+
+
+                </p>
+                <div class="map" id="map_canvas"></div>
+                <pre class="prettyprint">
+var idx = 1;
+var baseArray = new plugin.google.maps.BaseArrayClass([1, 2, 3, 4, 5]);
+baseArray.mapSeries(function(value, next) {
+
+  setTimeout(function() {
+    next(value + (idx++));
+  }, 10);
+
+}, function(results) {
+  console.log(results);  // [2, 4, 6, 8, 10]
+});
+</pre>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

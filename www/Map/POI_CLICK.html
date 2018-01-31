@@ -26,22 +26,35 @@
                     This event is fired when you tap on POIs(such as building icon).
                 </p>
                 <div class="map" id="map_canvas" style="position:relative;"></div>
-                <pre class="prettyprint">var div = document.getElementById("map_canvas");
+                <pre class="prettyprint">
+
+var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div, {
-  controls: {
-    myLocationButton: true,
-    myLocation: true
+  camera: {
+    target: {
+      lat: 37.422000,
+      lng: -122.084057
+    },
+    zoom: 15
   }
 });
+
+// Show a virtual dialog (loader.js)
+showVirtualDialog(div, "Click on POI icon!");
 
 map.one(plugin.google.maps.event.MAP_READY, function() {
 
   map.on(plugin.google.maps.event.POI_CLICK, function(placeId, name, latLng) {
-    alert([
-      "placeId = " + placeId,
-      "name = " + name,
-      "position = " + latLng.toUrlValue()
-    ].join("\n"));
+    map.addMarker({
+      'position': latLng,
+      'title': [
+        "placeId = " + placeId,
+        "name = " + name,
+        "position = " + latLng.toUrlValue()
+      ].join("\n")
+    }, function(marker) {
+      marker.showInfoWindow();
+    });
   });
 
 });

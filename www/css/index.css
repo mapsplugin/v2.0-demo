@@ -33,6 +33,7 @@ ul.icon {
   padding: 0;
 }
 ul.icon > li {
+  color: blue;
   max-width: 150px;
   width: 45%;
   height: 150px;
@@ -44,7 +45,7 @@ ul.icon > li {
   text-align: center;
   font-size: 15px;
   background-position: bottom left;
-  background-size: 100%;
+  background-size: cover;
   position: relative;
 }
 ul.icon > li > a {
@@ -52,7 +53,7 @@ ul.icon > li > a {
   text-decoration: none;
   font-family:monospace;
   font-weight: bolder;
-  color: blue;
+  color: inherit;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -60,7 +61,7 @@ ul.icon > li > a {
   width: 100%;
   top: 0;
   height: 100%;
-  line-height: 250px;
+  line-height: 270px;
 }
 
 li#Map {
@@ -96,9 +97,28 @@ li#KmlOverlay {
 li#Geocoder {
   background-image: url(./top/geocoder.png);
 }
-li#Geolocation {
-  background-image: url(./top/geolocation.png);
+li#LocationService {
+  background-image: url(./top/locationService.png);
 }
 li#Environment {
+  color: green;
   background-image: url(./top/environment.png);
+}
+
+li#poly {
+  background-image: url(./top/poly.gif);
+}
+
+li#spherical {
+  background-image: url(./top/spherical.gif);
+}
+li#encoding {
+  color: white;
+  background-image: url(./top/encode.png);
+}
+li#BaseClass {
+  background-image: url(./top/baseclass.png);
+}
+li#BaseArrayClass {
+  background-image: url(./top/baseArray.png);
 }
