@@ -25,7 +25,7 @@
     <plugin name="cordova-plugin-googlemaps" spec="^2.2.2">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyDvnRSZojW-ar0t8sWgfsqyxY3RT3wJEyM" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyDvnRSZojW-ar0t8sWgfsqyxY3RT3wJEyM" />
-        <preferences name="PLAY_SERVICES_VERSION" value="11.8.0" />
+        <param name="PLAY_SERVICES_VERSION" value="11.8.0" />
         <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
         <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="Show your location on the map" />
         <variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="Trace your location on the map" />
