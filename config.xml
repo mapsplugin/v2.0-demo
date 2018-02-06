@@ -32,5 +32,5 @@
     
     <!--phonegap build settings -->
     <preference name="android-build-tool" value="gradle" />
-    <preference name="phonegap-version" value="cli-7.0.1" />
+    <preference name="phonegap-version" value="cli-7.1.0" />
 </widget>
