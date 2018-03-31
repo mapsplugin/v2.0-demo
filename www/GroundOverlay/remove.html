@@ -50,10 +50,10 @@ map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
     // Show a virtual dialog (loader.js)
     showVirtualDialog(mapDiv, "Click on the ground overlay!");
 
-    // Catch the circle_CLICK event
+    // Catch the GROUND_OVERLAY_CLICK event
     groundOverlay.on(plugin.google.maps.event.GROUND_OVERLAY_CLICK, function() {
 
-      // Remove the circle
+      // Remove the ground overlay
       groundOverlay.remove();
 
     });

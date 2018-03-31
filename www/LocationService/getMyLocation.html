@@ -61,6 +61,8 @@ plugin.google.maps.LocationService.getMyLocation(function(location) {
     });
 
   });
+}, function(errorResult) {
+  alert(JSON.stringify(errorResult, null, 2));
 });
 </pre>
             </section>

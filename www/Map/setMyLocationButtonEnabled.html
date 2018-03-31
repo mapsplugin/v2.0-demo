@@ -22,9 +22,9 @@
         <div id="contentsFrame">
             <section class="demo">
 
-                <p>Set true if you want to show the MyLocation control (blue dot).</p>
+                <p>Set true if you want to show the MyLocation button.</p>
                 <div class="map" id="map_canvas">
-                    <span class="smallPanel"><button>current: map.myLocation = true</button></span>
+                    <span class="smallPanel"><button>current: map.myLocationButton = false</button></span>
                 </div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div, {
@@ -39,8 +39,8 @@ map.one(plugin.google.maps.event.MAP_READY, function() {
   var button = div.getElementsByTagName('button')[0];
   button.addEventListener('click', function() {
     isEnabled = !isEnabled;
-    map.setMyLocationEnabled(isEnabled);
-    button.innerHTML = "current: map.myLocation = " + isEnabled;
+    map.setMyLocationButtonEnabled(isEnabled);
+    button.innerHTML = "current: map.myLocationButton = " + isEnabled;
   });
 
 });
