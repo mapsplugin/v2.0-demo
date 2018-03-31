@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="../cordova.js"></script>
+
+    <style type="text/css">
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+    #map_canvas {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 50%;
+    }
+    #panorama_canvas {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 50%;
+    }
+    </style>
+    <script >
+    var startLocation = {lat: -33.87365, lng: 151.20689};
+    document.addEventListener("deviceready", function() {
+      var map = plugin.google.maps.Map.getMap(document.getElementById("map_canvas"), {
+        camera: {
+          target: startLocation,
+          zoom: 18
+        }
+      });
+      map.one(plugin.google.maps.event.MAP_READY, onMapReady);
+    });
+
+    function onMapReady() {
+      var map = this;
+      var marker = map.addMarker({
+        position: startLocation,
+        flat: 0
+      });
+      marker.setAnimation(plugin.google.maps.Animation.BOUNCE);
+    }
+    function onMapReady2() {
+      var map = this;
+      var panorama = plugin.google.maps.StreetView.getPanorama(document.getElementById("panorama_canvas"), {
+        camera: {
+          target: startLocation
+        }
+      });
+
+      panorama.one(plugin.google.maps.event.PANORAMA_READY, function() {
+
+        map.addMarker({
+          position: startLocation,
+          draggable: true,
+          flat: 0
+        }, function(marker) {
+
+          marker.on(plugin.google.maps.event.MARKER_DRAG_END, function(latLng) {
+            panorama.moveCamera({
+              target: latLng,
+              bearing: map.get("camera_bearing"),
+              tilt: map.get("camera_tilt")
+            });
+          });
+
+          marker.trigger(plugin.google.maps.event.MARKER_DRAG_END, marker.getPosition());
+        });
+
+        panorama.on(plugin.google.maps.event.PANORAMA_CAMERA_CHANGE, function(cameraPosition) {
+          marker.setRotation(cameraPosition.bearing);
+
+          map.animateCamera({
+            bearing: cameraPosition.bearing,
+            tilt: cameraPosition.tilt
+          });
+        });
+
+        panorama.on(plugin.google.maps.event.PANORAMA_LOCATION_CHANGE, function(panoramaLocation) {
+          map.animateCamera({
+            target: panoramaLocation.position
+          });
+        });
+
+      });
+
+    }
+    </script>
+</head>
+
+<body>
+  <div id="map_canvas"></div>
+  <div id="panorama_canvas"></div>
+</body>
+
+</html>
