@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="../cordova.js"></script>
+
+    <style type="text/css">
+    #map_canvas {
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+    </style>
+    <script >
+    document.addEventListener("deviceready", function() {
+      var map = plugin.google.maps.Map.getMap(document.getElementById("map_canvas"));
+      map.one(plugin.google.maps.event.MAP_READY, onMapReady);
+    });
+    function onMapReady() {
+      var map = this;
+      map.addKmlOverlay({
+        url: "./marker.kml"
+      }, function(kmlOverlay) {
+
+        map.moveCamera(kmlOverlay.camera);
+
+      });
+    }
+    </script>
+</head>
+
+<body>
+  <div id="map_canvas"></div>
+</body>
+
+</html>

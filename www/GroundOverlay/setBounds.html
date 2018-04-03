@@ -38,40 +38,35 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+// Show a virtual dialog (loader.js)
+showVirtualDialog(mapDiv, "Drag the markers on the map!");
 
-  // Show a virtual dialog (loader.js)
-  showVirtualDialog(mapDiv, "Drag the markers on the map!");
+var markers = [];
 
-  var markers = [];
-
-  // Add ground overlay
-  map.addGroundOverlay({
-    'url': "../images/newark_nj_1922.jpg",
-    'bounds': bounds,
-    'opacity': 1
-  }, function(groundOverlay) {
-
-    bounds.forEach(function(position) {
-      map.addMarker({
-        position: position,
-        draggable: true
-      }, function(marker) {
-        marker.on("position_changed", onChanged.bind(groundOverlay));
-        markers.push(marker);
-      });
-    });
-  });
-
-  function onChanged() {
-    var groundOverlay = this;  // since onChanged.bind() method.
-
-    groundOverlay.setBounds([
-      markers[0].getPosition(),
-      markers[1].getPosition()
-    ]);
-  }
+// Add ground overlay
+var groundOverlay = map.addGroundOverlay({
+  'url': "../images/newark_nj_1922.jpg",
+  'bounds': bounds,
+  'opacity': 1
 });
+
+bounds.forEach(function(position) {
+  map.addMarker({
+    position: position,
+    draggable: true
+  }, function(marker) {
+    marker.on("position_changed", onChanged.bind(groundOverlay));
+    markers.push(marker);
+  });
+});
+
+function onChanged() {
+  var groundOverlay = this;  // since onChanged.bind() method.
+  groundOverlay.setBounds([
+    markers[0].getPosition(),
+    markers[1].getPosition()
+  ]);
+}
 </pre>
             </section>
         </div>

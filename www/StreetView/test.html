@@ -35,65 +35,45 @@
       var map = plugin.google.maps.Map.getMap(document.getElementById("map_canvas"), {
         camera: {
           target: startLocation,
-          zoom: 18
+          zoom: 19,
+          tilt: 45
         }
       });
-      map.one(plugin.google.maps.event.MAP_READY, onMapReady);
-    });
 
-    function onMapReady() {
-      var map = this;
       var marker = map.addMarker({
         position: startLocation,
-        flat: 0
+        flat: true
       });
-      marker.setAnimation(plugin.google.maps.Animation.BOUNCE);
-    }
-    function onMapReady2() {
-      var map = this;
+
       var panorama = plugin.google.maps.StreetView.getPanorama(document.getElementById("panorama_canvas"), {
         camera: {
           target: startLocation
         }
       });
 
-      panorama.one(plugin.google.maps.event.PANORAMA_READY, function() {
-
-        map.addMarker({
-          position: startLocation,
-          draggable: true,
-          flat: 0
-        }, function(marker) {
-
-          marker.on(plugin.google.maps.event.MARKER_DRAG_END, function(latLng) {
-            panorama.moveCamera({
-              target: latLng,
-              bearing: map.get("camera_bearing"),
-              tilt: map.get("camera_tilt")
-            });
-          });
-
-          marker.trigger(plugin.google.maps.event.MARKER_DRAG_END, marker.getPosition());
+      panorama.on(plugin.google.maps.event.PANORAMA_CAMERA_CHANGE, function(cameraPosition) {
+        marker.setRotation(cameraPosition.bearing);
+        map.animateCamera({
+          bearing: cameraPosition.bearing,
+          tilt: cameraPosition.tilt
         });
-
-        panorama.on(plugin.google.maps.event.PANORAMA_CAMERA_CHANGE, function(cameraPosition) {
-          marker.setRotation(cameraPosition.bearing);
-
-          map.animateCamera({
-            bearing: cameraPosition.bearing,
-            tilt: cameraPosition.tilt
-          });
-        });
-
-        panorama.on(plugin.google.maps.event.PANORAMA_LOCATION_CHANGE, function(panoramaLocation) {
-          map.animateCamera({
-            target: panoramaLocation.position
-          });
-        });
-
       });
 
-    }
+      panorama.on(plugin.google.maps.event.PANORAMA_LOCATION_CHANGE, function(panoramaLocation) {
+        marker.setPosition(panoramaLocation.position);
+        map.animateCamera({
+          target: panoramaLocation.position
+        });
+      });
+
+      marker.on(plugin.google.maps.event.MARKER_DRAG_END, function(latLng) {
+        panorama.moveCamera({
+          target: latLng
+        });
+      });
+      marker.trigger(plugin.google.maps.event.MARKER_DRAG_END, marker.getPosition());
+
+    });
     </script>
 </head>
 
