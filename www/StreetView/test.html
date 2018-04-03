@@ -42,6 +42,7 @@
 
       var marker = map.addMarker({
         position: startLocation,
+        draggable: true,
         flat: true
       });
 
@@ -52,17 +53,14 @@
       });
 
       panorama.on(plugin.google.maps.event.PANORAMA_CAMERA_CHANGE, function(cameraPosition) {
-        marker.setRotation(cameraPosition.bearing);
-        map.animateCamera({
-          bearing: cameraPosition.bearing,
-          tilt: cameraPosition.tilt
-        });
+        marker.setRotation(cameraPosition.bearing - 180);
       });
 
       panorama.on(plugin.google.maps.event.PANORAMA_LOCATION_CHANGE, function(panoramaLocation) {
         marker.setPosition(panoramaLocation.position);
         map.animateCamera({
-          target: panoramaLocation.position
+          target: panoramaLocation.position,
+          duration: 500
         });
       });
 
