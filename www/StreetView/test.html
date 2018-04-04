@@ -57,9 +57,9 @@
       });
 
       panorama.on(plugin.google.maps.event.PANORAMA_LOCATION_CHANGE, function(panoramaLocation) {
-        marker.setPosition(panoramaLocation.position);
+        marker.setPosition(panoramaLocation.target);
         map.animateCamera({
-          target: panoramaLocation.position,
+          target: panoramaLocation.target,
           duration: 500
         });
       });
