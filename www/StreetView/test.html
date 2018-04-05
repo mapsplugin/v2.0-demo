@@ -48,7 +48,20 @@
 
       var panorama = plugin.google.maps.StreetView.getPanorama(document.getElementById("panorama_canvas"), {
         camera: {
-          target: startLocation
+          target: startLocation,
+          zoom: 2,
+          bearing: 120,
+          tilt: 45,
+          radius: 50,
+          source: plugin.google.maps.StreetView.Source.OUTDOOR
+        },
+        gestures: {
+          panning: true,
+          zoom: true
+        },
+        controls: {
+          navigation: true,
+          streetNames: true
         }
       });
 
@@ -59,9 +72,13 @@
       panorama.on(plugin.google.maps.event.PANORAMA_LOCATION_CHANGE, function(panoramaLocation) {
         marker.setPosition(panoramaLocation.target);
         map.animateCamera({
-          target: panoramaLocation.target,
+          target: panoramaLocation.position,
           duration: 500
         });
+      });
+
+      panorama.on(plugin.google.maps.event.PANORAMA_CLICK, function(clickInfo) {
+        console.log(JSON.stringify(clickInfo, null, 2));
       });
 
       marker.on(plugin.google.maps.event.MARKER_DRAG_END, function(latLng) {
