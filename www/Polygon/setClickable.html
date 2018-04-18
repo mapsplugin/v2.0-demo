@@ -97,36 +97,32 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
     target: GERMANY
   }
 });
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  // Add a polygon
-  map.addPolygon({
-    'points': GERMANY,
-    'fillColor' : '#AAFFAA',
-    'strokeColor' : '#FF0000',
-    'strokeWidth': 2,
-    'clickable': true  // default = false
-  }, function(polygon) {
+// Add a polygon
+var polygon = map.addPolygon({
+  'points': GERMANY,
+  'fillColor' : '#AAFFAA',
+  'strokeColor' : '#FF0000',
+  'strokeWidth': 2,
+  'clickable': true  // default = false
+});
 
-    var checkbox = document.getElementById("toggleCheckbox");
-    checkbox.addEventListener("change", function() {
+var checkbox = document.getElementById("toggleCheckbox");
+checkbox.addEventListener("change", function() {
 
-      // Change the clickable property
-      polygon.setClickable(checkbox.checked);
-
-    });
-
-
-    polygon.on(plugin.google.maps.event.POLYGON_CLICK, function(latLng) {
-      alert("polygon is clicked!");
-    });
-
-    // Show a virtual dialog (loader.js)
-    showVirtualDialog(mapDiv, "Click on the polygon!");
-
-  });
+  // Change the clickable property
+  polygon.setClickable(checkbox.checked);
 
 });
+
+
+polygon.on(plugin.google.maps.event.POLYGON_CLICK, function(latLng) {
+  alert("polygon is clicked!");
+});
+
+// Show a virtual dialog (loader.js)
+showVirtualDialog(mapDiv, "Click on the polygon!");
+
 </pre>
           </section>
         </div>

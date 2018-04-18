@@ -37,27 +37,22 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+// Add ground overlay
+var groundOverlay = map.addGroundOverlay({
+  'url': "../images/newark_nj_1922.jpg",
+  'bounds': bounds,
+  'opacity': 0.5,
+  'clickable': true
+});
 
-  // Add ground overlay
-  map.addGroundOverlay({
-    'url': "../images/newark_nj_1922.jpg",
-    'bounds': bounds,
-    'opacity': 0.5,
-    'clickable': true
-  }, function(groundOverlay) {
+// Show a virtual dialog (loader.js)
+showVirtualDialog(mapDiv, "Click on the ground overlay!");
 
-    // Show a virtual dialog (loader.js)
-    showVirtualDialog(mapDiv, "Click on the ground overlay!");
+// Catch the GROUND_OVERLAY_CLICK event
+groundOverlay.on(plugin.google.maps.event.GROUND_OVERLAY_CLICK, function() {
 
-    // Catch the GROUND_OVERLAY_CLICK event
-    groundOverlay.on(plugin.google.maps.event.GROUND_OVERLAY_CLICK, function() {
-
-      // Remove the ground overlay
-      groundOverlay.remove();
-
-    });
-  });
+  // Remove the ground overlay
+  groundOverlay.remove();
 
 });
 </pre>

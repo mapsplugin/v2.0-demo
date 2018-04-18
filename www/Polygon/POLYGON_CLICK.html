@@ -50,53 +50,34 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+// Show a virtual dialog (loader.js)
+showVirtualDialog(mapDiv, "Click on the polygon!");
 
-  // Show a virtual dialog (loader.js)
-  showVirtualDialog(mapDiv, "Click on the polygon!");
-
-  // Add a polygon
-  map.addPolygon({
-    'points': GORYOKAKU_POINTS,
-    'strokeColor' : '#AA00FF',
-    'strokeWidth': 5,
-    'fillColor' : '#880000',
-    'clickable' : true  // default = false
-  }, function(polygon) {
-
-    // Catch the POLYGON_CLICK event
-    polygon.on(plugin.google.maps.event.POLYGON_CLICK, onPolygonClick);
-
-  });
-
+// Add a polygon
+var polygon = map.addPolygon({
+  'points': GORYOKAKU_POINTS,
+  'strokeColor' : '#AA00FF',
+  'strokeWidth': 5,
+  'fillColor' : '#880000',
+  'clickable' : true  // default = false
 });
 
-// The POLYGON_CLICK event passes to the callback
-// with the latLng position which is you clicked.
-function onPolygonClick(clickLatLng) {
-
-  // The callback is called as the overlay instance.
-  var polygon = this;
+// Catch the POLYGON_CLICK event
+polygon.on(plugin.google.maps.event.POLYGON_CLICK, function(clickLatLng) {
 
   // You can change the style for instance.
   polygon.setFillColor("blue");
   polygon.setStrokeColor("green");
   polygon.setStrokeWidth(10);
 
-  // If you want to get the map instance,
-  // use the polygon.getMap() method.
-  // The polygon.getMap() method returns the map instance
-  // which is bound to the polygon.
-  var map = polygon.getMap();
-  map.addMarker({
+  var marker = map.addMarker({
     position: clickLatLng,
     title: "You clicked here on the polygon!",
     snippet: clickLatLng.toUrlValue()
-  }, function(marker) {
-    marker.showInfoWindow();
   });
+  marker.showInfoWindow();
 
-}
+});
 </pre>
             </section>
         </div>

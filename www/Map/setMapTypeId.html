@@ -35,13 +35,11 @@
 var map = plugin.google.maps.Map.getMap(div, {
   mapType: plugin.google.maps.MapTypeId.ROADMAP
 });
-map.one(plugin.google.maps.event.MAP_READY, function() {
-  var select = div.getElementsByTagName('select')[0];
-  select.addEventListener('change', function() {
-    map.setMapTypeId(plugin.google.maps.MapTypeId[this.value]);
-  });
-
+var select = div.getElementsByTagName('select')[0];
+select.addEventListener('change', function() {
+  map.setMapTypeId(plugin.google.maps.MapTypeId[this.value]);
 });
+
 </pre></section>
         </div>
 </body>

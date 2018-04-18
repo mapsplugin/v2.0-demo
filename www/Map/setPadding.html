@@ -47,30 +47,28 @@ var map = plugin.google.maps.Map.getMap(div, {
     'bearing': 50
   }
 });
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  // Usage case #1:
-  // top = right = bottom = left = 30px
-  //map.setPadding( 30 );
+// Usage case #1:
+// top = right = bottom = left = 30px
+//map.setPadding( 30 );
 
-  // Usage case #2:
-  // top = bottom = 30px
-  // left = right = 50px
-  //map.setPadding( 30, 50 );
+// Usage case #2:
+// top = bottom = 30px
+// left = right = 50px
+//map.setPadding( 30, 50 );
 
-  // Usage case #3:
-  // top = 30px
-  // left = right = 50px
-  // bottom = 20px
-  //map.setPadding( 30, 50 , 20 );
+// Usage case #3:
+// top = 30px
+// left = right = 50px
+// bottom = 20px
+//map.setPadding( 30, 50 , 20 );
 
-  // Usage case #4:
-  // top = 30px
-  // right = 50px
-  // bottom = 20px
-  // left = 10px
-  map.setPadding( 30, 50 , 20 , 10 );
-});
+// Usage case #4:
+// top = 30px
+// right = 50px
+// bottom = 20px
+// left = 10px
+map.setPadding( 30, 50 , 20 , 10 );
 </pre>
             </section>
         </div>

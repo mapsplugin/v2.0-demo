@@ -53,44 +53,35 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-
-
-  map.addMarker({
-      'position': deg0,
-      'draggable': true,
-      'title': 'Drag me!'
-  }, function(marker) {
-
-    marker.showInfoWindow();
-
-    // Add circle
-    map.addCircle({
-        'center': center,
-        'radius': radius,
-        'strokeColor' : '#AA00FF',
-        'strokeWidth': 5,
-        'fillColor' : '#00880055'
-    }, function(circle) {
-
-        var label = document.getElementById("label");
-        circle.on("radius_changed", function(prev, radius) {
-          label.innerText = "radius : " + radius.toFixed(2) + "(m)";
-        });
-
-        marker.on("position_changed", function(oldValue, newValue) {
-            // Calculate distance between center and the marker position
-            var radius = plugin.google.maps.geometry.spherical.computeDistanceBetween(center, newValue);
-
-            // Update the radius
-            circle.setRadius(radius);
-        });
-
-    });
-
-  });
-
+var marker = map.addMarker({
+  'position': deg0,
+  'draggable': true,
+  'title': 'Drag me!'
 });
+marker.showInfoWindow();
+
+// Add circle
+var circle = map.addCircle({
+  'center': center,
+  'radius': radius,
+  'strokeColor' : '#AA00FF',
+  'strokeWidth': 5,
+  'fillColor' : '#00880055'
+});
+
+var label = document.getElementById("label");
+circle.on("radius_changed", function(prev, radius) {
+  label.innerText = "radius : " + radius.toFixed(2) + "(m)";
+});
+
+marker.on("position_changed", function(oldValue, newValue) {
+    // Calculate distance between center and the marker position
+    var radius = plugin.google.maps.geometry.spherical.computeDistanceBetween(center, newValue);
+
+    // Update the radius
+    circle.setRadius(radius);
+});
+
 </pre>
             </section>
         </div>

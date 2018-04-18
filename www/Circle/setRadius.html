@@ -51,37 +51,29 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+var marker = map.addMarker({
+  'position': deg0,
+  'draggable': true,
+  'title': 'Drag me!'
+});
 
-  map.addMarker({
-      'position': deg0,
-      'draggable': true,
-      'title': 'Drag me!'
-  }, function(marker) {
+marker.showInfoWindow();
 
-    marker.showInfoWindow();
+// Add circle
+var circle = map.addCircle({
+  'center': center,
+  'radius': radius,
+  'strokeColor' : '#AA00FF',
+  'strokeWidth': 5,
+  'fillColor' : '#00880055'
+});
 
-    // Add circle
-    map.addCircle({
-        'center': center,
-        'radius': radius,
-        'strokeColor' : '#AA00FF',
-        'strokeWidth': 5,
-        'fillColor' : '#00880055'
-    }, function(circle) {
+marker.on("position_changed", function(oldValue, newValue) {
+  // Calculate distance between center and the marker position
+  var radius = plugin.google.maps.geometry.spherical.computeDistanceBetween(center, newValue);
 
-        marker.on("position_changed", function(oldValue, newValue) {
-            // Calculate distance between center and the marker position
-            var radius = plugin.google.maps.geometry.spherical.computeDistanceBetween(center, newValue);
-
-            // Update the radius
-            circle.setRadius(radius);
-        });
-
-    });
-
-  });
-
+  // Update the radius
+  circle.setRadius(radius);
 });
 </pre>
             </section>

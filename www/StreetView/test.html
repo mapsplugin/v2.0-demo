@@ -19,19 +19,44 @@
       left: 0;
       top: 0;
       width: 100%;
-      height: 50%;
+      height: 100%;
     }
     #panorama_canvas {
       position: absolute;
-      left: 0;
-      top: 50%;
-      width: 100%;
-      height: 50%;
+      right: 10%;
+      bottom: 10%;
+      width: 60%;
+      height: 30%;
+    }
+    #map_canvas2 {
+      position: absolute;
+      left: 10px;
+      top: 20px;
+      width: 100px;
+      height: 100px;
+      z-index: 100;
+      border: 2px solid white;
     }
     </style>
     <script >
     var startLocation = {lat: -33.87365, lng: 151.20689};
     document.addEventListener("deviceready", function() {
+      var panorama = plugin.google.maps.StreetView.getPanorama(document.getElementById("panorama_canvas"), {
+        camera: {
+          target: startLocation
+        }
+      });
+      var button = document.getElementById("testBtn");
+      button.addEventListener("click", function() {
+        panorama.setVisible(!panorama.getVisible());
+      });
+      var map2 = plugin.google.maps.Map.getMap(document.getElementById("map_canvas2"), {
+        camera: {
+          target: startLocation,
+          zoom: 15
+        },
+        mapType: plugin.google.maps.MapTypeId.HYBRID
+      });
       var map = plugin.google.maps.Map.getMap(document.getElementById("map_canvas"), {
         camera: {
           target: startLocation,
@@ -46,23 +71,11 @@
         flat: true
       });
 
-      var panorama = plugin.google.maps.StreetView.getPanorama(document.getElementById("panorama_canvas"), {
-        camera: {
-          target: startLocation,
-          zoom: 2,
-          bearing: 120,
-          tilt: 45,
-          radius: 50,
-          source: plugin.google.maps.StreetView.Source.OUTDOOR
-        },
-        gestures: {
-          panning: true,
-          zoom: true
-        },
-        controls: {
-          navigation: true,
-          streetNames: true
-        }
+      marker.on("position_changed", function(latLng) {
+        map2.animateCamera({
+          duration: 100,
+          target: latLng
+        });
       });
 
       panorama.on(plugin.google.maps.event.PANORAMA_CAMERA_CHANGE, function(cameraPosition) {
@@ -70,9 +83,9 @@
       });
 
       panorama.on(plugin.google.maps.event.PANORAMA_LOCATION_CHANGE, function(panoramaLocation) {
-        marker.setPosition(panoramaLocation.target);
+        marker.setPosition(panoramaLocation.latLng);
         map.animateCamera({
-          target: panoramaLocation.position,
+          target: panoramaLocation.latLng,
           duration: 500
         });
       });
@@ -93,8 +106,12 @@
 </head>
 
 <body>
-  <div id="map_canvas"></div>
-  <div id="panorama_canvas"></div>
+  <div id="map_canvas">
+    <div id="panorama_canvas">
+      <button id="testBtn">test</button>
+    </div>
+  </div>
+    <div id="map_canvas2"></div>
 </body>
 
 </html>

@@ -37,27 +37,22 @@ var map = plugin.google.maps.Map.getMap(div, {
     bearing: 140
   }
 });
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
 
-  // Default marker
-  map.addMarker({
-    position: GOOGLE
-  });
+// Default marker
+map.addMarker({
+  position: GOOGLE
+});
 
-  // Flat marker
-  map.addMarker({
-    position: GOOGLE,
-    flat : false     // You can also specify with this property
-  }, function(marker) {
+// Flat marker
+var marker = map.addMarker({
+  position: GOOGLE,
+  flat : false     // You can also specify with this property
+});
 
-    // Marker is going to be flat (like ground overlay)
-    marker.setFlat(true);
-
-  });
-
-
-});</pre>
+// Marker is going to be flat (like ground overlay)
+marker.setFlat(true);
+</pre>
             </section>
         </div>
 

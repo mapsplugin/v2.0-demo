@@ -51,48 +51,45 @@ var map = plugin.google.maps.Map.getMap(div, {
     bearing: 150
   }
 });
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  var button = div.getElementsByTagName('button')[0];
-  button.addEventListener('click', function() {
+var button = div.getElementsByTagName('button')[0];
+button.addEventListener('click', function() {
 
-    // Get the visible region
-    var visibleRegion = map.getVisibleRegion();
+  // Get the visible region
+  var visibleRegion = map.getVisibleRegion();
 
-    // Draw a red polygon that represents viewport
-    map.addPolygon({
-      'points': [
-        visibleRegion.nearLeft,
-        visibleRegion.nearRight,
-        visibleRegion.farRight,
-        visibleRegion.farLeft
-      ],
-      'strokeColor' : 'red',
-      'strokeWidth': 2,
-      'fillColor': 'rgba(255, 0, 0, 0.5)'
-    }, function() {
-      setTimeout(function() {
-        map.animateCameraZoomOut();
-      }, 1000);
-    });
+  // Draw a red polygon that represents viewport
+  map.addPolygon({
+    'points': [
+      visibleRegion.nearLeft,
+      visibleRegion.nearRight,
+      visibleRegion.farRight,
+      visibleRegion.farLeft
+    ],
+    'strokeColor' : 'red',
+    'strokeWidth': 2,
+    'fillColor': 'rgba(255, 0, 0, 0.5)'
+  });
+  setTimeout(function() {
+    map.animateCameraZoomOut();
+  }, 1000);
 
-    // Draw a blue box that represents latLngBounds
-    map.addPolygon({
-      'points': [
-        visibleRegion.northeast,
-        {lat: visibleRegion.northeast.lat, lng: visibleRegion.southwest.lng},
-        visibleRegion.southwest,
-        {lat: visibleRegion.southwest.lat, lng: visibleRegion.northeast.lng}
-      ],
-      'strokeColor' : 'blue',
-      'strokeWidth': 2,
-      'fillColor': 'transparent'
-    });
-
-
+  // Draw a blue box that represents latLngBounds
+  map.addPolygon({
+    'points': [
+      visibleRegion.northeast,
+      {lat: visibleRegion.northeast.lat, lng: visibleRegion.southwest.lng},
+      visibleRegion.southwest,
+      {lat: visibleRegion.southwest.lat, lng: visibleRegion.northeast.lng}
+    ],
+    'strokeColor' : 'blue',
+    'strokeWidth': 2,
+    'fillColor': 'transparent'
   });
 
+
 });
+
 </pre>
             </section>
         </div>

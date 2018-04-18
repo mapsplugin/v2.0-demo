@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/loader.js"></script>
+    <script src="../code-prettify/run_prettify.js" async="async"></script>
+    <script src="../js/menu.js" async="async"></script>
+    <style type="text/css">
+    #pano_canvas {
+      position: relative;
+    }
+    #map_canvas {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 100px;
+      height: 100px;
+      border: 3px solid white;
+      z-index: 1000;
+    }
+    </style>
+</head>
+
+<body>
+
+    <div id="menuView"><ul id="menu"></ul></div>
+    <div id="header">
+        <div id="menuButton"></div><h3>event : PANORAMA_LOCATION_CHANGE</h3>
+    </div>
+    <div id="contentView">
+        <div id="contentsFrame">
+            <section class="demo">
+                <p>
+                    The PANORAMA_LOCATION_CHANGE event is fired when the camera location is moved.
+                </p>
+
+                <div class="map" id="pano_canvas" >
+                  <div class="map" id="map_canvas"></div>
+                </div>
+                <pre class="prettyprint">var startPos = {lat: 42.345573, lng: -71.098326};
+var mapDiv = document.getElementById("map_canvas");
+var map = plugin.google.maps.Map.getMap(mapDiv, {
+  camera: {
+    target: startPos,
+    zoom: 18
+  }
+});
+
+var panoramaDiv = document.getElementById("pano_canvas");
+var panorama = plugin.google.maps.StreetView.getPanorama(panoramaDiv, {
+  camera: {
+    target: startPos
+  }
+});
+
+var marker = map.addMarker({
+  position: startPos,
+  draggable: true
+});
+marker.showInfoWindow();
+
+marker.on("position_changed", function(oldPosition, newPosition) {
+  map.animateCamera({
+    target: newPosition,
+    duration: 1000
+  });
+});
+
+marker.on(plugin.google.maps.event.MARKER_DRAG_END, function(latLng) {
+  panorama.animateCamera({
+    target: latLng,
+    duration: 100
+  });
+});
+panorama.on(plugin.google.maps.event.PANORAMA_LOCATION_CHANGE, function(location) {
+  marker.setPosition(location.latLng);
+});
+</pre>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

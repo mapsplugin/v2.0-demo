@@ -24,7 +24,7 @@
             <section class="demo">
 
                 <p>
-                    Change the filling color of the polygon. 
+                    Change the filling color of the polygon.
                 </p>
                 <div class="map" id="map_canvas"></div>
                 <pre class="prettyprint">var GORYOKAKU_POINTS = [
@@ -49,34 +49,29 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+showVirtualDialog(mapDiv, "Click on the polygon!");
 
-  showVirtualDialog(mapDiv, "Click on the polygon!");
-
-  // Add polygon
-  map.addPolygon({
-    'points': GORYOKAKU_POINTS,
-    'strokeColor' : '#AA00FF',
-    'strokeWidth': 5,
-    'fillColor' : '#880000',
-    'clickable' : true   // default = false
-  }, function(polygon) {
-
-
-    // Change the fill color.
-    var idx = 0;
-    polygon.on(plugin.google.maps.event.POLYGON_CLICK, function(latLng) {
-
-      // Available HTML colors
-      // https://github.com/mapsplugin/cordova-plugin-googlemaps/wiki/Available-HTML-colors
-      //
-      polygon.setFillColor(["skyblue", "lime", "tomato", "bisque"][idx++]);
-      idx = idx > 3 ? 0 : idx;
-    });
-
-  });
-
+// Add polygon
+var polygon = map.addPolygon({
+  'points': GORYOKAKU_POINTS,
+  'strokeColor' : '#AA00FF',
+  'strokeWidth': 5,
+  'fillColor' : '#880000',
+  'clickable' : true   // default = false
 });
+
+
+// Change the fill color.
+var idx = 0;
+polygon.on(plugin.google.maps.event.POLYGON_CLICK, function(latLng) {
+
+  // Available HTML colors
+  // https://github.com/mapsplugin/cordova-plugin-googlemaps/wiki/Available-HTML-colors
+  //
+  polygon.setFillColor(["skyblue", "lime", "tomato", "bisque"][idx++]);
+  idx = idx > 3 ? 0 : idx;
+});
+
 </pre>
             </section>
         </div>

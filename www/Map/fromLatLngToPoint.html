@@ -27,34 +27,30 @@
                 <div class="map" id="map_canvas"></div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div);
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  // From v1.2.0, you can get the camera center position without callback.
-  var center = map.getCameraTarget();
+var center = map.getCameraTarget();
 
-  map.addMarker({
-    position: center,
-    draggable: true,
-    title: "Drag me!"
-  }, function(marker) {
-    marker.showInfoWindow();
+var marker = map.addMarker({
+  position: center,
+  draggable: true,
+  title: "Drag me!"
+});
 
-    // Catch the marker drag event
-    marker.on(plugin.google.maps.event.MARKER_DRAG_END, function(latLng) {
-        // LatLng -> Point
-        map.fromLatLngToPoint(latLng, function(point) {
+marker.showInfoWindow();
 
-          // Show on the marker
-          marker
-            .setTitle(
-              "left : " + point[0].toFixed(1) + "px\n" + "top : " + point[1].toFixed(1) + "px"
-            )
-            .showInfoWindow();
-        });
+// Catch the marker drag event
+marker.on(plugin.google.maps.event.MARKER_DRAG_END, function(latLng) {
+  // LatLng -> Point
+  map.fromLatLngToPoint(latLng, function(point) {
 
-    });
-
+    // Show on the marker
+    marker
+      .setTitle(
+        "left : " + point[0].toFixed(1) + "px\n" + "top : " + point[1].toFixed(1) + "px"
+      )
+      .showInfoWindow();
   });
+
 });
   </pre>
             </section>

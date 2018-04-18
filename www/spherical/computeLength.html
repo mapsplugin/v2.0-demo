@@ -50,25 +50,22 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-
-    map.addPolyline({
-      "points": points
-    });
-
-    var mvcArray = new plugin.google.maps.BaseArrayClass();
-    mvcArray.on("insert_at", function(idx) {
-      var distance = plugin.google.maps.geometry.spherical.computeLength(mvcArray);
-      map.addMarker({
-        "position": mvcArray.getAt(idx),
-        "title": "Distance from start : " + distance.toFixed(0) + " m"
-      });
-    });
-    points.forEach(function(position, idx) {
-      mvcArray.push(position);
-    });
-
+map.addPolyline({
+  "points": points
 });
+
+var mvcArray = new plugin.google.maps.BaseArrayClass();
+mvcArray.on("insert_at", function(idx) {
+  var distance = plugin.google.maps.geometry.spherical.computeLength(mvcArray);
+  map.addMarker({
+    "position": mvcArray.getAt(idx),
+    "title": "Distance from start : " + distance.toFixed(0) + " m"
+  });
+});
+points.forEach(function(position, idx) {
+  mvcArray.push(position);
+});
+
 </pre>
             </section>
         </div>

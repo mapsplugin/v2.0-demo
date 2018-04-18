@@ -51,23 +51,18 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-
-  map.addPolyline({
-    "points": points
-  });
-
-  var signedArea = plugin.google.maps.geometry.spherical.computeSignedArea(points);
-
-  map.addMarker({
-    position: points[0],
-    title: "This polyline is \n" +
-          (signedArea < 0 ? "clockwise" : "counter clockwise")
-  }, function(marker) {
-    marker.showInfoWindow();
-  });
-
+map.addPolyline({
+  "points": points
 });
+
+var signedArea = plugin.google.maps.geometry.spherical.computeSignedArea(points);
+
+var marker = map.addMarker({
+  position: points[0],
+  title: "This polyline is \n" +
+        (signedArea < 0 ? "clockwise" : "counter clockwise")
+});
+marker.showInfoWindow();
 </pre>
           </section>
         </div>

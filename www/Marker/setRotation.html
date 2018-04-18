@@ -33,29 +33,26 @@
                 </div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div);
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
 
-  // Add a marker
-  map.addMarker({
-    'position': {
-      lat: 0,
-      lng: 0
-    }
-  }, function(marker) {
-
-    var range = document.getElementById("rotationRange");
-    range.addEventListener("change", function() {
-
-      // Set the marker rotation angle.
-      marker.setRotation(parseInt(this.value));
-    });
-
-    // Set the current value as rotation angle.
-    marker.setRotation(range.value);
-
-  });
+// Add a marker
+var marker = map.addMarker({
+  'position': {
+    lat: 0,
+    lng: 0
+  }
 });
+
+var range = document.getElementById("rotationRange");
+range.addEventListener("change", function() {
+
+  // Set the marker rotation angle.
+  marker.setRotation(parseInt(this.value));
+});
+
+// Set the current value as rotation angle.
+marker.setRotation(range.value);
+
 </pre>
             </section>
         </div>

@@ -44,27 +44,24 @@ var map = plugin.google.maps.Map.getMap(div, {
     padding: 40
   }
 });
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  // All gestures (such as pinch-zooming) are disabled.
-  map.setAllGesturesEnabled(false);
+// All gestures (such as pinch-zooming) are disabled.
+map.setAllGesturesEnabled(false);
 
-  // Add ground overlay
-  map.addGroundOverlay({
-    'url': "../images/newark_nj_1922.jpg",
-    'bounds': bounds,
-    'opacity': 0.5
-  }, function(groundOverlay) {
-
-    // If the slider is moved, change the ground overlay opacity.
-    slider.addEventListener('change', function() {
-      groundOverlay.setOpacity(this.value);
-    });
-
-    // Set the current value as opacity.
-    groundOverlay.setOpacity( 0.5 );
-  });
+// Add ground overlay
+var groundOverlay = map.addGroundOverlay({
+  'url': "../images/newark_nj_1922.jpg",
+  'bounds': bounds,
+  'opacity': 0.5
 });
+
+// If the slider is moved, change the ground overlay opacity.
+slider.addEventListener('change', function() {
+  groundOverlay.setOpacity(this.value);
+});
+
+// Set the current value as opacity.
+groundOverlay.setOpacity( 0.5 );
 </pre>
             </section>
         </div>

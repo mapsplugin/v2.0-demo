@@ -37,22 +37,16 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+var tileOverlay = map.addTileOverlay({
+  debug: true,  // draw debug infomation on tiles
 
-  map.addTileOverlay({
-    debug: true,  // draw debug infomation on tiles
+  opacity: 0.75,  // from 0.0 to 1.0
 
-    opacity: 0.75,  // from 0.0 to 1.0
-
-    // Load image files from the local file path
-    getTile: function(x, y, zoom) {
-      //return "http://tile.openstreetmap.org/" + zoom + "/" + x + "/" + y + ".png";
-      return "../images/map-for-free/" + zoom + "_" + x + "-" + y + ".gif"
-    }
-  }, function(tileOverlay) {
-
-  });
-
+  // Load image files from the local file path
+  getTile: function(x, y, zoom) {
+    //return "http://tile.openstreetmap.org/" + zoom + "/" + x + "/" + y + ".png";
+    return "../images/map-for-free/" + zoom + "_" + x + "-" + y + ".gif"
+  }
 });
 </pre>
             </section>

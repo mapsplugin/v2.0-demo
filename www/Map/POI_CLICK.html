@@ -42,22 +42,18 @@ var map = plugin.google.maps.Map.getMap(div, {
 // Show a virtual dialog (loader.js)
 showVirtualDialog(div, "Click on POI icon!");
 
-map.one(plugin.google.maps.event.MAP_READY, function() {
-
-  map.on(plugin.google.maps.event.POI_CLICK, function(placeId, name, latLng) {
-    map.addMarker({
-      'position': latLng,
-      'title': [
-        "placeId = " + placeId,
-        "name = " + name,
-        "position = " + latLng.toUrlValue()
-      ].join("\n")
-    }, function(marker) {
-      marker.showInfoWindow();
-    });
+map.on(plugin.google.maps.event.POI_CLICK, function(placeId, name, latLng) {
+  var marker = map.addMarker({
+    'position': latLng,
+    'title': [
+      "placeId = " + placeId,
+      "name = " + name,
+      "position = " + latLng.toUrlValue()
+    ].join("\n")
   });
-
+  marker.showInfoWindow();
 });
+
 </pre>
             </section>
         </div>

@@ -40,11 +40,9 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-
-  map.addPolyline({
-    "points": points
-  });
+map.addPolyline({
+  "points": points
+});
 
 });
 </pre>

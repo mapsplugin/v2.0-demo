@@ -24,7 +24,7 @@
             <section class="demo">
                 <h3>Create a panorama container</h3>
                 <p>
-                    After the <span class="highlihgt">deviceready</span>, you can create maps using <span class="highlight">plugin.google.maps.Map.getMap()</span>.
+                    After the <span class="highlihgt">deviceready</span>, you can create maps using <span class="highlight">plugin.google.maps.StreetView.getPanorama()</span>.
                 </p>
                 <div class="pano" id="pano_canvas1"></div>
                 <pre class="prettyprint">var div = document.getElementById("pano_canvas1");
@@ -32,80 +32,80 @@ var panorama = plugin.google.maps.StreetView.getPanorama(div);
 panorama.moveCamera({
   target: {lat: 42.345573, lng: -71.098326}
 });
+</pre>
+            </section>
+            <section class="demo">
+                <h3>Create a panorama with initialize options</h3>
+                <p>
+                    You can specify the panorama options with <span class="highlight">getPanorama()</span> method.
+                </p>
+                <div class="map" id="panorama_canvas2"></div>
+                <pre class="prettyprint">var div = document.getElementById("panorama_canvas2");
+console.log(div);
+var panorama = plugin.google.maps.StreetView.getPanorama(div, {
+  camera: {
+    target: {lat: 42.345573, lng: -71.098326},
+    zoom: 1,
+    bearing: 235,
+    tilt: 10,
+    radius: 10,
+    source: plugin.google.maps.StreetView.Source.OUTSIDE
+  },
+  gestures: {
+    panning: true,
+    zoom: true
+  },
+  controls: {
+    navigation: true,
+    streetNames: true
+  }
+});
 
 </pre>
             </section>
-<!--
-            <section class="demo">
-                <h3>Create a map with initialize options</h3>
-                <p>
-                    You can specify the map options with <span class="highlight">getMap()</span> method.
-                </p>
-                <div class="map" id="map_canvas2"></div>
-                <pre class="prettyprint">var div = document.getElementById("map_canvas2");
-var map = plugin.google.maps.Map.getMap(div, {
-  'mapType': plugin.google.maps.MapTypeId.HYBRID,
-  'controls': {
-    'compass': true,
-    //'myLocationButton': true,
-    'indoorPicker': true,
-    'zoom': true
-  },
-  'gestures': {
-    'scroll': true,
-    'tilt': true,
-    'rotate': true,
-    'zoom': true
-  },
-  camera: {
-    target : [
-      {lat:41.79883, lng:140.75675},
-      {lat:41.799240000000005, lng:140.75875000000002},
-      {lat:41.797650000000004, lng:140.75905},
-      {lat:41.79637, lng:140.76018000000002},
-      {lat:41.79567, lng:140.75845},
-      {lat:41.794470000000004, lng:140.75714000000002},
-      {lat:41.795010000000005, lng:140.75611},
-      {lat:41.79477000000001, lng:140.75484},
-      {lat:41.79576, lng:140.75475},
-      {lat:41.796150000000004, lng:140.75364000000002},
-      {lat:41.79744, lng:140.75454000000002},
-      {lat:41.79909000000001, lng:140.75465},
-      {lat:41.79883, lng:140.75673}
-    ],
-    'tilt': 60,
-    'bearing': 50
-  }
-});
-map.one(plugin.google.maps.event.MAP_READY, function() {
-});</pre>
-            </section>
 
             <section class="demo">
-                <h3>Add HTML elements on the map</h3>
+                <h3>moveCamera</h3>
                 <p>
-                    You can put any HTML elements on the map.
+                  If you want to move the camera, you can use `moveCamera()` or `animateCamera()`.
                 </p>
-                <div class="map" id="map_canvas3" style="position:relative">
-                    <span class="smallPanel"><button>HTML button1</button></span>
-                    <span class="smallPanel" style="position:absolute;bottom:1em;right:1em;"><button>HTML button2</button></span>
-                </div>
-                <pre class="prettyprint">var div = document.getElementById("map_canvas3");
-var map = plugin.google.maps.Map.getMap(div);
-map.one(plugin.google.maps.event.MAP_READY, function() {
+                <div class="map" id="map_canvas3" style="height: 250px;"></div>
+                <div class="map" id="panorama_canvas3" style="height: 250px;"></div>
+                <pre class="prettyprint">var startPos = {lat: 42.345573, lng: -71.098326};
+var mapDiv = document.getElementById("map_canvas3");
+var map = plugin.google.maps.Map.getMap(mapDiv, {
+  camera: {
+    target: startPos,
+    zoom: 18
+  }
 });
-var button = div.getElementsByTagName('button')[0];
-button.addEventListener('click', function() {
-  alert("The HTML button1 on the map is clicked.");
+
+var panoramaDiv = document.getElementById("panorama_canvas3");
+var panorama = plugin.google.maps.StreetView.getPanorama(panoramaDiv, {
+  camera: {
+    target: startPos
+  }
 });
-var button = div.getElementsByTagName('button')[1];
-button.addEventListener('click', function() {
-  alert("The HTML button2 on the map is clicked.");
+
+var marker = map.addMarker({
+  position: startPos,
+  draggable: true,
+  title: "Drag me!"
+});
+marker.showInfoWindow();
+
+marker.on(plugin.google.maps.event.MARKER_DRAG_END, function(latLng) {
+  panorama.animateCamera({
+    target: latLng,
+    duration: 100
+  });
+});
+panorama.on(plugin.google.maps.event.PANORAMA_LOCATION_CHANGE, function(location) {
+  marker.setPosition(location.latLng);
 });
 </pre>
             </section>
         </div>
--->
     </div>
 </body>
 

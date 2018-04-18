@@ -28,17 +28,15 @@
                 </div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div);
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  var visible = true;
-  var button = div.getElementsByTagName('button')[0];
-  button.addEventListener('click', function() {
-    visible = !visible;
-    map.setVisible(visible);
-    button.innerHTML = "current: map.visible = " + visible;
-  });
-
+var visible = true;
+var button = div.getElementsByTagName('button')[0];
+button.addEventListener('click', function() {
+  visible = !visible;
+  map.setVisible(visible);
+  button.innerHTML = "current: map.visible = " + visible;
 });
+
 </pre>
             </section>
         </div>

@@ -29,23 +29,20 @@
                 <div class="map" id="map_canvas"></div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div);
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  // Add a marker
-  map.addMarker({
-    'position': {
-      lat: 20,
-      lng: 20
-    },
-    'animation': plugin.google.maps.Animation.BOUNCE,
-    'title': 'The map does not move when you click on this marker.'
-  }, function(marker) {
-
-    // Disable marker auto panning.
-    marker.setDisableAutoPan(true);
-
-  });
+// Add a marker
+var marker = map.addMarker({
+  'position': {
+    lat: 20,
+    lng: 20
+  },
+  'animation': plugin.google.maps.Animation.BOUNCE,
+  'title': 'The map does not move when you click on this marker.'
 });
+
+// Disable marker auto panning.
+marker.setDisableAutoPan(true);
+
 </pre>
             </section>
         </div>

@@ -34,27 +34,23 @@
                 </div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div);
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  // Add a marker
-  map.addMarker({
-    'position': {
-      lat: 0,
-      lng: 0
-    }
-  }, function(marker) {
-
-    var buttons = div.getElementsByTagName('button');
-    buttons[0].addEventListener("click", function() {
-      marker.setVisible(true);
-    });
-    buttons[1].addEventListener("click", function() {
-      marker.setVisible(false);
-    });
-
-
-  });
+// Add a marker
+var marker = map.addMarker({
+  'position': {
+    lat: 0,
+    lng: 0
+  }
 });
+
+var buttons = div.getElementsByTagName('button');
+buttons[0].addEventListener("click", function() {
+  marker.setVisible(true);
+});
+buttons[1].addEventListener("click", function() {
+  marker.setVisible(false);
+});
+
 </pre>
             </section>
         </div>

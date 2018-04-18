@@ -40,11 +40,8 @@
       'myLocation': true  // try `myLocation = false`
     }
   });
-  map.one(plugin.google.maps.event.MAP_READY, function() {
-
-    map.on(plugin.google.maps.event.MY_LOCATION_BUTTON_CLICK, function() {
-      alert("The my location button is clicked.");
-    });
+  map.on(plugin.google.maps.event.MY_LOCATION_BUTTON_CLICK, function() {
+    alert("The my location button is clicked.");
   });
 });
 </pre>

@@ -37,14 +37,12 @@ var map = plugin.google.maps.Map.getMap(div, {
     "zoom": 15
   }
 });
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  var button = div.getElementsByTagName('button')[0];
-  button.addEventListener('click', function() {
-    map.moveCameraZoomOut();
-  });
-
+var button = div.getElementsByTagName('button')[0];
+button.addEventListener('click', function() {
+  map.moveCameraZoomOut();
 });
+
   </pre>
             </section>
         </div>

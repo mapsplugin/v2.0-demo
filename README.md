@@ -1,17 +1,58 @@
-# cordova-google-maps v2.0 example
+# cordova-google-maps v2.3.0 example
 
-This is an example of the multiple_maps branch.
+This is example application of [cordova-plugin-googlemaps v2.3.0](https://github.com/mapsplugin/cordova-plugin-googlemaps/).
 
-### Buy me a beer
+## What the big change has been occurred at v2.3.0?
 
-I have been spend tons of time for this plugin project, but even though the plugin is still free.
+### MAP_READY
+From the cordova-plugin-googlemaps version 2.3.0, you can omit the `MAP_READY` event listener.
 
-I appreciate if you donate some amount to help this project from this button.
+**v2.0-v2.2.9 (old code syntax)**
+```
+var map = plugin.google.map.Map.getMap(mapDiv);
+map.addEventListener(plugin.google.maps.event.MAP_READY, funciton() {
+  map.setMapTypeId(plugin.google.maps.MapTypeId.HYBRID);
+});
+```
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=SQPLZJ672HJ9N&lc=US&item_name=cordova%2dgooglemaps%2dplugin&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted)
+**from v2.3.0 (new code syntax)**
+```
+var map = plugin.google.map.Map.getMap(mapDiv);
+map.setMapTypeId(plugin.google.maps.MapTypeId.HYBRID);
+```
 
-The donated amount is used for buying testing machine (such as iPhone, Android) or new software.
+### Simplified `map.addXXX()` methods
 
+From the v2.3.0, you can also omit the second arguments of `map.addXXX()` methods.
+
+**v2.0-v2.2.9 (old code syntax)**
+```
+var map = plugin.google.map.Map.getMap(mapDiv);
+map.addEventListener(plugin.google.maps.event.MAP_READY, funciton() {
+  map.addMarker({
+    position: {
+      lat: 0, lng: 0
+    }
+  }, function(marker) {
+    marker.showInfoWindow();
+  });
+});
+```
+
+**from v2.3.0 (new code syntax)**
+```
+var map = plugin.google.map.Map.getMap(mapDiv);
+var marker = map.addMarker({
+  position: {
+    lat: 0, lng: 0
+  }
+});
+marker.showInfoWindow();
+```
+
+You can still write with the old code syntax.
+
+-----
 # Demo apk
 
 You can try all features of this plugin.

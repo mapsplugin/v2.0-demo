@@ -39,17 +39,14 @@ var map = plugin.google.maps.Map.getMap(div, {
     bearing: 150
   }
 });
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  var button = div.getElementsByTagName('button')[0];
-  button.addEventListener('click', function() {
+var button = div.getElementsByTagName('button')[0];
+button.addEventListener('click', function() {
 
-    // Show the current camera bearing.
-    alert("bearing: " + map.getCameraBearing());
-  });
-
+  // Show the current camera bearing.
+  alert("bearing: " + map.getCameraBearing());
 });
-  </pre>
+</pre>
             </section>
         </div>
 

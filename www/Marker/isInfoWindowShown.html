@@ -45,66 +45,58 @@
                 </div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div);
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  var data = [
-    {
-      position: {lng: -122.1180187, lat: 37.3960513},
-      title: "Ardis G Egan Intermediate School"
-    },
-    {
-      position: {lng: -122.1102408, lat: 37.3943847},
-      title: "Portola School"
-    },
-    {
-      position: {lng: -122.0848257, lat: 37.3818032},
-      title: "Isaac Newton Graham Middle School"
-    }
-  ];
+var data = [
+  {
+    position: {lng: -122.1180187, lat: 37.3960513},
+    title: "Ardis G Egan Intermediate School"
+  },
+  {
+    position: {lng: -122.1102408, lat: 37.3943847},
+    title: "Portola School"
+  },
+  {
+    position: {lng: -122.0848257, lat: 37.3818032},
+    title: "Isaac Newton Graham Middle School"
+  }
+];
 
-  // Add markers
-  addMarkers(map, data, function(markers) {
+// Add markers
+addMarkers(map, data, function(markers) {
 
-    // Set camera position that include all markers.
-    var bounds = [];
-    data.forEach(function(POI) {
-      bounds.push(POI.position);
-    });
-
-    map.moveCamera({
-      target: bounds
-    }, function() {
-
-      // After camera moving, open the last marker.
-      markers[markers.length - 1].showInfoWindow();
-    });
-
+  // Set camera position that include all markers.
+  var bounds = [];
+  data.forEach(function(POI) {
+    bounds.push(POI.position);
   });
+
+  map.moveCamera({
+    target: bounds
+  }, function() {
+
+    // After camera moving, open the last marker.
+    markers[markers.length - 1].showInfoWindow();
+  });
+
 });
 
 function addMarkers(map, data, callback) {
   var markers = [];
-  function onMarkerAdded(marker) {
+  data.forEach(function(markerOptions, idx) {
+    var marker = map.addMarker(markerOptions, onMarkerAdded);
     markers.push(marker);
 
     marker.set("label", "marker" + markers.length);
     marker.on(plugin.google.maps.event.INFO_OPEN, onInfoWindowEvents);
     marker.on(plugin.google.maps.event.INFO_CLOSE, function(position) {
-console.log("--->info_close", marker);
       // Since Marker executes the hideInfoWindow() after the INFO_CLOSE,
       // the isInfoWindowShown() method returns true when the INFO_CLOSE is occurred.
       setTimeout(function() {
         onInfoWindowEvents.call(marker, position);
-      }, 100)
+      }, 100);
     });
-
-    if (markers.length === data.length) {
-      callback(markers);
-    }
-  }
-  data.forEach(function(markerOptions, idx) {
-    map.addMarker(markerOptions, onMarkerAdded);
   });
+  callback(markers);
 }
 function onInfoWindowEvents(position) {
   var marker = this;

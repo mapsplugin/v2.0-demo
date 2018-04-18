@@ -51,66 +51,52 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
     target: GORYOKAKU_POINTS
   }
 });
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
 
-  var label = document.getElementById("label");
-  addEditablePolygon(map, GORYOKAKU_POINTS, function(polygon) {
-    polygon.on("points_changed", function() {
-        // Calculate the dimension
-        var area = plugin.google.maps.geometry.spherical.computeArea(polygon.getPoints().getArray());
-        label.innerText = "area : " + area.toFixed(2) + "(m&sup2;)";
-    });
-
-    polygon.trigger("points_changed");
-  });
-
+var label = document.getElementById("label");
+var polygon = addEditablePolygon(map, GORYOKAKU_POINTS);
+polygon.on("points_changed", function() {
+    // Calculate the dimension
+    var area = plugin.google.maps.geometry.spherical.computeArea(polygon.getPoints().getArray());
+    label.innerText = "area : " + area.toFixed(2) + "(m&sup2;)";
 });
 
-function addEditablePolygon(map, points, callback) {
+polygon.trigger("points_changed");
+
+
+function addEditablePolygon(map, points) {
 
   // Add a polygon
-  map.addPolygon({
+  var polygon = map.addPolygon({
     'points': points,
     'strokeColor' : '#AA00FF',
     'fillColor' : '#00FFAA',
     'width': 10
-  }, function(polygon) {
+  });
 
-    // polygon.getPoints() returns an instance of the BaseArrayClass.
-    var mvcArray = polygon.getPoints();
+  // polygon.getPoints() returns an instance of the BaseArrayClass.
+  var mvcArray = polygon.getPoints();
 
-    // Add draggable markers
-    var markers = [];
-    function onMarkerAdded(marker, idx) {
-      markers.push(marker);
+  points.forEach(function(latLng, idx) {
+    var marker = map.addMarker({
+      position: latLng,
+      draggable: true
+    });
 
-      // If the position property of the marker is updated,
-      // a position_changed event is fired.
-      marker.on("position_changed", function(oldValue, newValue) {
+    // If the position property of the marker is updated,
+    // a position_changed event is fired.
+    marker.on("position_changed", function(oldValue, newValue) {
 
-        // If the mvcArray is updated, the polygon will also be updated.
-        mvcArray.setAt(idx, newValue);
+      // If the mvcArray is updated, the polygon will also be updated.
+      mvcArray.setAt(idx, newValue);
 
-        polygon.trigger("points_changed");
+      polygon.trigger("points_changed");
 
-      });
-      if (markers.length === points.length) {
-        callback(polygon);
-      }
-    }
-
-    points.forEach(function(latLng, idx) {
-      map.addMarker({
-        position: latLng,
-        draggable: true
-      }, function(marker) {
-        onMarkerAdded(marker, idx);
-      });
     });
 
   });
 
+  return polygon;
 }
 
 </pre>

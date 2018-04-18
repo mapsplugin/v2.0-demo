@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <script src="../js/menu.js" async="async"></script>
+</head>
+
+<body>
+
+    <div id="menuView"><ul id="menu"></ul></div>
+    <div id="header">
+        <div id="menuButton"></div><h2>StreetView class</h2>
+    </div>
+
+    <div id="contentView">
+        <div id="contentsFrame">
+            <h3>Create</h3>
+            <table class="reference">
+                <tr>
+                    <th><a href="./getPanorama.html">StreetView.getPanorama()</a></th>
+                </tr>
+                <tr>
+                    <td>Gets a new panorama instance.</td>
+                </tr>
+            </table>
+
+            <h3>Methods</h3>
+            <table class="reference">
+                <tr>
+                    <th><a href="./animateCamera.html">animateCamera()</a></th>
+                </tr>
+                <tr>
+                    <td>Moves the camera position <b>with animation</b>.</td>
+                </tr>
+                <tr>
+                    <th><a href="./moveCamera.html">moveCamera()</a></th>
+                </tr>
+                <tr>
+                    <td>Moves the camera position <b>without animation</b>.</td>
+                </tr>
+                <tr>
+                    <th>getPosition()</th>
+                </tr>
+                <tr>
+                    <td>Return the current camera position (LatLng).</td>
+                </tr>
+                <tr>
+                    <th>getLocation()</th>
+                </tr>
+                <tr>
+                    <td>Return the current location, including links.</td>
+                </tr>
+                <tr>
+                    <th>getLinks()</th>
+                </tr>
+                <tr>
+                    <td>Return the link of next location</td>
+                </tr>
+                <tr>
+                    <th>setPanningGesturesEnabled()</th>
+                </tr>
+                <tr>
+                    <td>Toggles the ability for users to use pan around on the panorama using gestures.</td>
+                </tr>
+                <tr>
+                    <th>getPanningGesturesEnabled()</th>
+                </tr>
+                <tr>
+                    <td>Retrun true if the panning gesture is enabled.</td>
+                </tr>
+                <tr>
+                    <th>setZoomGesturesEnabled()</th>
+                </tr>
+                <tr>
+                    <td>Toggles the ability for users to zoom on the panorama using gestures.</td>
+                </tr>
+                <tr>
+                    <th>getZoomGesturesEnabled()</th>
+                </tr>
+                <tr>
+                    <td>Retrun true if the zooming gesture is enabled.</td>
+                </tr>
+                <tr>
+                    <th>setStreetNamesEnabled()</th>
+                </tr>
+                <tr>
+                    <td>Toggles the ability for users to see street names on the panorama.</td>
+                </tr>
+                <tr>
+                    <th>getStreetNamesEnabled()</th>
+                </tr>
+                <tr>
+                    <td>Retrun true if the street names control is enabled.</td>
+                </tr>
+                <tr>
+                    <th>setNavigationEnabled()</th>
+                </tr>
+                <tr>
+                    <td>Toggles the ability for users to move between panoramas.</td>
+                </tr>
+                <tr>
+                    <th>getNavigationEnabled()</th>
+                </tr>
+                <tr>
+                    <td>Retrun true if the navigation control is enabled.</td>
+                </tr>
+                <tr>
+                    <th><a href="./setVisible.html">setVisible()</a></th>
+                </tr>
+                <tr>
+                    <td>Change visibility of the panorama.</td>
+                </tr>
+                <tr>
+                    <th>getVisible()</th>
+                </tr>
+                <tr>
+                    <td>Return true if the panorama is visible.</td>
+                </tr>
+                <tr>
+                    <th><a href="./remove.html">remove()</a></th>
+                </tr>
+                <tr>
+                    <td>Remove the panorama.</td>
+                </tr>
+            </table>
+
+            <h3>Events</h3>
+            <table class="reference">
+                <tr>
+                    <th>PANORAMA_READY</th>
+                </tr>
+                <tr>
+                    <td><div class="arguments">Arguments:  None</div>This event is fired when the panorama is fully ready.</td>
+                </tr>
+                <tr>
+                    <th><a href="./PANORAMA_CAMERA_CHANGE.html">PANORAMA_CAMERA_CHANGE</a></th>
+                </tr>
+                <tr>
+                    <td><div class="arguments">Arguments:  PanoramaCameraPosition</div>This event is fired when the camra is moved (such as panning).</td>
+                </tr>
+                <tr>
+                    <th><a href="./PANORAMA_LOCATION_CHANGE.html">PANORAMA_LOCATION_CHANGE</a></th>
+                </tr>
+                <tr>
+                    <td><div class="arguments">Arguments:  PanoramaLocation</div>This event is fired when the camera location is moved.</td>
+                </tr>
+                <tr>
+                    <th><a href="./PANORAMA_CLICK.html">PANORAMA_CLICK</a></th>
+                </tr>
+                <tr>
+                    <td><div class="arguments">Arguments:  PanoramaOrientation</div>This event is fired when you click on the panorama.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

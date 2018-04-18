@@ -45,16 +45,13 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-
-    offsets.forEach(function(offset) {
-        map.addPolyline({
-          'points': [center, offset],
-          'color' : '#AA00FF'
-        });
-    });
-
+offsets.forEach(function(offset) {
+  map.addPolyline({
+    'points': [center, offset],
+    'color' : '#AA00FF'
+  });
 });
+
 </pre>
             </section>
         </div>

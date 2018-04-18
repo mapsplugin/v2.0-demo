@@ -37,42 +37,39 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
     zoom: 10
   }
 });
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  // Show a virtual dialog (loader.js)
-  showVirtualDialog(mapDiv, "Tap on the land in the map!");
+// Show a virtual dialog (loader.js)
+showVirtualDialog(mapDiv, "Tap on the land in the map!");
 
-  map.on(plugin.google.maps.event.MAP_CLICK, function(latLng) {
+map.on(plugin.google.maps.event.MAP_CLICK, function(latLng) {
 
-      map.addMarker({
-        "position": latLng
-      }, function(marker) {
-
-        // Latitude, longitude -> address
-        plugin.google.maps.Geocoder.geocode({
-          "position": latLng
-        }, function(results) {
-
-          if (results.length === 0) {
-            // Not found
-            return;
-          }
-
-          var address = [
-            results[0].subThoroughfare || "",
-            results[0].thoroughfare || "",
-            results[0].locality || "",
-            results[0].adminArea || "",
-            results[0].postalCode || "",
-            results[0].country || ""].join(", ");
-
-          marker.setTitle(address)
-                .showInfoWindow();
-        });
-      });
+  var marker = map.addMarker({
+    "position": latLng
   });
 
+  // Latitude, longitude -> address
+  plugin.google.maps.Geocoder.geocode({
+    "position": latLng
+  }, function(results) {
+
+    if (results.length === 0) {
+      // Not found
+      return;
+    }
+
+    var address = [
+      results[0].subThoroughfare || "",
+      results[0].thoroughfare || "",
+      results[0].locality || "",
+      results[0].adminArea || "",
+      results[0].postalCode || "",
+      results[0].country || ""].join(", ");
+
+    marker.setTitle(address)
+          .showInfoWindow();
+  });
 });
+
 </pre>
                 </section>
 

@@ -33,31 +33,28 @@
                 </div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div);
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  // All gestures (such as pinch-zooming) are disabled.
-  map.setAllGesturesEnabled(false);
+// All gestures (such as pinch-zooming) are disabled.
+map.setAllGesturesEnabled(false);
 
-  // Add a tile overlay
-  map.addTileOverlay({
-    getTile: function(x, y, zoom) {
-      return "http://tile.stamen.com/toner/" + zoom + "/" + x + "/" + y + ".png";
-    }
-  }, function(tileOverlay) {
-
-    var range = document.getElementById("opacityRange");
-    range.addEventListener("change", function() {
-
-      // Set the current value as opacity.
-      tileOverlay.setOpacity(this.value);
-    });
-
-    // Set the current value as opacity.
-    tileOverlay.setOpacity(range.value);
-
-  });
-
+// Add a tile overlay
+var tileOverlay = map.addTileOverlay({
+  getTile: function(x, y, zoom) {
+    return "http://tile.stamen.com/toner/" + zoom + "/" + x + "/" + y + ".png";
+  }
 });
+
+var range = document.getElementById("opacityRange");
+range.addEventListener("change", function() {
+
+  // Set the current value as opacity.
+  tileOverlay.setOpacity(this.value);
+});
+
+// Set the current value as opacity.
+tileOverlay.setOpacity(range.value);
+
+
 </pre>
             </section>
         </div>

@@ -42,30 +42,27 @@ var map = plugin.google.maps.Map.getMap(div, {
     padding: 40
   }
 });
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  // All gestures (such as pinch-zooming) are disabled.
-  map.setAllGesturesEnabled(false);
+// All gestures (such as pinch-zooming) are disabled.
+map.setAllGesturesEnabled(false);
 
-  // Add ground overlay
-  map.addGroundOverlay({
-    'url': "../images/newark_nj_1922.jpg",
-    'bounds': bounds,
-    'opacity': 0.5
-  }, function(groundOverlay) {
-
-    var range = document.getElementById("bearingRange");
-    range.addEventListener("change", function() {
-
-      // Set the ground overlay rotation angle.
-      groundOverlay.setBearing(this.value);
-    });
-
-    // Set the current value as rotation angle.
-    groundOverlay.setBearing(range.value);
-
-  });
+// Add ground overlay
+var groundOverlay = map.addGroundOverlay({
+  'url': "../images/newark_nj_1922.jpg",
+  'bounds': bounds,
+  'opacity': 0.5
 });
+
+var range = document.getElementById("bearingRange");
+range.addEventListener("change", function() {
+
+  // Set the ground overlay rotation angle.
+  groundOverlay.setBearing(this.value);
+});
+
+// Set the current value as rotation angle.
+groundOverlay.setBearing(range.value);
+
 </pre>
             </section>
         </div>

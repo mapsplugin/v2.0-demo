@@ -48,48 +48,33 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
     target: AIR_PORTS
   }
 });
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  addEditablePolyline(map, AIR_PORTS, function(polyline) {
+var polyline = addEditablePolyline(map, AIR_PORTS);
 
-    // To do something...
-
-  });
-
-});
-
-function addEditablePolyline(map, points, callback) {
+function addEditablePolyline(map, points) {
 
   // Add a polyline
-  map.addPolyline({
+  var polyline = map.addPolyline({
     'points': points,
     'color' : '#AA00FF',
     'width': 10,
     'geodesic': true
-  }, function(polyline) {
+  });
 
-    // polyline.getPoints() returns an instance of the BaseArrayClass.
-    var mvcArray = polyline.getPoints();
+  // polyline.getPoints() returns an instance of the BaseArrayClass.
+  var mvcArray = polyline.getPoints();
 
-    // Add draggable markers
-    mvcArray.map(function(latLng, cb) {
-      map.addMarker({
-        position: latLng,
-        draggable: true
-      }, cb);
-    }, function(markers) {
-
-      // If a marker is dragged, set the position of it to the points of the polyline.
-      markers.forEach(function(marker, idx) {
-        marker.on(plugin.google.maps.event.MARKER_DRAG, function(position) {
-          mvcArray.setAt(idx, position);
-        });
-      });
-
-      callback(polyline);
+  points.forEach(function(latLng, idx) {
+    var marker = map.addMarker({
+      position: latLng,
+      draggable: true
+    });
+    marker.on(plugin.google.maps.event.MARKER_DRAG, function(position) {
+      mvcArray.setAt(idx, position);
     });
   });
 
+  return polyline;
 }
 
 </pre>

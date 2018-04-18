@@ -55,51 +55,37 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
     target: GORYOKAKU_POINTS
   }
 });
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  // Show a virtual dialog (loader.js)
-  showVirtualDialog(mapDiv, "Drag the markers!");
+// Show a virtual dialog (loader.js)
+showVirtualDialog(mapDiv, "Drag the markers!");
 
-  addEditablePolygon(map, GORYOKAKU_POINTS, function(polygon) {
+var polygon = addEditablePolygon(map, GORYOKAKU_POINTS);
 
-    // To do something...
 
-  });
-
-});
-
-function addEditablePolygon(map, points, callback) {
+function addEditablePolygon(map, points) {
 
   // Add a polygon
-  map.addPolygon({
+  var polygon = map.addPolygon({
     'points': points,
     'strokeColor' : '#AA00FF',
     'fillColor' : '#00FFAA',
     'width': 10
-  }, function(polygon) {
+  });
 
-    // polygon.getPoints() returns an instance of the BaseArrayClass.
-    var mvcArray = polygon.getPoints();
+  // polygon.getPoints() returns an instance of the BaseArrayClass.
+  var mvcArray = polygon.getPoints();
 
-    // Add draggable markers
-    mvcArray.map(function(latLng, cb) {
-      map.addMarker({
-        position: latLng,
-        draggable: true
-      }, cb);
-    }, function(markers) {
-
-      // If a marker is dragged, set the position of it to the points of the Polygon.
-      markers.forEach(function(marker, idx) {
-        marker.on(plugin.google.maps.event.MARKER_DRAG, function(position) {
-          mvcArray.setAt(idx, position);
-        });
-      });
-
-      callback(polygon);
+  points.forEach(function(point, idx) {
+    var marker = map.addMarker({
+      position: latLng,
+      draggable: true
+    });
+    marker.on(plugin.google.maps.event.MARKER_DRAG, function(position) {
+      mvcArray.setAt(idx, position);
     });
   });
 
+  return polygon;
 }
 
 </pre>

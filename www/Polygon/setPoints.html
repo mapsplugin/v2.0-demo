@@ -66,47 +66,44 @@ var mapDiv = document.getElementById("map_canvas");
 
 // Create a map with specified camera bounds
 var map = plugin.google.maps.Map.getMap(mapDiv);
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  showVirtualDialog(mapDiv, "Click on the polygon!");
+showVirtualDialog(mapDiv, "Click on the polygon!");
 
-  // Add a polygon
-  map.addPolygon({
-    'points': drawCircle({lat: -33.0, lng: 151.2}, 100, 1),
-    'width': 10,
-    'geodesic': true,
-    'strokeColor': "#0000FF",
-    'strokeOpacity': 0.8,
-    'strokeWeight': 2,
-    'fillColor': "#FF0000",
-    'fillOpacity': 0.35,
-    'clickable': true  //default = false
-  }, function(polygon) {
-
-    map.moveCamera({
-      target: polygon.getPoints().getArray()
-    });
-
-    // Catch the POLYGON_CLICK event
-    polygon.on(plugin.google.maps.event.POLYGON_CLICK, function() {
-
-      // Set new points
-      polygon.setPoints([
-        {lat: -32.366418, lng: 151.146957},
-        {lat: -32.744884, lng: 150.740298},
-        {lat: -32.743724, lng: 150.208911},
-        {lat: -33.112183, lng: 150.788921},
-        {lat: -33.639087, lng: 150.766192},
-        {lat: -33.285082, lng: 151.261255},
-        {lat: -33.595936, lng: 151.896088},
-        {lat: -33.052976, lng: 151.624838},
-        {lat: -32.669338, lng: 152.213894},
-        {lat: -32.650729, lng: 151.508452}
-      ]);
-    });
-  });
-
+// Add a polygon
+var polygon = map.addPolygon({
+  'points': drawCircle({lat: -33.0, lng: 151.2}, 100, 1),
+  'width': 10,
+  'geodesic': true,
+  'strokeColor': "#0000FF",
+  'strokeOpacity': 0.8,
+  'strokeWeight': 2,
+  'fillColor': "#FF0000",
+  'fillOpacity': 0.35,
+  'clickable': true  //default = false
 });
+
+map.moveCamera({
+  target: polygon.getPoints().getArray()
+});
+
+// Catch the POLYGON_CLICK event
+polygon.on(plugin.google.maps.event.POLYGON_CLICK, function() {
+
+  // Set new points
+  polygon.setPoints([
+    {lat: -32.366418, lng: 151.146957},
+    {lat: -32.744884, lng: 150.740298},
+    {lat: -32.743724, lng: 150.208911},
+    {lat: -33.112183, lng: 150.788921},
+    {lat: -33.639087, lng: 150.766192},
+    {lat: -33.285082, lng: 151.261255},
+    {lat: -33.595936, lng: 151.896088},
+    {lat: -33.052976, lng: 151.624838},
+    {lat: -32.669338, lng: 152.213894},
+    {lat: -32.650729, lng: 151.508452}
+  ]);
+});
+
 
 </pre>
             </section>

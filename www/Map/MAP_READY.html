@@ -23,7 +23,7 @@
             <section class="demo">
 
                 <p>
-                    When you create a new map, you <span class="highlight">MUST</span> wait the <span class="highlight">MAP_READY</span> event.<br>
+                    The <span class="highlight">MAP_READY</span> event notifies the map instance is fully ready to use.
                 </p>
                 <div class="map" id="map_canvas" style="position:relative;"></div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
@@ -32,7 +32,7 @@ var map = plugin.google.maps.Map.getMap(div);
 // At this time, the map instance is not ready yet.
 // So don't do anything.
 //
-// map.setCameraZoom(3);  <--- This is bad timing.
+// map.getVisibleRegion();  <--- This is bad timing.
 
 // After the MAP_READY event, you can modify the map.
 map.one(plugin.google.maps.event.MAP_READY, function() {

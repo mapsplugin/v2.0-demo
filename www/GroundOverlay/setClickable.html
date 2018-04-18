@@ -39,33 +39,27 @@ var map = plugin.google.maps.Map.getMap(div, {
     padding: 40
   }
 });
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-    // All gestures (such as pinch-zooming) are disabled.
-    map.setAllGesturesEnabled(false);
+// All gestures (such as pinch-zooming) are disabled.
+map.setAllGesturesEnabled(false);
 
-    // Add ground overlay
-    map.addGroundOverlay({
-      'url': "../images/newark_nj_1922.jpg",
-      'bounds': bounds,
-      'opacity': 0.5,
-      'clickable': true // default = false
-    }, function(groundOverlay) {
+// Add ground overlay
+var groundOverlay = map.addGroundOverlay({
+  'url': "../images/newark_nj_1922.jpg",
+  'bounds': bounds,
+  'opacity': 0.5,
+  'clickable': true // default = false
+});
 
-        var checkbox = document.getElementById("toggleCheckbox");
-        checkbox.addEventListener("change", function() {
+var checkbox = document.getElementById("toggleCheckbox");
+checkbox.addEventListener("change", function() {
+  // Change the clickable property
+  groundOverlay.setClickable(checkbox.checked);
+});
 
-            // Change the clickable property
-            groundOverlay.setClickable(checkbox.checked);
-        });
-
-        // Catch the GROUND_OVERLAY_CLICK event
-        groundOverlay.on(plugin.google.maps.event.GROUND_OVERLAY_CLICK, function(latLng) {
-            alert("The ground overlay is clicked!");
-        });
-    });
-
-
+// Catch the GROUND_OVERLAY_CLICK event
+groundOverlay.on(plugin.google.maps.event.GROUND_OVERLAY_CLICK, function(latLng) {
+  alert("The ground overlay is clicked!");
 });
 </pre>
           </section>

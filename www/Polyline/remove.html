@@ -44,32 +44,28 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
     target: AIR_PORTS
   }
 });
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  // Add a polyline
-  map.addPolyline({
-    points: AIR_PORTS,
-    'color' : '#AA00FF',
-    'width': 10,
-    'geodesic': true,
-    'clickable': true // default = false
-  }, function(polyline) {
+// Add a polyline
+var polyline = map.addPolyline({
+  points: AIR_PORTS,
+  'color' : '#AA00FF',
+  'width': 10,
+  'geodesic': true,
+  'clickable': true // default = false
+});
 
 
-    // Show a virtual dialog (loader.js)
-    showVirtualDialog(mapDiv, "Click on the polyline!");
+// Show a virtual dialog (loader.js)
+showVirtualDialog(mapDiv, "Click on the polyline!");
 
-    // Catch the POLYLINE_CLICK event
-    polyline.on(plugin.google.maps.event.POLYLINE_CLICK, function() {
+// Catch the POLYLINE_CLICK event
+polyline.on(plugin.google.maps.event.POLYLINE_CLICK, function() {
 
-      // Remove the polyline
-      polyline.remove();
-
-    });
-
-  });
+  // Remove the polyline
+  polyline.remove();
 
 });
+
 </pre>
             </section>
         </div>

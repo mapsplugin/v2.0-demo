@@ -17,37 +17,24 @@
 
     <div id="menuView"><ul id="menu"></ul></div>
     <div id="header">
-        <div id="menuButton"></div><h3>marker.isVisible()</h3>
+        <div id="menuButton"></div><h3>event : PANORAMA_CLICK</h3>
     </div>
     <div id="contentView">
         <div id="contentsFrame">
             <section class="demo">
-
                 <p>
-                    Return true if the marker is visible.
+                    The PANORAMA_CLICK event is fired when you click on the panorama.
                 </p>
-                <div class="map" id="map_canvas">
-                    <span class="smallPanel"><button>marker.isVisible() = true</button></span>
-                </div>
-                <pre class="prettyprint">var div = document.getElementById("map_canvas");
-var map = plugin.google.maps.Map.getMap(div);
-
-// Add a marker
-var marker = map.addMarker({
-  'position': {
-    lat: 0,
-    lng: 0
+                <div class="map" id="pano_canvas"></div>
+                <pre class="prettyprint">var div = document.getElementById("pano_canvas");
+var panorama = plugin.google.maps.StreetView.getPanorama(div, {
+  camera: {
+    target: {lat: 42.345573, lng: -71.098326}
   }
 });
 
-var button = div.getElementsByTagName('button')[0];
-button.addEventListener("click", function() {
-  if (marker.isVisible()) {
-    marker.setVisible(false);
-  } else{
-    marker.setVisible(true);
-  }
-  button.innerHTML = "marker.isVisible() = " + marker.isVisible();
+panorama.on(plugin.google.maps.event.PANORAMA_CLICK, function(panoramaOrientaion) {
+  alert(JSON.stringify(panoramaOrientaion, null, 4));
 });
 </pre>
             </section>

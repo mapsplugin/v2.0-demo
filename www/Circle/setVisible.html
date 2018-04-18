@@ -32,30 +32,25 @@
 var mapDiv = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(mapDiv);
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+// Add a circle
+var circle = map.addCircle({
+  'center': GOOGLE,
+  'radius': 300,
+  'strokeColor' : '#AA00FF',
+  'strokeWidth': 5,
+  'fillColor' : '#880000',
+  'clickable' : true   // default = false
+});
 
-    // Add a circle
-    map.addCircle({
-        'center': GOOGLE,
-        'radius': 300,
-        'strokeColor' : '#AA00FF',
-        'strokeWidth': 5,
-        'fillColor' : '#880000',
-        'clickable' : true   // default = false
-    }, function(circle) {
+map.moveCamera({
+  target: circle.getBounds()
+});
 
-        map.moveCamera({
-          target: circle.getBounds()
-        });
+var checkbox = document.getElementById("toggleCheckbox");
+checkbox.addEventListener("change", function() {
 
-        var checkbox = document.getElementById("toggleCheckbox");
-        checkbox.addEventListener("change", function() {
-
-            // Change the visible property
-            circle.setVisible(checkbox.checked);
-        });
-    });
-
+  // Change the visible property
+  circle.setVisible(checkbox.checked);
 });
 </pre>
           </section>

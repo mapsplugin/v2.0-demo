@@ -29,22 +29,20 @@
                 </div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div);
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  var visible = true;
-  var button = div.getElementsByTagName('button')[0];
-  button.addEventListener('click', function() {
+var visible = true;
+var button = div.getElementsByTagName('button')[0];
+button.addEventListener('click', function() {
 
-    // Create a snap shot
-    map.toDataURL(function(imageData) {
+  // Create a snap shot
+  map.toDataURL(function(imageData) {
 
-      // Show the image.
-      showImage(imageData);
+    // Show the image.
+    showImage(imageData);
 
-    });
   });
-
 });
+
 function showImage(url) {
   // Show the image
   var bgDiv = document.createElement("div");

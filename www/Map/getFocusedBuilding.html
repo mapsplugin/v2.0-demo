@@ -40,18 +40,15 @@ var map = plugin.google.maps.Map.getMap(div, {
     indoorPicker: true
   }
 });
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  // Get the current focused building programatically.
-  map.getFocusedBuilding(onIndoorEvents);
+// Get the current focused building programatically.
+map.getFocusedBuilding(onIndoorEvents);
 
-  // or you can listen the INDOOR_BUILDING_FOCUSED and the INDOOR_LEVEL_ACTIVATED events.
-  map.on(plugin.google.maps.event.INDOOR_BUILDING_FOCUSED, onIndoorEvents);
-  map.on(plugin.google.maps.event.INDOOR_LEVEL_ACTIVATED, onIndoorEvents);
+// or you can listen the INDOOR_BUILDING_FOCUSED and the INDOOR_LEVEL_ACTIVATED events.
+map.on(plugin.google.maps.event.INDOOR_BUILDING_FOCUSED, onIndoorEvents);
+map.on(plugin.google.maps.event.INDOOR_LEVEL_ACTIVATED, onIndoorEvents);
 
-});
 function onIndoorEvents(indoorBuilding) {
-  var map = this;
 
   if (!indoorBuilding) {
     indoorInfoLabel.innerText = "Not focused on any building";

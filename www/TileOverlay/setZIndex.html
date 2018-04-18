@@ -32,39 +32,33 @@
 
 // Create a map with specified camera bounds
 var map = plugin.google.maps.Map.getMap(mapDiv);
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  var tileList = [
+var tileList = [
+  "../images/map-for-free/{zoom}_{x}-{y}.gif",
+  "http://tile.stamen.com/toner/{zoom}/{x}/{y}.png"
+];
+var layers = [];
+tileList.forEach(function(layerUrl, idx) {
 
-    "../images/map-for-free/{zoom}_{x}-{y}.gif",
-    "http://tile.stamen.com/toner/{zoom}/{x}/{y}.png"
-  ];
-  var layers = [];
-  tileList.forEach(function(layerUrl, idx) {
-
-    // Create a layer
-    map.addTileOverlay({
-      getTile: function(x, y, zoom) {
-        return layerUrl.replace("{zoom}", zoom)
-                  .replace("{x}", x)
-                  .replace("{y}", y);
-      }
-    }, function(layer) {
-
-      layers.push(layer);
-
-    });
-
+  // Create a layer
+  var layer = map.addTileOverlay({
+    getTile: function(x, y, zoom) {
+      return layerUrl.replace("{zoom}", zoom)
+                .replace("{x}", x)
+                .replace("{y}", y);
+    }
   });
 
-  // Change the layer zIndex orders.
-  var button = document.getElementsByTagName("button")[0];
-  button.addEventListener("click", function() {
-    layers = layers.reverse();
-    layers.forEach(function(layer, idx) {
-        layer.setZIndex(idx);
-    });
+  layers.push(layer);
 
+});
+
+// Change the layer zIndex orders.
+var button = document.getElementsByTagName("button")[0];
+button.addEventListener("click", function() {
+  layers = layers.reverse();
+  layers.forEach(function(layer, idx) {
+      layer.setZIndex(idx);
   });
 
 });

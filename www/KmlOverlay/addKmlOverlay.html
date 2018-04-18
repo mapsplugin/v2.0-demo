@@ -51,46 +51,44 @@
 var map = plugin.google.maps.Map.getMap(mapDiv, {
   'mapTypeId': plugin.google.maps.MapTypeId.SATELLITE
 });
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  var select = mapDiv.getElementsByTagName('select')[0];
-  select.addEventListener('change', function() {
-    var kmlUrl = this.value;
-    if (!kmlUrl || kmlUrl === "Select one kml file") {
-      return;
-    }
+var select = mapDiv.getElementsByTagName('select')[0];
+select.addEventListener('change', function() {
+  var kmlUrl = this.value;
+  if (!kmlUrl || kmlUrl === "Select one kml file") {
+    return;
+  }
 
-    map.clear();
+  map.clear();
 
-    // Show a dialog
-    var dialogDiv = showVirtualDialog(mapDiv, "Just a moment, please ...");
+  // Show a dialog
+  var dialogDiv = showVirtualDialog(mapDiv, "Just a moment, please ...");
 
-    map.addKmlOverlay({
-      'url': kmlUrl,
-      'clickable': true,
-      'suppressInfoWindows': false
-    }, function(kmlOverlay) {
+  map.addKmlOverlay({
+    'url': kmlUrl,
+    'clickable': true,
+    'suppressInfoWindows': false
+  }, function(kmlOverlay) {
 
-      // debug
-      //console.log(kmlOverlay);
+    // debug
+    //console.log(kmlOverlay);
 
-      // You can get additional information
-      //kmlOverlay.on(plugin.google.maps.event.KML_CLICK, function(overlay, latLng) {
-      //  console.log(overlay);
-      //});
+    // You can get additional information
+    //kmlOverlay.on(plugin.google.maps.event.KML_CLICK, function(overlay, latLng) {
+    //  console.log(overlay);
+    //});
 
-      // You need to change the camera by yourself.
-      map.moveCamera(kmlOverlay.camera, function() {
+    // You need to change the camera by yourself.
+    map.moveCamera(kmlOverlay.camera, function() {
 
-        //close the dialog
-        mapDiv.removeChild(dialogDiv);
-
-      });
+      //close the dialog
+      mapDiv.removeChild(dialogDiv);
 
     });
-  });
 
+  });
 });
+
 </pre>
             </section>
         </div>

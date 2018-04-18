@@ -46,40 +46,33 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-
-  // Add polyline
-  map.addPolyline({
-    'points': PATH,
-    'color' : '#AA00FF',
-    'width': 5
-  }, function(polyline) {
-
-    map.addMarker({
-      'position': (new plugin.google.maps.LatLngBounds(PATH)).getCenter(),
-      'draggable': true,
-      'title': 'drag me!'
-    }, function(marker) {
-
-      // Open the infoWindow
-      marker.showInfoWindow();
-
-      // If the marker position is changed,
-      // calculates the position is on the edge.
-      // If on the edge, change the marker color to "blue", otherwise, "red".
-      marker.on("position_changed", function() {
-        var position = marker.getPosition();
-        var contain = plugin.google.maps.geometry.poly.isLocationOnEdge(position, PATH);
-        marker.setIcon(contain ? "blue" : "red");
-      });
-
-      // Fire the position_changed event for the first calculation
-      marker.trigger("position_changed", 0, marker.getPosition());
-    });
-
-  });
-
+// Add polyline
+var polyline = map.addPolyline({
+  'points': PATH,
+  'color' : '#AA00FF',
+  'width': 5
 });
+
+var marker = map.addMarker({
+  'position': (new plugin.google.maps.LatLngBounds(PATH)).getCenter(),
+  'draggable': true,
+  'title': 'drag me!'
+});
+
+// Open the infoWindow
+marker.showInfoWindow();
+
+// If the marker position is changed,
+// calculates the position is on the edge.
+// If on the edge, change the marker color to "blue", otherwise, "red".
+marker.on("position_changed", function() {
+  var position = marker.getPosition();
+  var contain = plugin.google.maps.geometry.poly.isLocationOnEdge(position, PATH);
+  marker.setIcon(contain ? "blue" : "red");
+});
+
+// Fire the position_changed event for the first calculation
+marker.trigger("position_changed", 0, marker.getPosition());
 </pre>
           </section>
         </div>

@@ -39,25 +39,20 @@ var map = plugin.google.maps.Map.getMap(div, {
     zoom: 15
   }
 });
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
+var marker = map.addMarker({
+  position: new plugin.google.maps.LatLng(35, 137),
+  icon: "http://www.google.com/intl/en_us/mapfiles/ms/icons/blue-dot.png",
+  animation: plugin.google.maps.Animation.DROP
+});
 
-  map.addMarker({
-    position: new plugin.google.maps.LatLng(35, 137),
-    icon: "http://www.google.com/intl/en_us/mapfiles/ms/icons/blue-dot.png",
-    animation: plugin.google.maps.Animation.DROP
-  }, function(marker) {
+var button = div.getElementsByTagName('button')[0];
+button.addEventListener("click", function() {
+  marker.setAnimation(plugin.google.maps.Animation.DROP);
+});
 
-    var button = div.getElementsByTagName('button')[0];
-    button.addEventListener("click", function() {
-      marker.setAnimation(plugin.google.maps.Animation.DROP);
-    });
-
-    marker.on(plugin.google.maps.event.MARKER_CLICK, function() {
-      marker.setAnimation(plugin.google.maps.Animation.BOUNCE);
-    });
-  });
-
+marker.on(plugin.google.maps.event.MARKER_CLICK, function() {
+  marker.setAnimation(plugin.google.maps.Animation.BOUNCE);
 });
 </pre>
             </section>

@@ -29,31 +29,27 @@
                 <div class="map" id="map_canvas"></div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div);
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  // Add a marker
-  map.addMarker({
-    'position': {
-      lat: 0,
-      lng: 0
-    },
-    'title': 'Click me!'
-  }, function(marker) {
+// Add a marker
+var marker = map.addMarker({
+  'position': {
+    lat: 0,
+    lng: 0
+  },
+  'title': 'Click me!'
+});
 
-    // Show the infoWindow.
-    marker.showInfoWindow();
+// Show the infoWindow.
+marker.showInfoWindow();
 
-    marker.on(plugin.google.maps.event.INFO_CLICK, function() {
+marker.on(plugin.google.maps.event.INFO_CLICK, function() {
 
-      // Change the marker position.
-      marker.setPosition({
-        lat: 20,
-        lng: 20
-      });
-
-    });
-
+  // Change the marker position.
+  marker.setPosition({
+    lat: 20,
+    lng: 20
   });
+
 });
 </pre>
             </section>

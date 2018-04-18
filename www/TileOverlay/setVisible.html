@@ -31,24 +31,20 @@
               <pre class="prettyprint">var mapDiv = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(mapDiv);
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-
-    // Add a tile overlay
-    map.addTileOverlay({
-      getTile: function(x, y, zoom) {
-        return "http://tile.stamen.com/toner/" + zoom + "/" + x + "/" + y + ".png";
-      }
-    }, function(tileOverlay) {
-
-      var checkbox = document.getElementById("toggleCheckbox");
-      checkbox.addEventListener("change", function() {
-
-          // Change the visible property
-          tileOverlay.setVisible(checkbox.checked);
-      });
-
-    });
+// Add a tile overlay
+var tileOverlay = map.addTileOverlay({
+  getTile: function(x, y, zoom) {
+    return "http://tile.stamen.com/toner/" + zoom + "/" + x + "/" + y + ".png";
+  }
 });
+
+var checkbox = document.getElementById("toggleCheckbox");
+checkbox.addEventListener("change", function() {
+
+  // Change the visible property
+  tileOverlay.setVisible(checkbox.checked);
+});
+
 </pre>
           </section>
         </div>

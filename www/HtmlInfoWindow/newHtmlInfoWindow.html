@@ -35,34 +35,32 @@
                 <div class="map" id="map_canvas"></div>
                 <pre class="prettyprint">var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div);
-map.one(plugin.google.maps.event.MAP_READY, function() {
-  var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
 
-  var container = document.createElement("div");
-  container.innerHTML = [
-    'This is &lt;b&gt;Html&lt;/b&gt; InfoWindow',
-    '&lt;br&gt;',
-    '&lt;button&gt;click here&lt;/button&gt;',
-  ].join("");
-  var button = container.getElementsByTagName("button")[0];
-  button.addEventListener("click", function() {
-    alert("clicked!");
-  });
+var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
 
-  htmlInfoWindow.setContent(container);
-
-  map.addMarker({
-    position: {lat: 0, lng: 0},
-    draggable: true
-  }, function(marker) {
-
-    marker.on(plugin.google.maps.event.MARKER_CLICK, function() {
-      htmlInfoWindow.open(marker);
-    });
-    marker.trigger(plugin.google.maps.event.MARKER_CLICK);
-
-  });
+var container = document.createElement("div");
+container.innerHTML = [
+  'This is &lt;b&gt;Html&lt;/b&gt; InfoWindow',
+  '&lt;br&gt;',
+  '&lt;button&gt;click here&lt;/button&gt;',
+].join("");
+var button = container.getElementsByTagName("button")[0];
+button.addEventListener("click", function() {
+  alert("clicked!");
 });
+
+htmlInfoWindow.setContent(container);
+
+var marker = map.addMarker({
+  position: {lat: 0, lng: 0},
+  draggable: true
+});
+
+marker.on(plugin.google.maps.event.MARKER_CLICK, function() {
+  htmlInfoWindow.open(marker);
+});
+marker.trigger(plugin.google.maps.event.MARKER_CLICK);
+
 </pre>
             </section>
         </div>

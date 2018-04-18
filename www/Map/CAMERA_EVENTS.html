@@ -61,14 +61,11 @@
 var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div);
 
-map.one(plugin.google.maps.event.MAP_READY, function() {
+// Catch all camera events
+map.on(plugin.google.maps.event.CAMERA_MOVE_START, onCameraEvents);
+map.on(plugin.google.maps.event.CAMERA_MOVE, onCameraEvents);
+map.on(plugin.google.maps.event.CAMERA_MOVE_END, onCameraEvents);
 
-  // Catch all camera events
-  map.on(plugin.google.maps.event.CAMERA_MOVE_START, onCameraEvents);
-  map.on(plugin.google.maps.event.CAMERA_MOVE, onCameraEvents);
-  map.on(plugin.google.maps.event.CAMERA_MOVE_END, onCameraEvents);
-
-});
 function onCameraEvents(cameraPosition) {
   // Display the current camera position
 

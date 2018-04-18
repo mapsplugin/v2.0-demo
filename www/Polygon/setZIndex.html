@@ -47,36 +47,33 @@ var mapDiv = document.getElementById("map_canvas");
 
 // Create a map with specified camera bounds
 var map = plugin.google.maps.Map.getMap(mapDiv);
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  var colors = ["green", "blue", "yellow"];
-  var pathArray = [path2, path3, path1];
-  var polygons = [];
-  pathArray.forEach(function(path, idx) {
+var colors = ["green", "blue", "yellow"];
+var pathArray = [path2, path3, path1];
+var polygons = [];
+pathArray.forEach(function(path, idx) {
 
-    // Create polygons
-    map.addPolygon({
-      points: path,
-      fillColor: colors[idx],
-      strokeWidth: 7,
-      zIndex: idx
-    }, function(polygon) {
-      polygons.push(polygon);
-    });
+  // Create polygons
+  var polygon = map.addPolygon({
+    points: path,
+    fillColor: colors[idx],
+    strokeWidth: 7,
+    zIndex: idx
   });
+  polygons.push(polygon);
+});
 
-  // Change the polygon zIndex orders.
-  var button = document.getElementsByTagName("button")[0];
-  button.addEventListener("click", function() {
+// Change the polygon zIndex orders.
+var button = document.getElementsByTagName("button")[0];
+button.addEventListener("click", function() {
 
-    polygons = polygons.reverse();
-    polygons.forEach(function(polygon, idx) {
-      polygon.setZIndex(idx);
-    });
-
+  polygons = polygons.reverse();
+  polygons.forEach(function(polygon, idx) {
+    polygon.setZIndex(idx);
   });
 
 });
+
 </pre>
             </section>
         </div>

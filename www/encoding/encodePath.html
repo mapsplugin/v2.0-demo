@@ -49,21 +49,17 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-  showVirtualDialog(mapDiv, "Click on the polygon!");
+showVirtualDialog(mapDiv, "Click on the polygon!");
 
-  var encodedPath = plugin.google.maps.geometry.encoding.encodePath(GORYOKAKU_POINTS);
-  map.addPolygon({
-    "points": GORYOKAKU_POINTS,
-    "clickable": true
-  }, function(polygon) {
+var encodedPath = plugin.google.maps.geometry.encoding.encodePath(GORYOKAKU_POINTS);
+var polygon = map.addPolygon({
+  "points": GORYOKAKU_POINTS,
+  "clickable": true
+});
 
-    polygon.on(plugin.google.maps.event.POLYGON_CLICK, function() {
-      alert("Encoded path: \n" + encodedPath);
-    });
 
-  });
-
+polygon.on(plugin.google.maps.event.POLYGON_CLICK, function() {
+  alert("Encoded path: \n" + encodedPath);
 });
 </pre>
             </section>

@@ -31,39 +31,31 @@ var mapDiv = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(mapDiv, {
   camera: {
     target: GOOGLE
+  },
+  gestures: {
+    'scroll': false,
+    'tilt': false,
+    'rotate': false,
+    'zoom': false
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-
-    // Add a circle
-    map.addCircle({
-        'center': GOOGLE,
-        'radius': 300,
-        'strokeColor' : '#AA00FF',
-        'strokeWidth': 5,
-        'fillColor' : '#880000',
-        'clickable' : true   // default = false
-    }, function(circle) {
-
-        map.moveCamera({
-          target: circle.getBounds()
-        });
-
-        // Catch the CIRCLE_CLICK event
-        circle.on(plugin.google.maps.event.CIRCLE_CLICK, onCircleClick);
-
-    });
-
+// Add a circle
+var circle = map.addCircle({
+  'center': GOOGLE,
+  'radius': 300,
+  'strokeColor' : '#AA00FF',
+  'strokeWidth': 5,
+  'fillColor' : '#880000',
+  'clickable' : true   // default = false
 });
 
+map.moveCamera({
+  target: circle.getBounds()
+});
 
-// The CIRCLE_CLICK event passes to the callback
-// with the latLng position which is you clicked.
-function onCircleClick(clickLatLng) {
-
-  // The callback is called as the overlay instance.
-  var circle = this;
+// Catch the CIRCLE_CLICK event
+circle.on(plugin.google.maps.event.CIRCLE_CLICK, function(clickLatLng) {
 
   // You can change the style for instance.
   circle.setFillColor("blue");
@@ -75,15 +67,14 @@ function onCircleClick(clickLatLng) {
   // The circle.getMap() method returns the map instance
   // which is bound to the circle.
   var map = circle.getMap();
-  map.addMarker({
+  var marker = map.addMarker({
       position: clickLatLng,
       title: "You clicked here on the circle!",
       snippet: clickLatLng.toUrlValue()
-  }, function(marker) {
-      marker.showInfoWindow();
   });
+  marker.showInfoWindow();
 
-}
+});
 </pre>
             </section>
         </div>

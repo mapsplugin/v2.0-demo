@@ -53,33 +53,29 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
     target: POINTS
   }
 });
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  // Show a virtual dialog (loader.js)
-  showVirtualDialog(mapDiv, "Click on the polygon at least 3 points!");
+// Show a virtual dialog (loader.js)
+showVirtualDialog(mapDiv, "Click on the polygon at least 3 points!");
 
-  map.addPolygon({
-    points: POINTS,
-    clickable: true // default = false
-  }, function(polygon) {
-    var holes = polygon.getHoles();
-    var mvcArray = new plugin.google.maps.BaseArrayClass();
-    holes.push(mvcArray);
+var polygon = map.addPolygon({
+  points: POINTS,
+  clickable: true // default = false
+});
+var holes = polygon.getHoles();
+var mvcArray = new plugin.google.maps.BaseArrayClass();
+holes.push(mvcArray);
 
-    polygon.on(plugin.google.maps.event.POLYGON_CLICK, function(latLng) {
+polygon.on(plugin.google.maps.event.POLYGON_CLICK, function(latLng) {
 
-      var idx = mvcArray.getLength();
-      mvcArray.push(latLng);
+  var idx = mvcArray.getLength();
+  mvcArray.push(latLng);
 
-      map.addMarker({
-        position: latLng,
-        draggable: true
-      }, function(marker) {
-        marker.on("position_changed", function(oldValue, newValue) {
-          mvcArray.setAt(idx, newValue);
-        });
-      });
-
+  map.addMarker({
+    position: latLng,
+    draggable: true
+  }, function(marker) {
+    marker.on("position_changed", function(oldValue, newValue) {
+      mvcArray.setAt(idx, newValue);
     });
   });
 

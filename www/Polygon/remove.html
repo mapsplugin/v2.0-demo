@@ -174,32 +174,29 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
     target: INDIA
   }
 });
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  // Add a polygon
-  map.addPolygon({
-    'points': INDIA,
-    'fillColor' : 'blueviolet',
-    'strokeColor' : 'lightslategray',
-    'strokeWidth': 5,
-    'clickable': true // default = false
-  }, function(polygon) {
+// Add a polygon
+var polygon = map.addPolygon({
+  'points': INDIA,
+  'fillColor' : 'blueviolet',
+  'strokeColor' : 'lightslategray',
+  'strokeWidth': 5,
+  'clickable': true // default = false
+});
 
 
-    // Show a virtual dialog (loader.js)
-    showVirtualDialog(mapDiv, "Click on the polygon!");
+// Show a virtual dialog (loader.js)
+showVirtualDialog(mapDiv, "Click on the polygon!");
 
-    // Catch the polygon_CLICK event
-    polygon.on(plugin.google.maps.event.POLYGON_CLICK, function() {
+// Catch the polygon_CLICK event
+polygon.on(plugin.google.maps.event.POLYGON_CLICK, function() {
 
-      // Remove the polygon
-      polygon.remove();
-
-    });
-
-  });
+  // Remove the polygon
+  polygon.remove();
 
 });
+
+
 </pre>
             </section>
         </div>

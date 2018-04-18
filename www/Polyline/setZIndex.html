@@ -47,36 +47,31 @@ var mapDiv = document.getElementById("map_canvas");
 
 // Create a map with specified camera bounds
 var map = plugin.google.maps.Map.getMap(mapDiv);
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  var colors = ["green", "blue", "orange"];
-  var pathArray = [path2, path3, path1];
-  var polylines = [];
-  pathArray.forEach(function(path, idx) {
+var colors = ["green", "blue", "orange"];
+var pathArray = [path2, path3, path1];
+var polylines = pathArray.map(function(path, idx) {
 
-    // Create polylines
-    map.addPolyline({
-      points: path,
-      color: colors[idx],
-      width: 7,
-      zIndex: idx
-    }, function(polyline) {
-      polylines.push(polyline);
-    });
+  // Create polylines
+  return map.addPolyline({
+    points: path,
+    color: colors[idx],
+    width: 7,
+    zIndex: idx
   });
+});
 
-  // Change the polyline zIndex orders.
-  var button = document.getElementsByTagName("button")[0];
-  button.addEventListener("click", function() {
+// Change the polyline zIndex orders.
+var button = document.getElementsByTagName("button")[0];
+button.addEventListener("click", function() {
 
-    polylines = polylines.reverse();
-    polylines.forEach(function(polyline, idx) {
-      polyline.setZIndex(idx);
-    });
-
+  polylines = polylines.reverse();
+  polylines.forEach(function(polyline, idx) {
+    polyline.setZIndex(idx);
   });
 
 });
+
 </pre>
             </section>
         </div>

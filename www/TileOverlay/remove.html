@@ -33,23 +33,18 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   'mapType': plugin.google.maps.MapTypeId.ROADMAP
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
-  // Add a tile overlay
-  map.addTileOverlay({
-    getTile: function(x, y, zoom) {
-      return "http://tile.stamen.com/toner/" + zoom + "/" + x + "/" + y + ".png";
-    }
-  }, function(tileOverlay) {
+// Add a tile overlay
+var tileOverlay = map.addTileOverlay({
+  getTile: function(x, y, zoom) {
+    return "http://tile.stamen.com/toner/" + zoom + "/" + x + "/" + y + ".png";
+  }
+});
 
-    var button = document.getElementsByTagName("button")[0];
-    button.addEventListener("click", function() {
-      // Remove the tile overlay
-      tileOverlay.remove();
-
-    });
-
-  });
+var button = document.getElementsByTagName("button")[0];
+button.addEventListener("click", function() {
+  // Remove the tile overlay
+  tileOverlay.remove();
 
 });
 </pre>

@@ -30,34 +30,28 @@
 var mapDiv = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(mapDiv);
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+// Add a circle
+var circle = map.addCircle({
+  'center': GOOGLE,
+  'radius': 300,
+  'strokeColor' : '#AA00FF',
+  'strokeWidth': 5,
+  'fillColor' : '#880000',
+  'clickable' : true   // default = false
+);
 
-  // Add a circle
-  map.addCircle({
-    'center': GOOGLE,
-    'radius': 300,
-    'strokeColor' : '#AA00FF',
-    'strokeWidth': 5,
-    'fillColor' : '#880000',
-    'clickable' : true   // default = false
-  }, function(circle) {
+map.moveCamera({
+  target: circle.getBounds()
+});
 
-    map.moveCamera({
-      target: circle.getBounds()
-    });
+// Show a virtual dialog (loader.js)
+showVirtualDialog(mapDiv, "Click on the circle!");
 
-    // Show a virtual dialog (loader.js)
-    showVirtualDialog(mapDiv, "Click on the circle!");
+// Catch the circle_CLICK event
+circle.on(plugin.google.maps.event.CIRCLE_CLICK, function() {
 
-    // Catch the circle_CLICK event
-    circle.on(plugin.google.maps.event.CIRCLE_CLICK, function() {
-
-      // Remove the circle
-      circle.remove();
-
-    });
-
-  });
+  // Remove the circle
+  circle.remove();
 
 });
 </pre>

@@ -49,20 +49,12 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
   }
 });
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-
-  // Add polygon
-  map.addPolygon({
-    'points': GORYOKAKU_POINTS,
-    'strokeColor' : '#AA00FF',
-    'strokeWidth': 5,
-    'fillColor' : '#880000'
-  }, function(polygon) {
-
-    // to do something...
-
-  });
-
+// Add polygon
+var polygon = map.addPolygon({
+  'points': GORYOKAKU_POINTS,
+  'strokeColor' : '#AA00FF',
+  'strokeWidth': 5,
+  'fillColor' : '#880000'
 });
 </pre>
             </section>

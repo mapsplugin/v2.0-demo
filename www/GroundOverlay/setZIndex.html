@@ -53,56 +53,52 @@
 var mapDiv = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(mapDiv);
 
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
+// Show the message
+showVirtualDialog(mapDiv, "Click on the ground overlays");
 
-  // Show the message
-  showVirtualDialog(mapDiv, "Click on the ground overlays");
+var mvcArray = new plugin.google.maps.BaseArrayClass();
+var latLngBounds = new plugin.google.maps.LatLngBounds();
 
-  var mvcArray = new plugin.google.maps.BaseArrayClass();
-  var latLngBounds = new plugin.google.maps.LatLngBounds();
-
-  regions.forEach(function(region, idx) {
-    region.bounds.forEach(function(position) {
-      latLngBounds.extend(position);
-    });
-
-    // Add ground overlay
-    map.addGroundOverlay({
-      'url': region.url,
-      'bounds': region.bounds,
-      'opacity': 0.5,
-      'zIndex': idx,
-      'clickable': true
-    }, function(groundOverlay) {
-      mvcArray.push(groundOverlay);
-      groundOverlay.on(plugin.google.maps.event.GROUND_OVERLAY_CLICK, onClick);
-    });
-
+regions.forEach(function(region, idx) {
+  region.bounds.forEach(function(position) {
+    latLngBounds.extend(position);
   });
 
-  mvcArray.on("insert_at", function() {
-    if (mvcArray.getLength() === regions.length) {
-      map.moveCamera({
-        target: latLngBounds
-      });
-    }
+  // Add ground overlay
+  var groundOverlay = map.addGroundOverlay({
+    'url': region.url,
+    'bounds': region.bounds,
+    'opacity': 0.5,
+    'zIndex': idx,
+    'clickable': true
   });
-
-  function onClick() {
-    var clickedOverlay = this;
-
-    mvcArray.forEach(function(groundOverlay, idx) {
-      if (clickedOverlay.getHashCode() === groundOverlay.getHashCode()) {
-        groundOverlay.setZIndex(1);
-        groundOverlay.setOpacity(1);
-      } else {
-        groundOverlay.setZIndex(0);
-        groundOverlay.setOpacity(0.5);
-      }
-    });
-  }
+  mvcArray.push(groundOverlay);
+  groundOverlay.on(plugin.google.maps.event.GROUND_OVERLAY_CLICK, onClick);
 
 });
+
+mvcArray.on("insert_at", function() {
+  if (mvcArray.getLength() === regions.length) {
+    map.moveCamera({
+      target: latLngBounds
+    });
+  }
+});
+
+function onClick() {
+  var clickedOverlay = this;
+
+  mvcArray.forEach(function(groundOverlay, idx) {
+    if (clickedOverlay.getHashCode() === groundOverlay.getHashCode()) {
+      groundOverlay.setZIndex(1);
+      groundOverlay.setOpacity(1);
+    } else {
+      groundOverlay.setZIndex(0);
+      groundOverlay.setOpacity(0.5);
+    }
+  });
+}
+
 </pre>
             </section>
         </div>

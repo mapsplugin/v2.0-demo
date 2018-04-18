@@ -61,23 +61,20 @@ var map = plugin.google.maps.Map.getMap(mapDiv, {
     target: POINTS
   }
 });
-map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
   // Show a virtual dialog (loader.js)
-  showVirtualDialog(mapDiv, "Click on the polygon");
+showVirtualDialog(mapDiv, "Click on the polygon");
 
-  map.addPolygon({
-    points: POINTS,
-    clickable: true // default = false
-  }, function(polygon) {
-    polygon.on(plugin.google.maps.event.POLYGON_CLICK, function(latLng) {
+var polygon = map.addPolygon({
+  points: POINTS,
+  clickable: true // default = false
+});
+polygon.on(plugin.google.maps.event.POLYGON_CLICK, function(latLng) {
 
-      polygon.setHoles(HOLES);
-
-    });
-  });
+  polygon.setHoles(HOLES);
 
 });
+
 </pre>
             </section>
         </div>

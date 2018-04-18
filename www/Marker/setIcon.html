@@ -79,43 +79,28 @@
 
 var mapDiv = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(mapDiv);
-map.one(plugin.google.maps.event.MAP_READY, function() {
 
-  // Show a virtual dialog (loader.js)
-  showVirtualDialog(mapDiv, "Click on the markers!");
+// Show a virtual dialog (loader.js)
+showVirtualDialog(mapDiv, "Click on the markers!");
 
-  // Add markers
-  addMarkers(map, POINTS, function(markers) {
+// Add markers
+var markers = [];
+var bounds = [];
+data.forEach(function(markerOptions) {
+  var marker = map.addMarker(markerOptions);
+  markers.push(marker);
+  bounds.push(markerOptions.position);
 
-    var bounds = [];
-    for(var i = 0; i < markers.length; i++) {
-      bounds.push(markers[i].getPosition());
-    }
-
-    map.moveCamera({
-      target: bounds
-    });
-
-  });
-
+  // If you click on a marker, the marker's icon will be changed.
+  marker.on(plugin.google.maps.event.MARKER_CLICK, onMarkerClick);
+  marker.on(plugin.google.maps.event.INFO_CLICK, onMarkerClick);
 });
-function addMarkers(map, data, callback) {
-  var markers = [];
-  function onMarkerAdded(marker) {
-    markers.push(marker);
 
-    // If you click on a marker, the marker's icon will be changed.
-    marker.on(plugin.google.maps.event.MARKER_CLICK, onMarkerClick);
-    marker.on(plugin.google.maps.event.INFO_CLICK, onMarkerClick);
+map.moveCamera({
+  target: bounds
+});
 
-    if (markers.length === data.length) {
-      callback(markers);
-    }
-  }
-  data.forEach(function(markerOptions) {
-    map.addMarker(markerOptions, onMarkerAdded);
-  });
-}
+
 function onMarkerClick() {
   var marker = this;
   var iconData = marker.get("iconData");
