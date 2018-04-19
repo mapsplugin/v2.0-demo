@@ -32,7 +32,7 @@
 var map = plugin.google.maps.Map.getMap(div);
 
 var button = div.getElementsByTagName('button')[0];
-button.addEventListener('touchstart', function() {
+button.addEventListener('click', function() {
   if (map.getDiv()) {
     map.setDiv();
   } else {

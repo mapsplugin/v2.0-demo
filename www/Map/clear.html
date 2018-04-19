@@ -38,10 +38,10 @@ button.addEventListener('click', function() {
   });
 });
 
-// Puts random markers on the map.
-createMarkers(map);
+// In order to get the visible region safely, you need to wait the MAP_READY event.
+map.one(plugin.google.maps.event.MAP_READY, createMarkers);
 
-function createMarkers(map) {
+function createMarkers() {
   var latLngBounds = map.getVisibleRegion();
   var sw = latLngBounds.southwest;
   var ne = latLngBounds.northeast;
