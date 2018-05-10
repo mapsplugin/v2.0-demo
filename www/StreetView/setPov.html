@@ -26,9 +26,9 @@
                 <p>
                   Sets the point of view for the Street View panorama.
                 </p>
-                <div class="map" id="panorama_canvas" style="height: 250px;"></div>
+                <div class="map" id="panorama_canvas"></div>
                 <pre class="prettyprint">
-var panoramaDiv = document.getElementById("panorama_canvas3");
+var panoramaDiv = document.getElementById("panorama_canvas");
 var panorama = plugin.google.maps.StreetView.getPanorama(panoramaDiv, {
   camera: {
     target: {lat: 42.345573, lng: -71.098326}
@@ -36,12 +36,14 @@ var panorama = plugin.google.maps.StreetView.getPanorama(panoramaDiv, {
 });
 
 setInterval(function() {
-
+  var bearing = panorama.get("camera_bearing") + 60;
+  bearing = bearing >= 360 ? 0 : bearing;
   panorama.setPov({
-    bearing: panorama.getBearing() - 60
+    bearing: bearing,
+    duration: 2000
   });
 
-}, 500);
+}, 2000);
 </pre>
             </section>
         </div>
