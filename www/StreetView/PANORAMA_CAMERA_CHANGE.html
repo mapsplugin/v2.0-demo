@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline' *; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/loader.js"></script>
+    <script src="../code-prettify/run_prettify.js" async="async"></script>
+    <script src="../js/menu.js" async="async"></script>
+</head>
+
+<body>
+
+    <div id="menuView"><ul id="menu"></ul></div>
+    <div id="header">
+        <div id="menuButton"></div><h3>event : PANORAMA_CAMERA_CHANGE</h3>
+    </div>
+    <div id="contentView">
+        <div id="contentsFrame">
+            <section class="demo">
+                <p>
+                    The PANORAMA_CAMERA_CHANGE event is fired when you move the camera angle.
+                </p>
+                <div class="map" id="pano_canvas">
+  <table style="background-color:white; padding: 1em;">
+    <tr>
+      <th>bearing</th><td id="bearing">&nbsp;</td>
+    </tr>
+    <tr>
+      <th>tilt</th><td id="tilt">&nbsp;</td>
+    </tr>
+    <tr>
+      <th>zoom</th><td id="zoom">&nbsp;</td>
+    </tr>
+  </table>
+</div>
+                <pre class="prettyprint">var div = document.getElementById("pano_canvas");
+var panorama = plugin.google.maps.StreetView.getPanorama(div, {
+  camera: {
+    target: {lat: 42.345573, lng: -71.098326}
+  }
+});
+
+var bearingField = document.getElementById('bearing');
+var tiltField = document.getElementById('tilt');
+var zoomField = document.getElementById('zoom');
+panorama.on(plugin.google.maps.event.PANORAMA_CAMERA_CHANGE, function(panoramaCamara) {
+  bearingField.innerText = panoramaCamara.bearing.toFixed(0);
+  tiltField.innerText = panoramaCamara.tilt.toFixed(0);
+  zoomField.innerText = panoramaCamara.zoom.toFixed(0);
+});
+</pre>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
