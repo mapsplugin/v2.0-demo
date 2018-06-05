@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    
+
     <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
     <link rel="stylesheet" type="text/css" href="../css/common.css" />
     <script type="text/javascript" src="../cordova.js"></script>
@@ -35,12 +35,12 @@ var div = document.getElementById("map_canvas");
 var map = plugin.google.maps.Map.getMap(div);
 
 // Catch all camera events
-map.on(plugin.google.maps.event.MAP_DRAG_START, onMapDragEvents);
-map.on(plugin.google.maps.event.MAP_DRAG, onMapDragEvents);
-map.on(plugin.google.maps.event.MAP_DRAG_END, onMapDragEvents);
+map.on(plugin.google.maps.event.MAP_DRAG_START, onMapDragEvents.bind(map, plugin.google.maps.event.MAP_DRAG_START));
+map.on(plugin.google.maps.event.MAP_DRAG, onMapDragEvents.bind(map, plugin.google.maps.event.MAP_DRAG));
+map.on(plugin.google.maps.event.MAP_DRAG_END, onMapDragEvents.bind(map, plugin.google.maps.event.MAP_DRAG_END));
 
-function onMapDragEvents() {
-  label.innerText = this.event.type;
+function onMapDragEvents(eventName) {
+  label.innerText = eventName;
 }
   </pre>
             </section>
