@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/loader.js"></script>
+    <script src="../code-prettify/run_prettify.js" async="async"></script>
+    <script src="../js/menu.js" async="async"></script>
+</head>
+
+<body>
+
+    <div id="menuView"><ul id="menu"></ul></div>
+    <div id="header">
+        <div id="menuButton"></div><h3>LocationService.hasPermission()</h3>
+    </div>
+    <div id="contentView">
+        <div id="contentsFrame">
+            <section class="demo">
+                <p>
+                    The plugin.google.maps.LocationService.hasPermission() method checks the application has a geolocation permission or not.
+                </p>
+                <button id="execButton"> Click here </button>
+                <pre class="prettyprint">
+var button = document.getElementById("execButton");
+button.addEventListener("click", function() {
+  plugin.google.maps.LocationService.hasPermission(function(hasPermission) {
+    if (hasPermission) {
+      alert("This app has geolocation permission.");
+    } else {
+      alert("This app does not have geolocation permission.");
+    }
+  });
+});
+</pre>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
