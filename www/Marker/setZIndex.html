@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    
+
     <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
     <link rel="stylesheet" type="text/css" href="../css/common.css" />
     <script type="text/javascript" src="../cordova.js"></script>
@@ -35,32 +35,35 @@ var map = plugin.google.maps.Map.getMap(div, {
   }
 });
 
-// Get the current visible region
-var latLngBounds = map.getVisibleRegion();
+map.one(plugin.google.maps.event.MAP_READY, function() {
 
-var centerLat = latLngBounds.getCenter().lat;
-var centerLng = latLngBounds.getCenter().lng-0.005;
-for (var i = 1; i <= 20; i++) {
+  // Get the current visible region
+  var latLngBounds = map.getVisibleRegion();
 
-  map.addMarker({
-    position: {
-      lat: centerLat,
-      lng: centerLng+0.001*i
-    },
-    icon: "green",
-    zIndex: i
-  });
+  var centerLat = latLngBounds.getCenter().lat;
+  var centerLng = latLngBounds.getCenter().lng-0.005;
+  for (var i = 1; i <= 20; i++) {
 
-  map.addMarker({
-    position: {
-      lat: centerLat+0.005,
-      lng: centerLng+0.001*i
-    },
-    icon: "blue",
-    zIndex: -i
-  });
-}
+    map.addMarker({
+      position: {
+        lat: centerLat,
+        lng: centerLng+0.001*i
+      },
+      icon: "green",
+      zIndex: i
+    });
 
+    map.addMarker({
+      position: {
+        lat: centerLat+0.005,
+        lng: centerLng+0.001*i
+      },
+      icon: "blue",
+      zIndex: -i
+    });
+  }
+
+});
 </pre>
             </section>
         </div>
