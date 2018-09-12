@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    
+
     <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
     <link rel="stylesheet" type="text/css" href="../css/common.css" />
     <script type="text/javascript" src="../cordova.js"></script>
@@ -86,7 +86,7 @@ showVirtualDialog(mapDiv, "Click on the markers!");
 // Add markers
 var markers = [];
 var bounds = [];
-data.forEach(function(markerOptions) {
+POINTS.forEach(function(markerOptions) {
   var marker = map.addMarker(markerOptions);
   markers.push(marker);
   bounds.push(markerOptions.position);
