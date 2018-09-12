@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    
+
     <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
     <link rel="stylesheet" type="text/css" href="../css/common.css" />
     <link rel="stylesheet" type="text/css" href="../css/index.css" />
@@ -83,7 +83,7 @@ addMarkers(map, data, function(markers) {
 function addMarkers(map, data, callback) {
   var markers = [];
   data.forEach(function(markerOptions, idx) {
-    var marker = map.addMarker(markerOptions, onMarkerAdded);
+    var marker = map.addMarker(markerOptions);
     markers.push(marker);
 
     marker.set("label", "marker" + markers.length);

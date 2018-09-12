@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    
+
     <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
     <link rel="stylesheet" type="text/css" href="../css/common.css" />
     <script type="text/javascript" src="../cordova.js"></script>
@@ -31,7 +31,7 @@
 var map = plugin.google.maps.Map.getMap(div);
 
 // Add a marker
-map.addMarker({
+var marker = map.addMarker({
   'position': {
     lat: 0,
     lng: 0
