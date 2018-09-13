@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    
+
     <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
     <link rel="stylesheet" type="text/css" href="../css/common.css" />
     <script type="text/javascript" src="../cordova.js"></script>
@@ -51,18 +51,19 @@
 ];
 
 var mapDiv = document.getElementById("map_canvas");
-var map = plugin.google.maps.Map.getMap(mapDiv);
+var map = plugin.google.maps.Map.getMap(mapDiv, {
+  camera: {
+    target: [
+      {lat: 45.738532, lng: 149.554238},
+      {lat: 40.113827, lng: 138.066162}
+    ]
+  }
+});
 
 // Show the message
 showVirtualDialog(mapDiv, "Click on the ground overlays");
 
-var mvcArray = new plugin.google.maps.BaseArrayClass();
-var latLngBounds = new plugin.google.maps.LatLngBounds();
-
-regions.forEach(function(region, idx) {
-  region.bounds.forEach(function(position) {
-    latLngBounds.extend(position);
-  });
+var overlays = regions.map(function(region, idx) {
 
   // Add ground overlay
   var groundOverlay = map.addGroundOverlay({
@@ -72,23 +73,15 @@ regions.forEach(function(region, idx) {
     'zIndex': idx,
     'clickable': true
   });
-  mvcArray.push(groundOverlay);
   groundOverlay.on(plugin.google.maps.event.GROUND_OVERLAY_CLICK, onClick);
-
+  return groundOverlay;
 });
 
-mvcArray.on("insert_at", function() {
-  if (mvcArray.getLength() === regions.length) {
-    map.moveCamera({
-      target: latLngBounds
-    });
-  }
-});
 
 function onClick() {
   var clickedOverlay = this;
 
-  mvcArray.forEach(function(groundOverlay, idx) {
+  overlays.forEach(function(groundOverlay, idx) {
     if (clickedOverlay.getHashCode() === groundOverlay.getHashCode()) {
       groundOverlay.setZIndex(1);
       groundOverlay.setOpacity(1);
