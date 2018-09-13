@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    
+
     <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
     <link rel="stylesheet" type="text/css" href="../css/common.css" />
     <script type="text/javascript" src="../cordova.js"></script>
@@ -75,7 +75,7 @@ function addEditablePolygon(map, points) {
   // polygon.getPoints() returns an instance of the BaseArrayClass.
   var mvcArray = polygon.getPoints();
 
-  points.forEach(function(point, idx) {
+  points.forEach(function(latLng, idx) {
     var marker = map.addMarker({
       position: latLng,
       draggable: true

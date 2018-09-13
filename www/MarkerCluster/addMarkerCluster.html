@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    
+
     <link rel="stylesheet" type="text/css" href="../code-prettify/prettify.css" />
     <link rel="stylesheet" type="text/css" href="../css/common.css" />
     <script type="text/javascript" src="../cordova.js"></script>
@@ -49,10 +49,10 @@ var markerCluster = map.addMarkerCluster({
   boundsDraw: true,
   markers: dummyData(),
   icons: [
-      {min: 2, max: 100, url: "./img/blue.png", anchor: {x: 16, y: 16}},
-      {min: 100, max: 1000, url: "./img/yellow.png", anchor: {x: 16, y: 16}},
-      {min: 1000, max: 2000, url: "./img/purple.png", anchor: {x: 24, y: 24}},
-      {min: 2000, url: "./img/red.png",anchor: {x: 32,y: 32}}
+      {min: 2, max: 100, url: "./img/blue.png", anchor: {x: 20, y: 20}},
+      {min: 100, max: 1000, url: "./img/yellow.png", anchor: {x: 20, y: 20}},
+      {min: 1000, max: 2000, url: "./img/purple.png", anchor: {x: 20, y: 20}},
+      {min: 2000, url: "./img/red.png",anchor: {x: 20, y: 20}}
   ]
 });
 
@@ -63,7 +63,7 @@ markerCluster.on("resolution_changed", function (prev, newResolution) {
     var self = this;
     label.innerHTML = "&lt;b&gt;zoom = " + self.get("zoom").toFixed(0) + ", resolution = " + self.get("resolution") + "&lt;/b&gt;";
 });
-markerCluster.trigger("resolution_changed");
+//markerCluster.trigger("resolution_changed");
 
 //------------------------------------
 // If you tap on a marker,
