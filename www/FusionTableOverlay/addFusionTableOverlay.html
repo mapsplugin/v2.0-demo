@@ -23,15 +23,23 @@
         <div id="contentsFrame">
             <section class="demo">
                 <p>
-                    The map.addFusionTableOverlay() method imports a kml file from URL or file path, then generate a layer.
+                    The map.addFusionTableOverlay() method imports a kml file from FusionTable.
                 </p>
                 <div class="map" id="map_canvas"></div>
                 <pre class="prettyprint">var mapDiv = document.getElementById("map_canvas");
-var map = plugin.google.maps.Map.getMap(mapDiv);
+var map = plugin.google.maps.Map.getMap(mapDiv, {
+  camera: {
+    target: {
+      'lat': 51.665173,
+      'lng': -3.771648
+    },
+    zoom: 11
+  }
+});
 
 map.addFusionTableOverlay({
-  'select': 'latitude',
-  'from': '1fLFHL3QzEauLeuuN0aRAeuEVRNpMVC5y1Y-j8w',
+  'select': 'geometry',
+  'from': '1mFQBxJHTlUKIWvM6-ihKvz9vFCBctrmjE7-33Fg',
   'suppressInfoWindows': false
 });
 
