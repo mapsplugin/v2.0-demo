@@ -43,6 +43,11 @@ map.addFusionTableOverlay({
     'from': '1mFQBxJHTlUKIWvM6-ihKvz9vFCBctrmjE7-33Fg'
   },
   'suppressInfoWindows': false
+}).
+then(function(fusionTable) {
+  fusionTable.on(plugin.google.maps.event.FUSION_TABLE_CLICK, function(evtInfo) {
+    console.log('--->click', evtInfo);
+  });
 });
 
 </pre>
